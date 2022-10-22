@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
 
+import Button from '@/components/Button/button';
+
+import { faRotate } from '@fortawesome/free-solid-svg-icons';
+
 import styles from '@/styles/Home.module.css';
+import TextArea from '@/components/TextArea/text-area';
 
 export default function Home() {
   return (
@@ -24,6 +29,9 @@ export default function Home() {
           Get started by editing{` `}
           <code className={styles.code}>src/pages/index.tsx</code>
         </p>
+
+        <TextArea spellCheck="false" rows={10} cols={50} />
+        <Button icon={faRotate}>Hello World</Button>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>

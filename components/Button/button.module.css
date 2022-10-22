@@ -1,0 +1,36 @@
+.button-skeleton
+{
+  display: inline-block;
+  position: relative;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  border-radius: 5px;
+  font-family: "IBM Plex Sans";
+  font-weight: 600;
+  font-size: 1rem;
+
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+
+  width: 100%;
+}
+
+.button-prefix {
+  display: flex;
+  box-sizing: border-box;
+  margin-right: 5px;
+}
+
+.button-content {
+  width: 100%;
+  display: inline-block;
+}

@@ -1,0 +1,33 @@
+.text-skeleton
+{
+  display: inline;
+  position: relative;
+}
+
+.text {
+  box-sizing: border-box;
+
+  border-radius: 5px; 
+  outline: none;
+  resize: none;
+  appearance: none;
+
+  background-color: unset;
+
+  transition-property: border-color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+
+  font-family: unset;
+  font-size: 1rem;
+  
+  width: 100%;
+  height: auto;
+
+  overflow-y: hidden;
+}
+
+.label {
+  margin-bottom: 0.25rem;
+  display: inline-block;
+}

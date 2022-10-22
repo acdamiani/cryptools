@@ -1,0 +1,25 @@
+.wrapper {
+  position: relative;
+}
+
+.area
+{
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.border
+{
+  display: block;
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  border-radius: 5px;
+}
