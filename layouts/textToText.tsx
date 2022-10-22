@@ -40,6 +40,7 @@ export default function TextToText({
           value={text}
           onChange={(e) => setText(e.target.value)}
           spellCheck={false}
+          resize
         />
         <div>
           <Button icon={faRotate} onClick={doTransform}>
@@ -50,6 +51,7 @@ export default function TextToText({
           labelText={areaTwoLabelText}
           value={result}
           spellCheck={false}
+          resize
           readOnly
         />
       </Area>

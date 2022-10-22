@@ -27,7 +27,6 @@ export default function TextArea({
   borderColorFocused = `var(--color-main)`,
   resize = false,
   labelText = `Text area:`,
-  onInput,
   className,
   children,
   id,
@@ -42,17 +41,16 @@ export default function TextArea({
     textArea.current.style.height = textArea.current.scrollHeight + `px`;
   }, [textArea, resize]);
 
-  const onTextChange = () => {
-    if (!resize || !textArea.current) return;
+  useEffect(() => {
+    const onTextChange = () => {
+      if (!resize || !textArea.current) return;
 
-    textArea.current.style.height = `0`;
-    textArea.current.style.height = textArea.current?.scrollHeight + `px`;
-  };
+      textArea.current.style.height = `0`;
+      textArea.current.style.height = textArea.current?.scrollHeight + `px`;
+    };
 
-  const onInputCaller = (event: FormEvent<HTMLTextAreaElement>) => {
-    onInput?.(event);
     onTextChange();
-  };
+  }, [children, props.value, resize, textArea]);
 
   return (
     <>
@@ -75,9 +73,9 @@ export default function TextArea({
         </label>
         <textarea
           className={styles.text}
-          onInput={onInputCaller}
           id={id ?? newId}
           ref={textArea}
+          rows={1}
           {...props}
         >
           {children}
