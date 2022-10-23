@@ -1,3 +1,5 @@
+import Header from '@/components/Header/header';
+
 import styles from '@/layouts/page.module.css';
 
 export interface PageProps {
@@ -7,5 +9,10 @@ export interface PageProps {
 export type Props = PageProps;
 
 export default function Page({ children }: Props) {
-  return <div className={styles.page}>{children}</div>;
+  return (
+    <div className={styles.app}>
+      <Header />
+      <div className={styles.page}>{children}</div>
+    </div>
+  );
 }

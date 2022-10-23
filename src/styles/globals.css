@@ -7,6 +7,8 @@ body {
 }
 
 :root {
+  --header-height: 4rem;
+
   --color-main: #FB2576;
   --color-background: #000000;
   --color-input: #000000;

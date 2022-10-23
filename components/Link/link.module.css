@@ -1,0 +1,13 @@
+.link {
+  font-family: "IBM Plex Sans";
+  font-weight: 400;
+  font-size: 1rem;
+
+  color: white;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: var(--color-main);
+}
