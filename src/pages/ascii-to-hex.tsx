@@ -3,7 +3,6 @@ import { NextPageWithLayout } from '@/pages/_app';
 
 import TextToText from '@/layouts/textToText';
 import Page from '@/layouts/page';
-import TextArea from '@/components/TextArea/text-area';
 
 const convert = (arg0: string) => {
   const result = [];
@@ -18,6 +17,7 @@ const convert = (arg0: string) => {
 const AsciiToText: NextPageWithLayout = () => {
   return (
     <>
+      <p>Hello World</p>
       <p>Hello World</p>
       <p>Hello World</p>
       <p>Hello World</p>

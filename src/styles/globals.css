@@ -4,11 +4,34 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
 
+:root {
   --color-main: #FB2576;
   --color-background: #000000;
-  --color-input: #150050;
-  --color-outline: #3F0071;
+  --color-input: #000000;
+  --color-outline: gray;
+
+  /* React Select */
+  --rs-primary: #FB2576;
+  --rs-primary-25: gray;
+  --rs-primary-50: #FB2576;
+  --rs-primary-75: #FB2576;
+
+  --rs-danger: #DE350B;
+  --rs-danger-light: #FFBDAD;
+
+  --rs-neutral0: black;
+  --rs-neutral5: black;
+  --rs-netural10: gray;
+  --rs-neutral20: gray;
+  --rs-neutral30: gray;
+  --rs-neutral40: gray;
+  --rs-neutral50: gray;
+  --rs-neutral60: gray;
+  --rs-neutral70: gray;
+  --rs-neutral80: white;
+  --rs-neutral90: gray;
 }
 
 a {
@@ -20,28 +43,48 @@ a {
   box-sizing: border-box;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
   font-family: "IBM Plex Sans";
-  font-weight: 700;
+}
+
+h1 {
+  margin: 1rem 0;
+  font-weight: 600;
   font-size: 2.5rem;
+  letter-spacing: 0;
+  line-height: 3.125rem;
+  font-size: 2.625rem;
 }
 
 h2 {
-  font-family: "IBM Plex Sans";
-  font-weight: 700;
-  font-size: 2rem;
+  font-weight: 300;
+  font-size: 2.625rem;
+  line-height: 3.125rem;
+  letter-spacing: 0;
 }
 
 h3 {
-  font-family: "IBM Plex Sans";
   font-weight: 600;
   font-size: 1.75rem;
+  line-height: 2.25rem;
 }
 
 h4 {
-  font-family: "IBM Plex Sans";
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0;
+}
+
+pre, code, .code {
+  padding: 0;
+  margin: 0;
+  font-family: "IBM Plex Mono";
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: .32px;;
+  line-height: 1.25rem;
 }
 
 @media (prefers-color-scheme: dark) {

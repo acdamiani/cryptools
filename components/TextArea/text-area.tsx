@@ -61,6 +61,7 @@ export default function TextArea({
             color: ${textColor};
             background-color: ${backgroundColor};
             border: ${borderWidth} solid ${borderColor};
+            overflow-y: ${resize ? `hidden` : `auto`};
           }
           textarea:focus {
             border-color: ${borderColorFocused};

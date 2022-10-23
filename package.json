@@ -17,7 +17,8 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -30,18 +31,23 @@
     "@fortawesome/free-solid-svg-icons": "6.2.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "classnames": "2.3.2",
+    "file-saver": "2.0.5",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-select": "5.5.4"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
+    "@next/bundle-analyzer": "12.3.1",
+    "@types/file-saver": "2.0.5",
     "@types/node": "16.11.65",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "5.40.1",
     "@typescript-eslint/parser": "5.40.1",
+    "cross-env": "7.0.3",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "8.5.0",

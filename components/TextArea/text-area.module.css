@@ -15,7 +15,7 @@
   background-color: unset;
 
   transition-property: border-color;
-  transition-duration: 0.15s;
+  transition-duration: 0.25s;
   transition-timing-function: ease;
 
   font-family: unset;
@@ -23,8 +23,6 @@
   
   width: 100%;
   height: auto;
-
-  overflow-y: hidden;
 }
 
 .label {
