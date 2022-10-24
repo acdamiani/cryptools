@@ -37,6 +37,11 @@
   height: 100%;
 }
 
+.link > li {
+  display: flex;
+  align-items: center;
+}
+
 .flyout {
   position: relative;
 }
@@ -99,3 +104,4 @@
   display: block;
   font-size: 15px;
 }
+

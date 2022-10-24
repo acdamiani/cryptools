@@ -18,6 +18,7 @@ export default function Select<
       borderWidth: 1,
       boxShadow: `none`,
       padding: `1rem`,
+      transition: `all 0.15s ease`,
     }),
     valueContainer: (provided) => ({
       ...provided,

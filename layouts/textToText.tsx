@@ -216,10 +216,8 @@ export default function TextToText({
           <Button
             icon={faUpload}
             onClick={doUpload}
-            backgroundColor="transparent"
-            backgroundColorHover="transparent"
-            borderColor="var(--color-main)"
-            borderColorHover="#fa70a5"
+            backgroundColor="rgb(47, 47, 47)"
+            backgroundColorHover="rgb(57, 57, 57)"
             textColor="white"
             textColorHover="white"
           >
@@ -228,10 +226,8 @@ export default function TextToText({
           <Button
             icon={faSave}
             onClick={doSave}
-            backgroundColor="transparent"
-            backgroundColorHover="transparent"
-            borderColor="var(--color-main)"
-            borderColorHover="#fa70a5"
+            backgroundColor="rgb(47, 47, 47)"
+            backgroundColorHover="rgb(57, 57, 57)"
             textColor="white"
             textColorHover="white"
           >

@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-
 import Logo from '@/public/logo.svg';
 
 import styles from '@/components/Header/header.module.css';
 import Link from '../Link/link';
+import Toggle from '../Toggle/toggle';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
   return (
@@ -113,6 +113,9 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
+            </li>
+            <li>
+              <Toggle iconOn={faMoon} iconOff={faSun} />
             </li>
           </ul>
         </nav>
