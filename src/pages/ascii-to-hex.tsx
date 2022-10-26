@@ -2,7 +2,6 @@ import { ReactElement } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
 
 import TextToText from '@/layouts/textToText';
-import Page from '@/layouts/page';
 
 const convert = (arg0: string) => {
   const result = [];
@@ -41,11 +40,9 @@ const AsciiToText: NextPageWithLayout = () => {
 
 AsciiToText.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Page>
-      <TextToText title="ASCII Text to Hex Code Converter" transform={convert}>
-        {page}
-      </TextToText>
-    </Page>
+    <TextToText title="ASCII Text to Hex Code Converter" transform={convert}>
+      {page}
+    </TextToText>
   );
 };
 

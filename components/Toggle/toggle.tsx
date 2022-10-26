@@ -6,21 +6,30 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import styles from '@/components/Toggle/toggle.module.css';
 
 interface ToggleProps {
+  initialValue?: boolean;
   onChange?: (value: boolean) => void;
   iconOff?: IconDefinition;
   iconOn?: IconDefinition;
+  id?: string;
 }
 
 export type Props = ToggleProps;
 
-export default function Toggle({ onChange, iconOff, iconOn }: ToggleProps) {
-  const [toggled, setIsToggled] = useState(false);
+export default function Toggle({
+  initialValue = false,
+  onChange,
+  iconOff,
+  iconOn,
+  id,
+}: ToggleProps) {
+  const [toggled, setIsToggled] = useState(initialValue);
 
   return (
     <button
       className={styles.button}
       type="button"
       role="switch"
+      id={id}
       onClick={() =>
         setIsToggled((x) => {
           onChange?.(!x);

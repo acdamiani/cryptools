@@ -13,8 +13,8 @@ export interface AreaProps {
 export type Props = AreaProps & React.HTMLAttributes<HTMLDivElement>;
 
 export default function Area({
-  backgroundColor = `var(--color-background)`,
-  borderColor = `gray`,
+  backgroundColor = `var(--ct-c-bg)`,
+  borderColor = `var(--ct-c-border)`,
   topPad = `1rem`,
   children,
   className,

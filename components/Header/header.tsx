@@ -1,11 +1,19 @@
-import Logo from '@/public/logo.svg';
+import { useState } from 'react';
 
-import styles from '@/components/Header/header.module.css';
-import Link from '../Link/link';
-import Toggle from '../Toggle/toggle';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
+import Logo from '@/public/logo.svg';
+import Link from '../Link/link';
+import Toggle from '../Toggle/toggle';
+
+import styles from '@/components/Header/header.module.css';
+
 export default function Header() {
+  const updateDarkMode = (e: boolean) => {
+    if (e) document.documentElement.classList.add(`dark`);
+    else document.documentElement.classList.remove(`dark`);
+  };
+
   return (
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
@@ -115,7 +123,11 @@ export default function Header() {
               </div>
             </li>
             <li>
-              <Toggle iconOn={faMoon} iconOff={faSun} />
+              <Toggle
+                iconOn={faMoon}
+                iconOff={faSun}
+                onChange={(v) => updateDarkMode(v)}
+              />
             </li>
           </ul>
         </nav>

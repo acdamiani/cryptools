@@ -18,7 +18,7 @@ export default function Select<
       borderWidth: 1,
       boxShadow: `none`,
       padding: `1rem`,
-      transition: `all 0.15s ease`,
+      transition: `background-color 0.5s ease`,
     }),
     valueContainer: (provided) => ({
       ...provided,
@@ -34,18 +34,20 @@ export default function Select<
     dropdownIndicator: (provided) => ({
       ...provided,
       padding: `0`,
-      color: `gray`,
+      color: `var(--ct-c-gray)`,
     }),
     input: (provided) => ({
       ...provided,
       padding: `0`,
       margin: `0`,
+      transition: `color 0.5s ease`,
     }),
     menu: (provided) => ({
       ...provided,
       borderRadius: `5px`,
-      border: `1px solid var(--color-outline)`,
+      border: `1px solid var(--ct-c-border)`,
       width: `fit-content`,
+      transition: `border 0.5s ease`,
     }),
     menuList: (provided) => ({
       ...provided,
@@ -54,8 +56,8 @@ export default function Select<
     option: (provided, state) => ({
       ...provided,
       borderRadius: `5px`,
-      backgroundColor: state.isFocused ? `var(--rs-primary)` : `transparent`,
-      color: `white`,
+      backgroundColor: state.isFocused ? `var(--ct-c-primary)` : `transparent`,
+      color: `var(--ct-c-font)`,
     }),
   };
 
@@ -69,25 +71,25 @@ export default function Select<
         borderRadius: 5,
         colors: {
           ...theme.colors,
-          primary: `var(--rs-primary)`,
-          primary25: `var(--rs-primary25)`,
-          primary50: `var(--rs-primary50)`,
-          primary75: `var(--rs-primary75)`,
+          primary: `var(--ct-c-primary)`,
+          primary25: `var(--ct-c-gray)`,
+          primary50: `var(--ct-c-primary)`,
+          primary75: `var(--ct-c-primary)`,
 
-          danger: `var(--rs-danger)`,
-          dangerLight: `var(--rs-danger-light)`,
+          danger: `#DE350B`,
+          dangerLight: `#FFBDAD`,
 
-          neutral0: `var(--rs-neutral0)`,
-          neutral5: `var(--rs-neutral5)`,
-          neutral10: `var(--rs-neutral10)`,
-          neutral20: `var(--rs-neutral20)`,
-          neutral30: `var(--rs-neutral30)`,
-          neutral40: `var(--rs-neutral40)`,
-          neutral50: `var(--rs-neutral50)`,
-          neutral60: `var(--rs-neutral60)`,
-          neutral70: `var(--rs-neutral70)`,
-          neutral80: `var(--rs-neutral80)`,
-          neutral90: `var(--rs-neutral90)`,
+          neutral0: `var(--ct-c-bg)`,
+          neutral5: `var(--ct-c-bg)`,
+          neutral10: `var(--ct-c-border)`,
+          neutral20: `var(--ct-c-border)`,
+          neutral30: `var(--ct-c-border)`,
+          neutral40: `var(--ct-c-border)`,
+          neutral50: `var(--ct-c-border)`,
+          neutral60: `var(--ct-c-border)`,
+          neutral70: `var(--ct-c-border)`,
+          neutral80: `var(--ct-c-font)`,
+          neutral90: `var(--ct-c-border)`,
         },
       })}
     />

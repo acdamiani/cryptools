@@ -1,6 +1,6 @@
 .header-wrapper {
   width: 100%;
-  border-bottom: 1px solid #70707070;
+  border-bottom: 1px solid var(--ct-c-divider);
   height: var(--header-height);
   display: flex;
   justify-content: center;
@@ -62,10 +62,10 @@
   padding: 1rem;
   width: max-content;
 
-  border: 1px solid #70707070;
+  border: 1px solid var(--ct-c-divider);
   border-radius: 5px;
 
-  background-color: var(--color-background);
+  background-color: var(--ct-c-bg);
 
   z-index: 100;
 
@@ -84,7 +84,7 @@
 .flyout-button {
   border: none;
   background-color: transparent;
-  color: white;
+  color: var(--ct-c-font);
 
   font-family: "IBM Plex Sans";
   font-weight: 600;
@@ -97,7 +97,7 @@
 
 .flyout:hover .flyout-button {
   cursor: pointer;
-  color: gray;
+  color: var(--ct-c-gray);
 }
 
 .header-link {

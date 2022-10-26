@@ -4,10 +4,10 @@
   width: 40px;
   height: 22px;
 
-  border: 1px solid gray;
+  border: 1px solid var(--ct-c-border);
   border-radius: 11px;
 
-  background-color: #70707070;
+  background-color: var(--ct-c-divider);
 
   padding: 0;
   margin: 0;
@@ -27,7 +27,7 @@
   width: 18px;
   height: 18px;
 
-  background-color: black;
+  background-color: var(--ct-c-bg);
   
   border-radius: 50%;
 
@@ -48,4 +48,5 @@
   width: 12px;
   height: 12px;
   transition: opacity 0.25s ease;
+  color: var(--ct-c-font);
 }

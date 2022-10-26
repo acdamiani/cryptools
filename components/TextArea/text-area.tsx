@@ -19,12 +19,12 @@ export type Props = TextAreaProps &
   React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export default function TextArea({
-  textColor = `white`,
+  textColor = `var(--ct-c-font)`,
   padding = `1rem`,
-  backgroundColor = `var(--color-background)`,
+  backgroundColor = `var(--ct-c-bg)`,
   borderWidth = `1px`,
-  borderColor = `gray`,
-  borderColorFocused = `var(--color-main)`,
+  borderColor = `var(--ct-c-border)`,
+  borderColorFocused = `var(--ct-c-primary)`,
   resize = false,
   labelText = `Text area:`,
   className,
