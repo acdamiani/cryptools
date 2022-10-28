@@ -48,6 +48,7 @@ export default function Select<
       border: `1px solid var(--ct-c-border)`,
       width: `fit-content`,
       transition: `border 0.5s ease`,
+      boxShadow: `none`,
     }),
     menuList: (provided) => ({
       ...provided,

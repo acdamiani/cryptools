@@ -10,31 +10,29 @@ type color = React.CSSProperties['color'];
 export interface ButtonProps {
   textColor?: color;
   textColorHover?: color;
-  textColorDisabled?: color;
   backgroundColor?: color;
   backgroundColorHover?: color;
-  backgroundColorDisabled?: color;
   borderColor?: color;
   borderColorHover?: color;
-  borderColorDisabled?: color;
   borderWidth?: React.CSSProperties['borderWidth'];
   padding?: React.CSSProperties['padding'];
   icon?: IconDefinition;
   iconColor?: color;
+  secondary?: boolean;
 }
 
 export type Props = ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
-  textColor = `white`,
-  textColorHover = `white`,
-  textColorDisabled = `#ffffff80`,
-  backgroundColor = `var(--color-main)`,
-  backgroundColorHover = `var(--color-main-highlight)`,
-  backgroundColorDisabled = `#3454d180`,
+  secondary = false,
+  textColor = `var(--ct-c-font)`,
+  textColorHover = `var(--ct-c-font)`,
+  backgroundColor = secondary ? `var(--ct-c-bg-soft)` : `var(--ct-c-primary)`,
+  backgroundColorHover = secondary
+    ? `var(--ct-c-bg-mute)`
+    : `var(--ct-c-primary-highlight)`,
   borderColor = `transparent`,
   borderColorHover = `transparent`,
-  borderColorDisabled = `transparent`,
   borderWidth = `1px`,
   padding = `0.5rem 1rem`,
   icon,
@@ -53,7 +51,7 @@ const Button = ({
           background-color: ${backgroundColor};
           border: ${borderWidth} solid ${borderColor};
         }
-        button:hover {
+        button:hover:not([disabled]) {
           color: ${textColorHover};
           background-color: ${backgroundColorHover};
           border-color: ${borderColorHover};
@@ -61,9 +59,10 @@ const Button = ({
         button:disabled {
           cursor: not-allowed;
           pointer-events: none;
-          color: ${textColorDisabled};
-          background-color: ${backgroundColorDisabled};
-          border-color: ${borderColorDisabled};
+          color: ${textColor};
+          background-color: ${backgroundColor};
+          border-color: ${borderColor};
+          opacity: 0.75;
         }
       `}</style>
       <span className={classNames(styles.buttonSkeleton, className)}>

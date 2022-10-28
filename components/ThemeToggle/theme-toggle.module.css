@@ -34,6 +34,10 @@
   transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
+.dark .check {
+  transform: translateX(18px);
+}
+
 .icon-container {
   position: relative;
   display: block;
@@ -49,5 +53,12 @@
   height: 12px;
   color: var(--ct-c-font);
 
-  transition: opacity 0.25s ease;
+}
+
+.sun {
+  opacity: 1;
+}
+
+.moon {
+  opacity: 0;
 }

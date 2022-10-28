@@ -213,24 +213,10 @@ export default function TextToText({
           <Button icon={faRotate} onClick={doTransform}>
             Convert
           </Button>
-          <Button
-            icon={faUpload}
-            onClick={doUpload}
-            backgroundColor="rgb(47, 47, 47)"
-            backgroundColorHover="rgb(57, 57, 57)"
-            textColor="white"
-            textColorHover="white"
-          >
+          <Button icon={faUpload} onClick={doUpload} secondary>
             Upload File
           </Button>
-          <Button
-            icon={faSave}
-            onClick={doSave}
-            backgroundColor="rgb(47, 47, 47)"
-            backgroundColorHover="rgb(57, 57, 57)"
-            textColor="white"
-            textColorHover="white"
-          >
+          <Button icon={faSave} onClick={doSave} secondary>
             Save Output
           </Button>
           <input type="file" onChange={onFile} ref={fileInput} hidden />

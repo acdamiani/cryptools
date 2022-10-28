@@ -7,8 +7,17 @@ import Button from '@/components/Button/button';
 import styles from '@/styles/password-generator.module.css';
 import Toggle from '@/components/Toggle/toggle';
 import Select from '@/components/Select/select';
+import { faCopy, faGears } from '@fortawesome/free-solid-svg-icons';
 
-const passTypes = [
+type PassTypes = `random` | `memorable` | `pin`;
+
+const passLenFromType: Record<PassTypes, [number, number]> = {
+  random: [3, 50],
+  memorable: [3, 10],
+  pin: [3, 12],
+};
+
+const passTypes: { value: PassTypes; label: string }[] = [
   { value: `random`, label: `Random Password` },
   { value: `memorable`, label: `Memorable Password` },
   { value: `pin`, label: `PIN` },
@@ -24,9 +33,12 @@ const SYMBOL = `\`~!@#$%^&*()_-+={[}}|\\:;"'<,>.?/`;
 export default function PasswordGenerator() {
   const [sliderValue, setSliderValue] = useState(12);
   const [password, setPassword] = useState(``);
+  const [disabled, setDisabled] = useState(false);
 
   const [num, setNum] = useState(false);
   const [symbol, setSymbol] = useState(false);
+
+  const [passType, setPassType] = useState<PassTypes>(`random`);
 
   const intervalId = useRef<NodeJS.Timer>();
 
@@ -54,44 +66,81 @@ export default function PasswordGenerator() {
       if (i++ === PASS_ITER) {
         setPassword(newPass);
         clearInterval(intervalId.current);
+        setDisabled(false);
       } else {
         setPassword(makePassword(sliderValue));
       }
     };
 
+    setDisabled(true);
     intervalId.current = setInterval(funcUpdate, TIMEOUT_LEN);
+  };
+
+  const numFmt = (num: number, digits = 2): string => {
+    const str = num.toString();
+    return str.padStart(digits, `0`);
   };
 
   return (
     <>
       <h1>Secure Password Generator</h1>
-      <Area>
-        <Select options={passTypes} defaultValue={passTypes[0]} />
+      <Area className={styles.area}>
         <div className={styles.controls}>
           <div className={styles.length}>
             <label htmlFor={id}>Length</label>
             <Slider
-              min={3}
-              max={26}
+              min={passLenFromType[passType][0]}
+              max={passLenFromType[passType][1]}
               value={sliderValue}
               id={id}
-              onChange={(e) => setSliderValue(parseInt(e.target.value))}
+              onChange={(e) =>
+                setSliderValue(parseInt((e.target as HTMLInputElement).value))
+              }
             />
-            <p className={styles.sliderValue}>{sliderValue}</p>
+            <p className={styles.sliderValue}>{numFmt(sliderValue)}</p>
           </div>
-          <div className={styles.toggle}>
-            <label htmlFor={toggleOneId}>Numbers</label>
-            <Toggle id={toggleOneId} onChange={(e) => setNum(e)} />
-          </div>
-          <div className={styles.toggle}>
-            <label htmlFor={toggleTwoId}>Symbols</label>
-            <Toggle id={toggleTwoId} onChange={(e) => setSymbol(e)} />
-          </div>
+          {passType !== `pin` ? (
+            <div className={styles.toggle}>
+              <label htmlFor={toggleOneId}>
+                {passType === `random` ? `Numbers` : `Capitalize`}
+              </label>
+              <Toggle id={toggleOneId} onChange={(e) => setNum(e)} />
+            </div>
+          ) : (
+            ``
+          )}
+          {passType !== `pin` ? (
+            <div className={styles.toggle}>
+              <label htmlFor={toggleTwoId}>
+                {passType === `random` ? `Symbols` : `Full Words`}
+              </label>
+              <Toggle id={toggleTwoId} onChange={(e) => setSymbol(e)} />
+            </div>
+          ) : (
+            ``
+          )}
         </div>
-        <Button onClick={() => updatePassword(makePassword(sliderValue))}>
-          Generate
-        </Button>
-        <h2 className={styles.passHeader}>Your Password:</h2>
+        <Select
+          options={passTypes}
+          defaultValue={passTypes[0]}
+          onChange={(e) => {
+            if (!e) return;
+            setPassType(e.value);
+          }}
+        />
+        <div className={styles.generatorButtons}>
+          <Button
+            onClick={() => updatePassword(makePassword(sliderValue))}
+            icon={faGears}
+            className={styles.button}
+            disabled={disabled}
+          >
+            Generate
+          </Button>
+          <Button icon={faCopy} disabled={disabled} secondary>
+            Copy
+          </Button>
+        </div>
         <span className={styles.password}>{password}</span>
       </Area>
     </>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -7,16 +7,19 @@ import styles from '@/components/Toggle/toggle.module.css';
 
 interface ToggleProps {
   initialValue?: boolean;
+  value?: boolean;
   onChange?: (value: boolean) => void;
   iconOff?: IconDefinition;
   iconOn?: IconDefinition;
   id?: string;
+  toggleByClass: string;
 }
 
 export type Props = ToggleProps;
 
 export default function Toggle({
   initialValue = false,
+  value,
   onChange,
   iconOff,
   iconOn,
@@ -24,45 +27,55 @@ export default function Toggle({
 }: ToggleProps) {
   const [toggled, setIsToggled] = useState(initialValue);
 
+  const isToggled = value ?? toggled;
+
   return (
-    <button
-      className={styles.button}
-      type="button"
-      role="switch"
-      id={id}
-      onClick={() =>
-        setIsToggled((x) => {
-          onChange?.(!x);
-          return !x;
-        })
-      }
-      aria-checked={toggled}
-    >
-      <span
-        className={styles.check}
-        style={{ transform: toggled ? `translateX(18px)` : `` }}
+    <>
+      <button
+        className={styles.button}
+        type="button"
+        role="switch"
+        id={id}
+        onClick={() =>
+          setIsToggled((x) => {
+            onChange?.(!x);
+            return !x;
+          })
+        }
+        aria-checked={isToggled}
       >
-        <span className={styles.iconContainer}>
-          {iconOff ? (
-            <FontAwesomeIcon
-              className={styles.icon}
-              icon={iconOff}
-              style={{ opacity: toggled ? 0 : 1 }}
-            />
-          ) : (
-            ``
-          )}
-          {iconOn ? (
-            <FontAwesomeIcon
-              className={styles.icon}
-              icon={iconOn}
-              style={{ opacity: toggled ? 1 : 0 }}
-            />
-          ) : (
-            ``
-          )}
+        <span
+          className={styles.check}
+          style={{
+            transform: isToggled ? `translateX(18px)` : ``,
+          }}
+        >
+          <span className={styles.iconContainer}>
+            {iconOff ? (
+              <FontAwesomeIcon
+                className={styles.icon}
+                icon={iconOff}
+                style={{
+                  opacity: isToggled ? 0 : 1,
+                }}
+              />
+            ) : (
+              ``
+            )}
+            {iconOn ? (
+              <FontAwesomeIcon
+                className={styles.icon}
+                icon={iconOn}
+                style={{
+                  opacity: isToggled ? 1 : 0,
+                }}
+              />
+            ) : (
+              ``
+            )}
+          </span>
         </span>
-      </span>
-    </button>
+      </button>
+    </>
   );
 }

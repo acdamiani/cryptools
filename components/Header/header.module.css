@@ -52,6 +52,10 @@
   transform: translateY(0);
 }
 
+.flyout:not(:hover) .flyout-box {
+  pointer-events: none;
+}
+
 .flyout-box {
   position: absolute;
   top: calc(var(--header-height) - 1rem); 

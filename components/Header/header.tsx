@@ -1,19 +1,14 @@
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
+import ThemeToggle from '../ThemeToggle/theme-toggle';
 import Logo from '@/public/logo.svg';
 import Link from '../Link/link';
-import Toggle from '../Toggle/toggle';
 
 import styles from '@/components/Header/header.module.css';
 
 export default function Header() {
-  const updateDarkMode = (e: boolean) => {
-    if (e) document.documentElement.classList.add(`dark`);
-    else document.documentElement.classList.remove(`dark`);
-  };
-
   return (
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
@@ -63,28 +58,25 @@ export default function Header() {
                 </button>
                 <div className={styles.flyoutBox}>
                   <Link className={styles.headerLink} href="/">
-                    ASCII to Hex
+                    Caesar Cipher
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    ASCII to Binary
+                    Vigenère Cipher
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Hex to Decimal
+                    Pig Latin
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Hex to Binary
+                    Polyalphabetic Cipher
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Hex to Oct
+                    Substitution Cipher
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Decimal to Binary
+                    Beaufort Cipher
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Decimal to Hex
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    Decimal to Oct
+                    Arnold Cipher
                   </Link>
                 </div>
               </div>
@@ -96,38 +88,25 @@ export default function Header() {
                 </button>
                 <div className={styles.flyoutBox}>
                   <Link className={styles.headerLink} href="/">
-                    ASCII to Hex
+                    Secure Password
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    ASCII to Binary
+                    Contact Information
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Hex to Decimal
+                    Lorem Ipsum
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Hex to Binary
+                    Fake Credit Card
                   </Link>
                   <Link className={styles.headerLink} href="/">
-                    Hex to Oct
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    Decimal to Binary
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    Decimal to Hex
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    Decimal to Oct
+                    Fake Phone Number
                   </Link>
                 </div>
               </div>
             </li>
             <li>
-              <Toggle
-                iconOn={faMoon}
-                iconOff={faSun}
-                onChange={(v) => updateDarkMode(v)}
-              />
+              <ThemeToggle iconOn={faMoon} iconOff={faSun} />
             </li>
           </ul>
         </nav>

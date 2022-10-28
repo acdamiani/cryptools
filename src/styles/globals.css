@@ -1,8 +1,7 @@
 html,
 body {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 body {
   width: 100%;
@@ -51,7 +50,8 @@ body {
   --ct-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
-  --ct-c-primary: #FB2576;
+  --ct-c-primary: #fb2576;
+
   --ct-c-white: #ffffff;
   --ct-c-white-soft: #f9f9f9;
   --ct-c-white-mute: #f1f1f1;
@@ -116,21 +116,33 @@ body {
 
 :root {
   --ct-c-bg: var(--ct-c-white);
+  --ct-c-bg-mute: var(--ct-c-white-mute);
+  --ct-c-bg-soft: var(--ct-c-white-soft);
   --ct-c-font: var(--ct-c-black-soft);
+  --ct-c-font-mute: var(--ct-c-black-mute);
   --ct-c-divider: var(--ct-c-divider-light-2);
   --ct-c-border: var(--ct-c-gray-light-1);
+  --ct-c-primary-highlight: #e6055b;
 }
 
 .dark {
   --ct-c-bg: var(--ct-c-black-pure);
+  --ct-c-bg-mute: var(--ct-c-black-mute);
+  --ct-c-bg-soft: var(--ct-c-black-soft);
   --ct-c-font: var(--ct-c-white-soft);
+  --ct-c-font-mute: var(--ct-c-white-mute);
   --ct-c-divider: var(--ct-c-divider-dark-2);
   --ct-c-border: var(--ct-c-gray-dark-1);
+  --ct-c-primary-highlight: #fc5595;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+p {
+  margin: 0;
 }
 
 * {
