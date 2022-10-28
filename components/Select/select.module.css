@@ -1,4 +1,32 @@
+.select-container 
+{
+  display: relative;
+  display: flex;
+  align-items: center;
+  color: var(--ct-c-font);
+}
+
 .select
 {
+  cursor: pointer;
+  appearance: none;
   font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid var(--ct-c-border);
+  background: var(--ct-c-bg);
+  color: var(--ct-c-font);
+  padding: 0.25rem;
+  transition: border-color .15s ease;
+}
+
+.prefix {
+  position: absolute;
+  left: 1rem;
+}
+
+.suffix {
+  position: absolute;
+  right: 1.75rem;
+  width: 0.95rem;
 }

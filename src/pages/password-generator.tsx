@@ -120,14 +120,15 @@ export default function PasswordGenerator() {
             ``
           )}
         </div>
-        <Select
-          options={passTypes}
-          defaultValue={passTypes[0]}
-          onChange={(e) => {
-            if (!e) return;
-            setPassType(e.value);
-          }}
-        />
+        <Select onChange={(e) => setPassType(e.target.value as PassTypes)}>
+          {passTypes.map((x) => {
+            return (
+              <option key={x.value} value={x.value}>
+                {x.label}
+              </option>
+            );
+          })}
+        </Select>
         <div className={styles.generatorButtons}>
           <Button
             onClick={() => updatePassword(makePassword(sliderValue))}

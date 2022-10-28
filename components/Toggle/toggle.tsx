@@ -12,7 +12,6 @@ interface ToggleProps {
   iconOff?: IconDefinition;
   iconOn?: IconDefinition;
   id?: string;
-  toggleByClass: string;
 }
 
 export type Props = ToggleProps;
@@ -36,12 +35,10 @@ export default function Toggle({
         type="button"
         role="switch"
         id={id}
-        onClick={() =>
-          setIsToggled((x) => {
-            onChange?.(!x);
-            return !x;
-          })
-        }
+        onClick={() => {
+          onChange?.(!toggled);
+          setIsToggled((x) => !x);
+        }}
         aria-checked={isToggled}
       >
         <span

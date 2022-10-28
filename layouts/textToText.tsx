@@ -200,15 +200,16 @@ export default function TextToText({
         />
         <label htmlFor="encoding">Pick encoding:</label>
         <Select
-          options={options}
           id="encoding"
-          onChange={(e) => {
-            if (!e) return;
-
-            setEncoding(e.value);
-          }}
-          defaultValue={{ label: `utf-8`, value: `utf-8` }}
-        />
+          onChange={(e) => setEncoding(e.target.value)}
+          defaultValue="utf-8"
+        >
+          {options.map((x) => (
+            <option key={x.value} value={x.value}>
+              {x.label}
+            </option>
+          ))}
+        </Select>
         <div className={styles.buttons}>
           <Button icon={faRotate} onClick={doTransform}>
             Convert
