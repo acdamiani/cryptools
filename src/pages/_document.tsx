@@ -6,11 +6,11 @@ export default function Document() {
     <Html>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css?family=IBM Plex Sans:300,400,600,700&display=optional"
+          href="https://fonts.googleapis.com/css?family=IBM Plex Sans:300,400,600,700&display=swap"
           rel="stylesheet"
         />
         <link
-          href="https://fonts.googleapis.com/css?family=IBM Plex Mono:400&display=optional"
+          href="https://fonts.googleapis.com/css?family=IBM Plex Mono:400&display=swap"
           rel="stylesheet"
         />
         <Script

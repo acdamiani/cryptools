@@ -17,6 +17,7 @@
 
 .button:hover {
   cursor: pointer;
+  border-color: var(--ct-c-font-mute);
 }
 
 .check {

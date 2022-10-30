@@ -1,13 +1,14 @@
 import { useId, useRef, useState } from 'react';
 
+import { faCopy, faGears } from '@fortawesome/free-solid-svg-icons';
+import copy from 'copy-to-clipboard';
+
 import Area from '@/components/Area/area';
 import Slider from '@/components/Slider/slider';
 import Button from '@/components/Button/button';
-
 import styles from '@/styles/password-generator.module.css';
 import Toggle from '@/components/Toggle/toggle';
 import Select from '@/components/Select/select';
-import { faCopy, faGears } from '@fortawesome/free-solid-svg-icons';
 
 type PassTypes = `random` | `memorable` | `pin`;
 
@@ -138,7 +139,12 @@ export default function PasswordGenerator() {
           >
             Generate
           </Button>
-          <Button icon={faCopy} disabled={disabled} secondary>
+          <Button
+            icon={faCopy}
+            disabled={disabled}
+            onClick={() => copy(password)}
+            secondary
+          >
             Copy
           </Button>
         </div>

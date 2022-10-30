@@ -14,7 +14,7 @@
 
   background-color: unset;
 
-  transition: border-color 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
 
   font-family: unset;
   font-size: 1rem;

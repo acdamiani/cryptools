@@ -1,0 +1,27 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--ct-c-bg-soft);
+  border-top: 1px solid var(--ct-c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  gap: 1.5rem;
+}
+
+.text {
+  font-size: 1.15rem;
+  font-family: "IBM Plex Sans";
+}
+
+.link {
+  font-size: 1rem;
+}
+
+.coffee {
+  display: block;
+}

@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-
 import ThemeToggle from '../ThemeToggle/theme-toggle';
 import Logo from '@/public/logo.svg';
 import Link from '../Link/link';
@@ -106,7 +105,7 @@ export default function Header() {
               </div>
             </li>
             <li>
-              <ThemeToggle iconOn={faMoon} iconOff={faSun} />
+              <ThemeToggle />
             </li>
           </ul>
         </nav>

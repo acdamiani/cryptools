@@ -25,7 +25,6 @@ export default function Toggle({
   id,
 }: ToggleProps) {
   const [toggled, setIsToggled] = useState(initialValue);
-
   const isToggled = value ?? toggled;
 
   return (

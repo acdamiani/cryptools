@@ -1,7 +1,8 @@
 html,
 body {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 body {
   width: 100%;
@@ -12,41 +13,13 @@ body {
   color: var(--ct-c-font);
   background-color: var(--ct-c-bg);
   text-rendering: optimizeLegibility;
-  transition: color 0.5s ease, background-color 0.5s ease;
+  transition: color 0.25s ease, background-color 0.25s ease;
 }
 
 :root {
   --header-height: 4rem;
+  --footer-height: 4rem;
 
-  --color-main: #FB2576;
-  --color-main-highlight: #FB3782;
-  --color-background: #000000;
-  --color-input: #000000;
-  --color-outline: gray;
-
-  /* React Select */
-  --rs-primary: #FB2576;
-  --rs-primary-25: gray;
-  --rs-primary-50: #FB2576;
-  --rs-primary-75: #FB2576;
-
-  --rs-danger: #DE350B;
-  --rs-danger-light: #FFBDAD;
-
-  --rs-neutral0: black;
-  --rs-neutral5: black;
-  --rs-netural10: gray;
-  --rs-neutral20: gray;
-  --rs-neutral30: gray;
-  --rs-neutral40: gray;
-  --rs-neutral50: gray;
-  --rs-neutral60: gray;
-  --rs-neutral70: gray;
-  --rs-neutral80: white;
-  --rs-neutral90: gray;
-}
-
-:root {
   --ct-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
@@ -73,19 +46,19 @@ body {
   --ct-c-gray-dark-3: #3a3a3a;
   --ct-c-gray-dark-4: #282828;
   --ct-c-gray-dark-5: #202020;
-  --ct-c-divider-light-1: rgba(60, 60, 60, .29);
-  --ct-c-divider-light-2: rgba(60, 60, 60, .12);
-  --ct-c-divider-dark-1: rgba(84, 84, 84, .65);
-  --ct-c-divider-dark-2: rgba(84, 84, 84, .48);
+  --ct-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --ct-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --ct-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --ct-c-divider-dark-2: rgba(84, 84, 84, 0.48);
   --ct-c-text-light-1: var(--ct-c-indigo);
-  --ct-c-text-light-2: rgba(60, 60, 60, .7);
-  --ct-c-text-light-3: rgba(60, 60, 60, .33);
-  --ct-c-text-light-4: rgba(60, 60, 60, .18);
+  --ct-c-text-light-2: rgba(60, 60, 60, 0.7);
+  --ct-c-text-light-3: rgba(60, 60, 60, 0.33);
+  --ct-c-text-light-4: rgba(60, 60, 60, 0.18);
   --ct-c-text-light-code: var(--ct-c-indigo-soft);
-  --ct-c-text-dark-1: rgba(255, 255, 255, .87);
-  --ct-c-text-dark-2: rgba(235, 235, 235, .6);
-  --ct-c-text-dark-3: rgba(235, 235, 235, .38);
-  --ct-c-text-dark-4: rgba(235, 235, 235, .18);
+  --ct-c-text-dark-1: rgba(255, 255, 255, 0.87);
+  --ct-c-text-dark-2: rgba(235, 235, 235, 0.6);
+  --ct-c-text-dark-3: rgba(235, 235, 235, 0.38);
+  --ct-c-text-dark-4: rgba(235, 235, 235, 0.18);
   --ct-c-text-dark-code: var(--ct-c-indigo-light);
   --ct-c-green: #42b883;
   --ct-c-green-light: #42d392;
@@ -112,10 +85,26 @@ body {
   --ct-c-purple-lighter: #f616f8;
   --ct-c-purple-dark: #823c83;
   --ct-c-purple-darker: #602960;
+
+  --ct-c-code-fg: #a6accd;
+  --ct-c-code-comments: #676e95;
+  --ct-c-code-red: #ff5370;
+  --ct-c-code-orange: #f78c6c;
+  --ct-c-code-yellow: #ffcb6b;
+  --ct-c-code-green: #c3e88d;
+  --ct-c-code-cyan: #89ddff;
+  --ct-c-code-blue: #82aaff;
+  --ct-c-code-paleblue: #b2ccd6;
+  --ct-c-code-purple: #c792ea;
+  --ct-c-code-brown: #c17e70;
+  --ct-c-code-pink: #f07178;
+  --ct-c-code-violet: #bb80b3;
 }
 
 :root {
   --ct-c-bg: var(--ct-c-white);
+  --ct-c-code-bg: #292d3e;
+  --ct-c-code-bg-highlight: #343848;
   --ct-c-bg-mute: var(--ct-c-white-mute);
   --ct-c-bg-soft: var(--ct-c-white-soft);
   --ct-c-font: var(--ct-c-black-soft);
@@ -129,6 +118,8 @@ body {
   --ct-c-bg: var(--ct-c-black-pure);
   --ct-c-bg-mute: var(--ct-c-black-mute);
   --ct-c-bg-soft: var(--ct-c-black-soft);
+  --ct-c-code-bg: var(--ct-c-bg-soft);
+  --ct-c-code-bg-highlight: #2f2f2f;
   --ct-c-font: var(--ct-c-white-soft);
   --ct-c-font-mute: var(--ct-c-white-mute);
   --ct-c-divider: var(--ct-c-divider-dark-2);
@@ -141,17 +132,18 @@ a {
   text-decoration: none;
 }
 
-p {
-  margin: 0;
-}
-
 * {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
-  font-family: "IBM Plex Sans";
+  font-family: 'IBM Plex Sans';
 }
 
 h1 {
@@ -164,6 +156,7 @@ h1 {
 }
 
 h2 {
+  margin: 1rem 0;
   font-weight: 300;
   font-size: 2.625rem;
   line-height: 3.125rem;
@@ -183,12 +176,47 @@ h4 {
   letter-spacing: 0;
 }
 
-pre, code, .code {
-  padding: 0;
-  margin: 0;
-  font-family: "IBM Plex Mono";
-  font-weight: 400;
-  font-size: 0.875rem;
-  letter-spacing: .32px;;
-  line-height: 1.25rem;
+table {
+  border: 1px solid var(--ct-c-border);
+  border-collapse: separate;
+  border-left: 0;
+  border-radius: 5px;
+  border-spacing: 0px;
+  color: var(--ct-c-font);
+  margin: 1rem 0;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+  border-collapse: separate;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+th,
+td {
+  padding: 0.5rem 0.4rem 0.6rem 0.4rem;
+  text-align: left;
+  vertical-align: top;
+  border-left: 1px solid var(--ct-c-border);
+}
+
+td {
+  border-top: 1px solid var(--ct-c-border);
+}
+
+thead:first-child tr:first-child th:first-child,
+tbody:first-child tr:first-child td:first-child {
+  border-radius: 5px 0 0 0;
+}
+
+thead:last-child tr:last-child th:first-child,
+tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
 }
