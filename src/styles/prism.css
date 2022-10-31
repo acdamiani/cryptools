@@ -1,9 +1,8 @@
 code[class*='language-'],
 pre[class*='language-'] {
+  font-family: var(--ct-mono-font-family);
   color: var(--ct-c-code-fg);
   background: none;
-  font-family: 'IBM Plex Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
-    monospace;
   font-size: 0.85rem;
   text-align: left;
   white-space: pre;

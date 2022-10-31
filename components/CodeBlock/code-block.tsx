@@ -1,10 +1,12 @@
 import { useState } from 'react';
-
 import classNames from 'classnames';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-markup-templating';
+import 'prismjs/components/prism-php';
+import 'prismjs/components/prism-ruby';
 
 import styles from '@/components/CodeBlock/code-block.module.css';
 import copy from 'copy-to-clipboard';
@@ -22,6 +24,8 @@ export default function CodeBlock({ snippets }: Props) {
   const [copied, setCopied] = useState(false);
 
   const copyClick = () => {
+    if (copied) return;
+
     copy(snippets[lang]);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);

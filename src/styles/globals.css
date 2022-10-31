@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 500 700;
+  font-display: optional;
+  src: url(/fonts/inter-latin.woff2) format('woff2');
+}
+
 html,
 body {
   padding: 0;
@@ -20,8 +28,9 @@ body {
   --header-height: 4rem;
   --footer-height: 4rem;
 
-  --ct-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --ct-font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --ct-mono-font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
 
   --ct-c-primary: #fb2576;
 
@@ -136,44 +145,58 @@ a {
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  font-family: 'IBM Plex Sans';
-}
-
 h1 {
-  margin: 1rem 0;
-  font-weight: 600;
-  font-size: 2.5rem;
-  letter-spacing: 0;
-  line-height: 3.125rem;
-  font-size: 2.625rem;
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
-
 h2 {
-  margin: 1rem 0;
-  font-weight: 300;
-  font-size: 2.625rem;
-  line-height: 3.125rem;
-  letter-spacing: 0;
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
-
 h3 {
-  font-weight: 600;
-  font-size: 1.75rem;
-  line-height: 2.25rem;
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
-
 h4 {
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  letter-spacing: 0;
+  display: block;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h6 {
+  display: block;
+  font-size: 0.67em;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
 
 table {

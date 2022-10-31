@@ -26,6 +26,14 @@ int main(void) {
   printf("Hello World!\\n");
   return 0;
 }`,
+  php: `<html>
+ <head>
+  <title>PHP Test</title>
+ </head>
+ <body>
+ <?php echo '<p>Hello World</p>'; ?> 
+ </body>
+</html>`,
 };
 
 export interface TextToTextProps {
@@ -146,15 +154,20 @@ export default function TextToText({
           rows={4}
           readOnly
         />
-        <h3>API Endpoint</h3>
-        <TextArea
-          className="code"
-          labelText=""
-          backgroundColor="var(--ct-c-bg-soft)"
-          value={`GET https://api.crypto.tools/text?from=ascii&to=hex&encoding=${encoding}`}
-          readOnly
-        />
-        <CodeBlock snippets={languages} />
+        <div>
+          <h3>API Endpoint</h3>
+          <TextArea
+            className="code"
+            labelText=""
+            backgroundColor="var(--ct-c-bg-soft)"
+            value={`GET https://api.crypto.tools/text?from=ascii&to=hex&encoding=${encoding}`}
+            readOnly
+          />
+        </div>
+        <div>
+          <h3>Code Examples</h3>
+          <CodeBlock snippets={languages} />
+        </div>
       </Area>
       {children}
     </div>
