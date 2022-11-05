@@ -155,16 +155,6 @@ export default function TextToText({
           readOnly
         />
         <div>
-          <h3>API Endpoint</h3>
-          <TextArea
-            className="code"
-            labelText=""
-            backgroundColor="var(--ct-c-bg-soft)"
-            value={`GET https://api.crypto.tools/text?from=ascii&to=hex&encoding=${encoding}`}
-            readOnly
-          />
-        </div>
-        <div>
           <h3>Code Examples</h3>
           <CodeBlock snippets={languages} />
         </div>

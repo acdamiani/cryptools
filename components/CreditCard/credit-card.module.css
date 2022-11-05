@@ -1,0 +1,135 @@
+.cards {
+  position: relative;
+  width: 360px;
+  aspect-ratio: 3 / 2;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  width: 320px;
+  height: 190px;
+
+  border-radius: 10px;
+  padding: 1rem;
+
+  background-color: var(--ct-c-primary);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  z-index: 1;
+}
+
+.card * {
+  z-index: 2;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-label-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  color: white;
+  font-family: var(--ct-mono-font-family);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.text {
+  color: white;
+  font-family: var(--ct-mono-font-family);
+  text-transform: uppercase;
+}
+
+.card-number {
+  color: white;
+  font-family: var(--ct-mono-font-family);
+  font-size: 1.65rem;
+  text-align: center;
+}
+
+.chip {
+  width: 35px;
+  height: auto;
+  aspect-ratio: 3 / 2;
+}
+
+.map {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.25;
+  height: 90%;
+}
+
+.bg-stripe {
+  height: 100%;
+  background-color: #fc5595;
+  clip-path: polygon(25% 0px, 100% 0px, 100% 100%, 50% 100%);
+}
+
+.stripe-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  filter: drop-shadow(-5px 0px 10px rgba(0, 0, 0, 0.25));
+  z-index: 0;
+}
+
+.card-secondary {
+  position: absolute;
+
+  bottom: 0;
+  right: 0;
+
+  width: 320px;
+  height: 190px;
+
+  border-radius: 10px;
+  padding: 1rem;
+
+  background-color: var(--ct-c-font-mute);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  z-index: -1;
+}
+
+.strip {
+  position: absolute;
+  background-color: var(--ct-c-bg-soft);
+  top: 0.95rem;
+  left: 0;
+  right: 0;
+  height: 2.05rem;
+}
+
+.sec-code {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  color: var(--ct-c-bg);
+  font-size: 0.85rem;
+  font-family: var(--ct-mono-font-family);
+}
+
+.logo {
+  max-height: 40px;
+}

@@ -18,6 +18,7 @@ specifiers:
   classnames: 2.3.2
   copy-to-clipboard: 3.3.2
   cross-env: 7.0.3
+  detect-browser: 5.3.0
   eslint: 8.25.0
   eslint-config-next: 12.3.1
   eslint-config-prettier: 8.5.0
@@ -42,6 +43,7 @@ dependencies:
   '@fortawesome/react-fontawesome': 0.2.0_6j2wdqxompc6mcokhxkpep2gqu
   classnames: 2.3.2
   copy-to-clipboard: 3.3.2
+  detect-browser: 5.3.0
   file-saver: 2.0.5
   next: 12.3.1_qtpcxnaaarbm4ws7ughq6oxfve
   prismjs: 1.29.0
@@ -2844,6 +2846,10 @@ packages:
       has-property-descriptors: 1.0.0
       object-keys: 1.1.1
     dev: true
+
+  /detect-browser/5.3.0:
+    resolution: {integrity: sha512-53rsFbGdwMwlF7qvCt0ypLM5V5/Mbl0szB7GPN8y9NCcbknYOeVVXdrXEq+90IwAfrrzt6Hd+u2E2ntakICU8w==}
+    dev: false
 
   /diff/4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}

@@ -1,21 +1,26 @@
-import { ReactElement } from 'react';
-import { NextPageWithLayout } from '@/pages/_app';
+import Button from '@/components/Button/button';
+import Hash from '@/src/hashes/hash';
 
-import TextToText from '@/layouts/textToText';
+function buf2hex(buffer: ArrayBuffer) {
+  // buffer is an ArrayBuffer
+  return [...new Uint8Array(buffer)]
+    .map((x) => x.toString(16).padStart(2, `0`))
+    .join(``);
+}
 
-const convert = (arg0: string) => {
-  const result = [];
+const convert = () => {
+  // md5().then((md5) => console.log(buf2hex(md5.default(Buffer.from(arg0)))));
 
-  for (let i = 0; i < arg0.length; i++) {
-    result.push(arg0.charCodeAt(i).toString(16).toUpperCase());
-  }
+  const hash = new Hash(`sha512`);
+  hash.hash(`Hello World`).then((x) => console.log(buf2hex(x)));
 
-  return result.join(` `);
+  return ``;
 };
 
-const AsciiToText: NextPageWithLayout = () => {
+export default function AsciiToText() {
   return (
     <>
+      <Button onClick={convert}>Convert</Button>
       <h2>Converting ASCII to Hex</h2>
       <p>
         ASCII is the simplest way of transforming text characters, which can
@@ -703,14 +708,4 @@ const AsciiToText: NextPageWithLayout = () => {
       </table>
     </>
   );
-};
-
-AsciiToText.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <TextToText title="ASCII Text to Hex Code Converter" transform={convert}>
-      {page}
-    </TextToText>
-  );
-};
-
-export default AsciiToText;
+}

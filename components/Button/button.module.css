@@ -1,4 +1,5 @@
 .button-skeleton {
+  width: fit-content;
   display: inline-block;
   position: relative;
 }

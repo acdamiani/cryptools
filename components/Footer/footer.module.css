@@ -4,11 +4,13 @@
 
   width: 100%;
   height: var(--header-height);
-  background-color: var(--ct-c-bg-soft);
-  border-top: 1px solid var(--ct-c-border);
+  background-color: var(--ct-c-bg);
+  border-top: 1px solid var(--ct-c-divider);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  transition: background-color 0.25s ease, color 0.25s ease;
 
   gap: 1.5rem;
 }
