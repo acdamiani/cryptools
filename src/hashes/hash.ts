@@ -6,6 +6,7 @@ import {
   ReactNativeInfo,
   SearchBotDeviceInfo,
 } from 'detect-browser';
+import { getCodePoints } from '../text';
 
 import md5 from './md5';
 export type Algorithm = {
@@ -62,7 +63,7 @@ export default class Hash {
     if (!this._env) throw new Error(`Unsupported environment`);
     if (!this._encoder) throw new Error(`TextEncoder not avilable`);
 
-    const bytes = this._encoder.encode(message);
+    const bytes = new Uint8Array(getCodePoints(message));
     return this.createDigest(bytes);
   }
 

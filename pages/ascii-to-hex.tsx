@@ -1,5 +1,5 @@
 import Button from '@/components/Button/button';
-import Hash from '@/src/hashes/hash';
+import Punycode from '@/src/encoders/punycode';
 
 function buf2hex(buffer: ArrayBuffer) {
   // buffer is an ArrayBuffer
@@ -11,10 +11,8 @@ function buf2hex(buffer: ArrayBuffer) {
 const convert = () => {
   // md5().then((md5) => console.log(buf2hex(md5.default(Buffer.from(arg0)))));
 
-  const hash = new Hash(`sha512`);
-  hash.hash(`Hello World`).then((x) => console.log(buf2hex(x)));
-
-  return ``;
+  const punycode = new Punycode();
+  console.log(punycode.encode(`München.2oashd.vcnio`));
 };
 
 export default function AsciiToText() {
