@@ -4,6 +4,7 @@ import {
   digitToCodePoint,
   getCodePoints,
   stringFromCharCode,
+  stringFromCodePoint,
 } from '@/src/text';
 
 const maxInt = 0x7fffffff;
@@ -108,6 +109,70 @@ function pencode(message: string): string {
   return output.join(``);
 }
 
+function pdecode(message: string) {
+  const output = [];
+  const len = message.length;
+  let i = 0;
+  let n = initialN;
+  let bias = initialBias;
+
+  let basic = message.lastIndexOf(delimiter);
+  if (basic < 0) {
+    basic = 0;
+  }
+
+  for (let j = 0; j < basic; j++) {
+    if (message.charCodeAt(j) >= 0x80) {
+      throw new Error(`Illegal input >= 0x80 (not a basic code point)`);
+    }
+    output.push(message.charCodeAt(j));
+  }
+
+  for (let index = basic > 0 ? basic + 1 : 0; index < len; ) {
+    const io = i;
+
+    for (let w = 1, k = base; ; k += base) {
+      if (index >= len) {
+        throw new Error(`Invalid input`);
+      }
+
+      const digit = codePointToDigit(message.charCodeAt(index++));
+
+      if (digit >= base || digit > Math.floor((maxInt - i) / w)) {
+        throw new Error(`Overflow: input needs wider integers to process`);
+      }
+
+      i += digit * w;
+      const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+
+      if (digit < t) {
+        break;
+      }
+
+      const bt = base - t;
+      if (w > Math.floor(maxInt / bt)) {
+        throw new Error(`Overflow: input needs wider integers to process`);
+      }
+
+      w *= bt;
+    }
+
+    const out = output.length + 1;
+    bias = adapt(i - io, out, io == 0);
+
+    if (Math.floor(i / out) > maxInt - n) {
+      throw new Error(`Overflow: input eneds wider integers to process`);
+    }
+
+    n += Math.floor(i / out);
+    i %= out;
+
+    output.splice(i++, 0, n);
+  }
+
+  return stringFromCodePoint(...output);
+}
+
 function map(array: Array<any>, fn: (arg0: any) => any) {
   const result = [];
   let length = array.length;
@@ -137,6 +202,8 @@ export default class Punycode extends Encoder {
     );
   }
   decode(message: string): string {
-    return message;
+    return mapDomain(message, (str) =>
+      regexPunycode.test(str) ? pdecode(str.slice(4).toLowerCase()) : str,
+    );
   }
 }

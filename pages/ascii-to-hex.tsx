@@ -1,5 +1,5 @@
 import Button from '@/components/Button/button';
-import Punycode from '@/src/encoders/punycode';
+import Base64Encoder from '@/src/encoders/base64';
 
 function buf2hex(buffer: ArrayBuffer) {
   // buffer is an ArrayBuffer
@@ -11,8 +11,10 @@ function buf2hex(buffer: ArrayBuffer) {
 const convert = () => {
   // md5().then((md5) => console.log(buf2hex(md5.default(Buffer.from(arg0)))));
 
-  const punycode = new Punycode();
-  console.log(punycode.encode(`München.2oashd.vcnio`));
+  const b = new Base64Encoder();
+  const result = b.encode(`點看on9sl;{{=12=`);
+  console.log(result);
+  console.log(b.decode(result));
 };
 
 export default function AsciiToText() {
