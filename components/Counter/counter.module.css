@@ -1,0 +1,81 @@
+.input {
+  appearance: none;
+  border: none;
+  outline: none;
+  background-color: var(--ct-c-bg);
+  color: var(--ct-c-font);
+  font-size: 1rem;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  transition: background-color 0.25s ease;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input {
+  -moz-appearance: textfield;
+}
+
+.counter-input {
+  position: relative;
+}
+
+.focus .number {
+  visibility: hidden;
+}
+
+.number {
+  background-color: var(--ct-c-bg);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  transition: background-color 0.25s ease;
+}
+
+.value {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.suffix {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ct-c-border);
+  margin-left: 0.25rem;
+  user-select: none;
+
+  transition: color 0.25 ease;
+}
+
+.counter {
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--ct-c-border);
+  width: 10rem;
+
+  transition: border-color 0.25s ease;
+}
+
+.counter.focus {
+  border-color: var(--ct-c-primary);
+}
+
+.icon {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}

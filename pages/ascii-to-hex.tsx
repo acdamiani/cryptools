@@ -1,5 +1,8 @@
 import Button from '@/components/Button/button';
+import Counter from '@/components/Counter/counter';
+import TextArea from '@/components/TextArea/text-area';
 import Base64Encoder from '@/src/encoders/base64';
+import { useState } from 'react';
 
 function buf2hex(buffer: ArrayBuffer) {
   // buffer is an ArrayBuffer
@@ -17,10 +20,21 @@ const convert = () => {
   console.log(b.decode(result));
 };
 
+const getAlphabetChar = (n: number) => {
+  return `abcdefghijklmnopqrstuvwxyz`[n % 26];
+};
+
 export default function AsciiToText() {
+  const [count, setCount] = useState(0);
+
   return (
     <>
-      <Button onClick={convert}>Convert</Button>
+      <Counter
+        onCountChange={(c) => setCount(c)}
+        suffix={`a->${getAlphabetChar(count)}`}
+        max={25}
+      />
+      <TextArea />
       <h2>Converting ASCII to Hex</h2>
       <p>
         ASCII is the simplest way of transforming text characters, which can
