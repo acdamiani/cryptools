@@ -1,0 +1,70 @@
+import Cipher from './cipher';
+
+export default class CaesarCipher extends Cipher<number> {
+  _alphabet: string;
+  _insertInvalid: boolean;
+
+  constructor(
+    key: number,
+    alphabet = `abcdefghijklmnopqrstuvwxyz`,
+    insertInvalid = true,
+  ) {
+    super(Math.floor(key));
+    alphabet = alphabet.toLowerCase();
+
+    if (String.prototype.concat(...new Set(alphabet)) !== alphabet) {
+      throw new Error(`All alphabet characters should be unique`);
+    }
+
+    this._alphabet = alphabet;
+    this._insertInvalid = insertInvalid;
+  }
+
+  encode(message: string) {
+    const alphabet = this._alphabet;
+    let str = ``;
+
+    for (let i = 0; i < message.length; i++) {
+      let char = message[i];
+      const isLower = char.toLowerCase() === char;
+      char = char.toLowerCase();
+      const index = alphabet.indexOf(char);
+
+      if (index === -1) {
+        if (this._insertInvalid) {
+          str += char;
+        }
+      } else {
+        char = alphabet[(index + this._key) % 26];
+        char = isLower ? char : char.toUpperCase();
+        str += char;
+      }
+    }
+
+    return str;
+  }
+
+  decode(message: string) {
+    const alphabet = this._alphabet;
+    let str = ``;
+
+    for (let i = 0; i < message.length; i++) {
+      let char = message[i];
+      const isLower = char.toLowerCase() === char;
+      char = char.toLowerCase();
+      const index = alphabet.indexOf(char);
+
+      if (index === -1) {
+        if (this._insertInvalid) {
+          str += char;
+        }
+      } else {
+        char = alphabet[(((index - this._key) % 26) + 26) % 26];
+        char = isLower ? char : char.toUpperCase();
+        str += char;
+      }
+    }
+
+    return str;
+  }
+}

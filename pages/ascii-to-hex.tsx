@@ -1,7 +1,7 @@
 import Button from '@/components/Button/button';
 import Counter from '@/components/Counter/counter';
 import TextArea from '@/components/TextArea/text-area';
-import Base64Encoder from '@/src/encoders/base64';
+import CaesarCipher from '@/src/ciphers/caesar';
 import { useState } from 'react';
 
 function buf2hex(buffer: ArrayBuffer) {
@@ -14,8 +14,11 @@ function buf2hex(buffer: ArrayBuffer) {
 const convert = () => {
   // md5().then((md5) => console.log(buf2hex(md5.default(Buffer.from(arg0)))));
 
-  const b = new Base64Encoder();
-  const result = b.encode(`點看on9sl;{{=12=`);
+  const value = `Hello, World! Today is a happy dayy!!!`;
+
+  const b = new CaesarCipher(2);
+  const result = b.encode(value);
+  console.log(value);
   console.log(result);
   console.log(b.decode(result));
 };
@@ -29,11 +32,7 @@ export default function AsciiToText() {
 
   return (
     <>
-      <Counter
-        onCountChange={(c) => setCount(c)}
-        suffix={`a->${getAlphabetChar(count)}`}
-        max={25}
-      />
+      <Button onClick={convert}>Convert</Button>
       <TextArea />
       <h2>Converting ASCII to Hex</h2>
       <p>
