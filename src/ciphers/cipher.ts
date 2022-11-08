@@ -1,4 +1,4 @@
-export default abstract class Cipher<TKey> {
+export default abstract class Cipher<TKey = void> {
   _key: TKey;
 
   constructor(key: TKey) {

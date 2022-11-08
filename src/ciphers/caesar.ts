@@ -32,13 +32,14 @@ export default class CaesarCipher extends Cipher<number> {
 
       if (index === -1) {
         if (this._insertInvalid) {
-          str += char;
+          str += isLower ? char : char.toUpperCase();
         }
-      } else {
-        char = alphabet[(index + this._key) % 26];
-        char = isLower ? char : char.toUpperCase();
-        str += char;
+        continue;
       }
+
+      char = alphabet[(index + this._key) % alphabet.length];
+      char = isLower ? char : char.toUpperCase();
+      str += char;
     }
 
     return str;
@@ -56,13 +57,18 @@ export default class CaesarCipher extends Cipher<number> {
 
       if (index === -1) {
         if (this._insertInvalid) {
-          str += char;
+          str += isLower ? char : char.toUpperCase();
         }
-      } else {
-        char = alphabet[(((index - this._key) % 26) + 26) % 26];
-        char = isLower ? char : char.toUpperCase();
-        str += char;
+        continue;
       }
+
+      char =
+        alphabet[
+          (((index - this._key) % alphabet.length) + alphabet.length) %
+            alphabet.length
+        ];
+      char = isLower ? char : char.toUpperCase();
+      str += char;
     }
 
     return str;
