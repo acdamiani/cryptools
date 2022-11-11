@@ -1,0 +1,20 @@
+.error {
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: var(--ct-c-red);
+  color: var(--ct-c-white-soft);
+}
+
+.header {
+  margin: 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.icon {
+  margin-right: 0.25rem;
+}

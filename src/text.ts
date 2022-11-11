@@ -1,4 +1,4 @@
-export function getCodePoints(string: string) {
+export function getCodePoints(string: string): number[] {
   const output = [];
   let counter = 0;
   const length = string.length;
@@ -19,7 +19,7 @@ export function getCodePoints(string: string) {
   return output;
 }
 
-export function getCodePointsFromBytes(bytes: Uint8Array) {
+export function getCodePointsFromBytes(bytes: Uint8Array): number[] {
   const len = bytes.length;
   const codePoints = new Array(len);
 
@@ -36,32 +36,25 @@ export function getCodePointsFromBytes(bytes: Uint8Array) {
         throw new Error(`Unexpected continuation byte at 0x${i.toString(16)}`);
       }
 
-      // Append bits to current code point
       codePoint = (codePoint << 6) | (byte & 0x3f);
 
       if (rb === 0) {
-        // Completed a code point
         codePoints[j++] = codePoint;
       }
     } else if (rb > 0) {
-      // this must be a continuation byte
       throw new Error(
         `Invalid UTF-8 encoded text: ` +
           `Continuation byte expected at 0x${i.toString(16)}`,
       );
     } else if (byte <= 0b01111111) {
-      // 1 byte code point
       codePoints[j++] = byte;
     } else if (byte <= 0b11011111) {
-      // 2 byte code point
       codePoint = byte & 0b00011111;
       rb = 1;
     } else if (byte <= 0b11101111) {
-      // 3 byte code point
       codePoint = byte & 0b00001111;
       rb = 2;
     } else if (byte <= 0b11110111) {
-      // 4 byte code point
       codePoint = byte & 0b00000111;
       rb = 3;
     } else {

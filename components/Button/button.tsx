@@ -80,7 +80,11 @@ const Button = ({
           ) : (
             ``
           )}
-          <span className={styles.buttonContent}>{children}</span>
+          {children ? (
+            <span className={styles.buttonContent}>{children}</span>
+          ) : (
+            ``
+          )}
         </button>
       </span>
     </>

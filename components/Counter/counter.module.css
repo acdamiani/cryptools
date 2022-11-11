@@ -63,7 +63,6 @@
   padding: 1rem;
   display: flex;
   align-items: center;
-  border-radius: 5px;
   border: 1px solid var(--ct-c-border);
   width: 10rem;
 

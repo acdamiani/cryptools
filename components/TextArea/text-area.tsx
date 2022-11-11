@@ -12,7 +12,6 @@ export interface TextAreaProps {
   borderWidth?: React.CSSProperties['borderWidth'];
   padding?: React.CSSProperties['padding'];
   resize?: boolean;
-  labelText?: string;
 }
 
 export type Props = TextAreaProps &
@@ -26,10 +25,8 @@ export default function TextArea({
   borderColor = `var(--ct-c-border)`,
   borderColorFocused = `var(--ct-c-primary)`,
   resize = false,
-  labelText = `Text area:`,
   className,
   children,
-  id,
   ...props
 }: Props) {
   const newId = useId();
@@ -69,16 +66,7 @@ export default function TextArea({
         `}
       </style>
       <span className={classNames(className, styles.textSkeleton)}>
-        <label className={styles.label} htmlFor={id ?? newId}>
-          {labelText}
-        </label>
-        <textarea
-          className={styles.text}
-          id={id ?? newId}
-          ref={textArea}
-          rows={1}
-          {...props}
-        >
+        <textarea className={styles.text} ref={textArea} rows={1} {...props}>
           {children}
         </textarea>
       </span>

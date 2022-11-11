@@ -46,11 +46,7 @@ export default function Url() {
         implement this in your own application.
       </p>
       <Area>
-        <TextArea
-          labelText="Text to encode:"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
+        <TextArea value={text} onChange={(e) => setText(e.target.value)} />
         <TextButtons />
         <strong>Code Snippets</strong>
         <CodeBlock snippets={CODE_SNIPPETS} />

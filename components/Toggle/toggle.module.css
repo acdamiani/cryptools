@@ -29,7 +29,7 @@
   height: 18px;
 
   background-color: var(--ct-c-bg);
-  
+
   border-radius: 50%;
 
   transition: background-color 0.25s ease, transform 0.25s ease;
@@ -51,4 +51,8 @@
   color: var(--ct-c-font);
 
   transition: opacity 0.25s ease;
+}
+
+.flex {
+  display: flex;
 }

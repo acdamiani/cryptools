@@ -32,12 +32,15 @@ export default function Counter({
   const [value, setValue] = useState<number>(initialValue);
   const [inputFocused, setInputFocused] = useState(false);
 
+  useEffect(() => {
+    onCountChange?.(value);
+  }, [value, onCountChange]);
+
   const updateValue = (input: string) => {
     setValue((value) => {
       const int = parseInt(input);
       let update = isNaN(int) ? value : int;
       update = Math.max(min, Math.min(max, update));
-      onCountChange?.(update);
       return update;
     });
   };
@@ -53,7 +56,6 @@ export default function Counter({
           setValue((v) => {
             const val = v - 1 < min ? max : v - 1;
             setInputValue(val.toString());
-            onCountChange?.(val);
             return val;
           });
         }}
@@ -91,7 +93,6 @@ export default function Counter({
           setValue((v) => {
             const val = v + 1 > max ? min : v + 1;
             setInputValue(val.toString());
-            onCountChange?.(val);
             return val;
           });
         }}
