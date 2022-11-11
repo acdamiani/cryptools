@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useId } from 'react';
+import { useRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -11,7 +11,7 @@ export interface TextAreaProps {
   borderColorFocused?: React.CSSProperties['borderColor'];
   borderWidth?: React.CSSProperties['borderWidth'];
   padding?: React.CSSProperties['padding'];
-  resize?: boolean;
+  thin?: boolean;
 }
 
 export type Props = TextAreaProps &
@@ -24,41 +24,21 @@ export default function TextArea({
   borderWidth = `1px`,
   borderColor = `var(--ct-c-border)`,
   borderColorFocused = `var(--ct-c-primary)`,
-  resize = false,
+  thin = false,
   className,
   children,
   ...props
 }: Props) {
-  const newId = useId();
   const textArea = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (!resize || !textArea.current) return;
-
-    textArea.current.style.height = textArea.current.scrollHeight + `px`;
-  }, [textArea, resize]);
-
-  useEffect(() => {
-    const onTextChange = () => {
-      if (!resize || !textArea.current) return;
-
-      textArea.current.style.height = `0`;
-      textArea.current.style.height = textArea.current?.scrollHeight + `px`;
-    };
-
-    onTextChange();
-  }, [children, props.value, resize, textArea]);
-
   return (
     <>
       <style jsx>
         {`
           textarea {
-            padding: ${padding};
+            padding: ${thin ? `0.5rem 0.75rem 0.5rem 0.75rem` : padding};
             color: ${textColor};
             background-color: ${backgroundColor};
             border: ${borderWidth} solid ${borderColor};
-            overflow-y: ${resize ? `hidden` : `auto`};
           }
           textarea:focus {
             border-color: ${borderColorFocused};

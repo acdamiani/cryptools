@@ -1,8 +1,9 @@
 .select-container {
-  display: relative;
   display: flex;
+  position: relative;
   align-items: center;
   color: var(--ct-c-font);
+  flex: 1;
 }
 
 .select {
@@ -30,6 +31,6 @@
 
 .suffix {
   position: absolute;
-  right: 1.75rem;
+  right: 0.65rem;
   width: 0.95rem;
 }

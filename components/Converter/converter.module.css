@@ -1,0 +1,51 @@
+.labeled-element {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.options-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.convert-button,
+.convert-button > button {
+  height: 100%;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.delimiter {
+  flex: 1;
+}
+
+.labeled-element-noflex {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.toggles {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.5rem;
+  max-width: 10rem;
+  /* border: 1px solid var(--ct-c-border); */
+  /* border-radius: 5px; */
+  /* padding: 1rem; */
+}
+
+.toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

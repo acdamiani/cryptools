@@ -248,14 +248,3 @@ code,
 pre {
   font-family: var(--ct-mono-font-family);
 }
-
-label[for] {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 1rem;
-}

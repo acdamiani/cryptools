@@ -22,7 +22,11 @@
   font-size: 1rem;
 
   width: 100%;
-  height: auto;
+  height: 100%;
+}
+
+.text:disabled {
+  background-color: var(--ct-c-bg-soft);
 }
 
 .label {

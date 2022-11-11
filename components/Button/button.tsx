@@ -25,7 +25,7 @@ export type Props = ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   secondary = false,
-  textColor = `var(--ct-c-font)`,
+  textColor = secondary ? `var(--ct-c-font)` : `var(--ct-c-white-soft)`,
   textColorHover = `var(--ct-c-font)`,
   backgroundColor = secondary ? `var(--ct-c-bg-soft)` : `var(--ct-c-primary)`,
   backgroundColorHover = secondary
