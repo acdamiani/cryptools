@@ -15,6 +15,8 @@ import CodeBlock from '@/components/CodeBlock/code-block';
 import TextConverter from '@/src/converters/text';
 import Converter from '@/components/Converter/converter';
 import Error from '@/components/Error/error';
+import VigenereCipher from '@/src/ciphers/vigenere';
+import BaconCipher from '@/src/ciphers/bacon';
 
 function buf2hex(buffer: ArrayBuffer) {
   // buffer is an ArrayBuffer
@@ -28,11 +30,14 @@ const convert = () => {
   // const bin = `0B 101010  10101 101 10 10 01 11 1`;
   // const c = new BinaryConverter(bin);
 
-  const bin = `Hello World`;
-  const c = new TextConverter(bin);
-  const d = c.to(`binary`);
+  const v = new BaconCipher(`unique`);
+  const m = `The quick brown fox jumps over the lazy dog`;
+  const e = v.encode(m);
+  const d = v.decode(e);
 
-  console.log(d.to(`text`).value);
+  console.log(m);
+  console.log(e);
+  console.log(d);
 };
 
 const getAlphabetChar = (n: number) => {
@@ -47,52 +52,8 @@ export default function AsciiToText() {
 
   return (
     <>
+      <Button onClick={convert}>Click Me</Button>
       <h1>ASCII to Text Converter</h1>
-      {/* <Converter /> */}
-      <Area>
-        <div className="flex">
-          <div>
-            <label htmlFor={counterId}>Key</label>
-            <Counter
-              id={counterId}
-              onCountChange={(c) => setOffset(c)}
-              suffix={`a->${getAlphabetChar(offset)}`}
-              max={25}
-            />
-          </div>
-          <div style={{ width: `100%` }}>
-            <label htmlFor={alphabetId}>Alphabet</label>
-            <TextArea
-              rows={1}
-              id={alphabetId}
-              defaultValue="abcdefghijklmnopqrstuvwxyz"
-              spellCheck={false}
-            />
-          </div>
-        </div>
-        <div className="flex">
-          <label>Live Mode</label>
-          <Toggle />
-          <label>Ignore Invalid</label>
-          <Toggle />
-        </div>
-        <h4 style={{ margin: 0 }}>Input</h4>
-        <TextArea rows={3} />
-        <div className="flex">
-          <Button icon={faArrowsRotate}>Convert</Button>
-          <Button icon={faSave} secondary>
-            Save Output
-          </Button>
-          <Button icon={faCopy} secondary>
-            Copy Output
-          </Button>
-        </div>
-        <Error>Alphabet must contain all unique characters</Error>
-        <h4 style={{ margin: 0 }}>Output</h4>
-        <TextArea rows={3} />
-        <h4 style={{ margin: 0 }}>Code Examples</h4>
-        <CodeBlock snippets={{ csharp: `Console.WriteLine("Hello World");` }} />
-      </Area>
       <main>
         <h2>Converting ASCII to Hex</h2>
         <p>
