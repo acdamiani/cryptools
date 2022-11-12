@@ -14,4 +14,5 @@ export default abstract class Converter {
   value = ``;
 
   abstract to(kind: Kind): Converter;
+  abstract delimit(delimiter: string): string;
 }

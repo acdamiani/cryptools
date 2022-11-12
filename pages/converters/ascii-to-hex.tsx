@@ -1,12 +1,32 @@
 import Area from '@/components/Area/area';
-import Converter from '@/components/Converter/converter';
+import Converter, {
+  ConverterProperties,
+} from '@/components/Converter/converter';
+import TextConverter from '@/src/converters/text';
 
 export default function AsciiToHex() {
+  const convert = (input: string, props: ConverterProperties): string => {
+    if (!input) {
+      return ``;
+    }
+
+    const tc = new TextConverter(input);
+    const del = props.delimiter ?? ``;
+
+    let ret = tc.to(`hex`).delimit(del);
+
+    if (props.prefix) {
+      ret = `0x` + del + ret;
+    }
+
+    return ret;
+  };
+
   return (
     <>
       <h1>ASCII to Hex Converter</h1>
       <Area>
-        <Converter />
+        <Converter convert={convert} />
       </Area>
       <main>
         <h2>Converting ASCII to Hex</h2>

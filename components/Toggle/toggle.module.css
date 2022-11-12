@@ -56,3 +56,7 @@
 .flex {
   display: flex;
 }
+
+.checkbox {
+  display: none;
+}

@@ -11,7 +11,7 @@ export default function Header() {
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
         <div className={styles.logo}>
-          <Logo width={36} height={36} fill="white" />
+          <Logo width={36} height={36} />
           <h3>cryptools</h3>
         </div>
         <nav className={styles.nav}>

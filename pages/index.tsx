@@ -8,10 +8,14 @@ import {
 
 import styles from '@/styles/Home.module.css';
 import Link from '@/components/Link/link';
+import Head from 'next/head';
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Conversion, ciphers, and encoders online - Cryptools</title>
+      </Head>
       <h1>Online Tools for Developers</h1>
       <div className={styles.cards}>
         <div className={styles.cardContainer}>

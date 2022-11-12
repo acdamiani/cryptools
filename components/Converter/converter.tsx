@@ -1,5 +1,4 @@
-import { useId, useState } from 'react';
-import classNames from 'classnames';
+import { FormEvent, useId, useRef, useState } from 'react';
 import TextArea from '../TextArea/text-area';
 import Select from '../Select/select';
 import styles from './converter.module.css';
@@ -32,24 +31,89 @@ function capitalize(string: string) {
     .join(` `);
 }
 
-export default function Converter() {
+interface InternalProps {
+  convert: (input: string, settings: ConverterProperties) => string;
+}
+
+export interface ConverterProperties {
+  delimiter?: string;
+  prefix?: boolean;
+}
+
+export type Props = InternalProps;
+
+export default function Converter({ convert = () => `` }: Props) {
   const fromId = useId();
   const toId = useId();
   const inputId = useId();
   const outputId = useId();
   const delimiterId = useId();
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const [fromValue, setFromValue] = useState<SelectOptions>(`text`);
   const [toValue, setToValue] = useState<SelectOptions>(`binary`);
   const [delimiter, setDelimiter] = useState<DelimiterOptions>(`space`);
+  const [auto, setAuto] = useState(true);
+
+  const doConvert = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    const target = e.target as typeof e.target & {
+      input: { value: string };
+      output: { value: string };
+      from: { value: SelectOptions };
+      to: { value: SelectOptions };
+      prefix: { checked: boolean };
+      delimiter: { value: DelimiterOptions };
+      'user-delimiter': { value: string };
+    };
+
+    const props: ConverterProperties = {};
+
+    switch (target.delimiter.value) {
+      case `space`:
+        props.delimiter = ` `;
+        break;
+      case `comma`:
+        props.delimiter = `,`;
+        break;
+      case `user defined`:
+        props.delimiter = target[`user-delimiter`].value;
+        break;
+      case `none`:
+        props.delimiter = ``;
+        break;
+    }
+
+    props.prefix = target.prefix.checked;
+
+    target.output.value = convert(target.input.value, props);
+  };
+
+  const doChange = (): void => {
+    if (!auto || !formRef.current) {
+      return;
+    }
+
+    formRef.current.dispatchEvent(
+      new Event(`submit`, { cancelable: true, bubbles: true }),
+    );
+  };
 
   return (
-    <>
+    <form
+      className={styles.converter}
+      onSubmit={doConvert}
+      ref={formRef}
+      onChange={doChange}
+    >
       <div className={styles.optionsRow}>
         <div className={styles.labeledElement}>
           <label htmlFor={fromId}>From</label>
           <Select
             id={fromId}
+            name="from"
             value={fromValue}
             onChange={(e) => setFromValue(e.target.value as SelectOptions)}
           >
@@ -68,6 +132,7 @@ export default function Converter() {
           <label htmlFor={toId}>To</label>
           <Select
             id={toId}
+            name="to"
             value={toValue}
             onChange={(e) => setToValue(e.target.value as SelectOptions)}
           >
@@ -83,7 +148,7 @@ export default function Converter() {
         <label htmlFor={inputId}>
           <strong>Input</strong>
         </label>
-        <TextArea rows={3} id={inputId} spellCheck="false" />
+        <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
       </div>
       <div className={styles.optionsRow}>
         <div className={styles.labeledElement}>
@@ -91,6 +156,7 @@ export default function Converter() {
           <div className={styles.optionsRow}>
             <Select
               id={delimiterId}
+              name="delimiter"
               value={delimiter}
               onChange={(e) => setDelimiter(e.target.value as DelimiterOptions)}
             >
@@ -102,7 +168,9 @@ export default function Converter() {
             </Select>
             <TextArea
               className={styles.delimiter}
+              name="user-delimiter"
               disabled={delimiter !== `user defined`}
+              spellCheck="false"
               thin
             />
           </div>
@@ -111,15 +179,17 @@ export default function Converter() {
       <div className={styles.toggles}>
         <div className={styles.toggle}>
           <label>Auto Mode</label>
-          <Toggle />
+          <Toggle value={auto} onChange={(e) => setAuto(e)} />
         </div>
         <div className={styles.toggle}>
           <label>Add &apos;0x&apos; Prefix</label>
-          <Toggle />
+          <Toggle name="prefix" onChange={() => doChange()} />
         </div>
       </div>
       <div className={styles.optionsRow}>
-        <Button icon={faRotate}>Convert</Button>
+        <Button icon={faRotate} type="submit">
+          Convert
+        </Button>
         <Button icon={faSave} secondary>
           Save Output
         </Button>
@@ -131,8 +201,14 @@ export default function Converter() {
         <label htmlFor={outputId}>
           <strong>Output</strong>
         </label>
-        <TextArea rows={3} id={outputId} spellCheck="false" readOnly />
+        <TextArea
+          rows={3}
+          id={outputId}
+          name="output"
+          spellCheck="false"
+          readOnly
+        />
       </div>
-    </>
+    </form>
   );
 }

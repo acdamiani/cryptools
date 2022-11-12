@@ -62,4 +62,8 @@ export default class HexadecimalConverter extends Converter {
         return new TextConverter(str);
     }
   }
+
+  delimit(delimiter = ` `): string {
+    return this.value.replace(/(.{2})/g, `$1${delimiter}`);
+  }
 }
