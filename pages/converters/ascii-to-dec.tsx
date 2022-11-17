@@ -7,7 +7,7 @@ import Converter, {
 import TextConverter from '@/src/converters/text';
 import { useRouter } from 'next/router';
 
-export default function AsciiToOct() {
+export default function AsciiToDec() {
   const router = useRouter();
 
   const convert = (input: string, props: ConverterProperties): string => {
@@ -15,13 +15,13 @@ export default function AsciiToOct() {
       return ``;
     }
 
-    const tc = new TextConverter(input);
+    const dc = new TextConverter(input);
     const del = props.delimiter ?? ``;
 
-    let ret = tc.to(`oct`).delimit(del);
+    let ret = dc.to(`dec`).delimit(del);
 
     if (props.prefix) {
-      ret = `0o` + del + ret;
+      ret = `0x` + del + ret;
     }
 
     return ret;
@@ -39,14 +39,15 @@ export default function AsciiToOct() {
 
   return (
     <>
-      <h1>ASCII to Octal Converter</h1>
+      <h1>ASCII to Decimal Converter</h1>
       <Area>
         <Converter
           convert={convert}
           onTargetsChange={navigate}
           initialFrom="text"
-          initialTo="octal"
-          prefixText="0o"
+          initialTo="decimal"
+          showPrefix={false}
+          showDelimiter={false}
         />
       </Area>
     </>

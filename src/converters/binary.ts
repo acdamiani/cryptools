@@ -9,6 +9,7 @@ import TextConverter from './text';
 export default class BinaryConverter extends Converter {
   private static _reTestBinary = /^(0b|0B)?[01]+$/;
   private static _reNormalize = /^(0b|0B)|\s/g;
+  private static _reSplit = /.{1,8}/g;
 
   private _binary: BigInteger.BigInteger;
 
@@ -32,15 +33,24 @@ export default class BinaryConverter extends Converter {
   }
 
   to(kind: Kind): Converter {
+    let ret = ``;
+
     switch (kind) {
       case `binary`:
         return this;
       case `dec`:
-        return new DecimalConverter(this._binary.toString(10));
+        ret = this._binary.toString(10);
+        return new DecimalConverter(ret);
       case `oct`:
-        return new OctalConverter(this._binary.toString(8));
+        ret = this._binary.toString(8);
+        return new OctalConverter(
+          ret.padStart(Math.ceil(ret.length / 3) * 3, `0`),
+        );
       case `hex`:
-        return new HexadecimalConverter(this._binary.toString(16));
+        ret = this._binary.toString(16);
+        return new HexadecimalConverter(
+          ret.padStart(Math.ceil(ret.length / 2) * 2, `0`),
+        );
       case `text`:
         const v = this.value.padStart(
           Math.ceil(this.value.length / 8) * 8,
@@ -62,5 +72,9 @@ export default class BinaryConverter extends Converter {
 
         return new TextConverter(str);
     }
+  }
+
+  delimit(delimiter = ` `): string {
+    return (this.value.match(BinaryConverter._reSplit) ?? []).join(delimiter);
   }
 }

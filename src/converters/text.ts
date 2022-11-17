@@ -37,4 +37,9 @@ export default class TextConverter extends Converter {
         );
     }
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  delimit(_delimiter: string): string {
+    return this.value;
+  }
 }

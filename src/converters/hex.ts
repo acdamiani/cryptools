@@ -9,6 +9,7 @@ import TextConverter from './text';
 export default class HexadecimalConverter extends Converter {
   private static _reTextHex = /^(0x|0X)?[a-fA-F0-9]+$/;
   private static _reNormalize = /^(0x|0X)|\s/g;
+  private static _reSplit = /.{1,2}/g;
 
   private _hex: BigInteger.BigInteger;
 
@@ -32,15 +33,24 @@ export default class HexadecimalConverter extends Converter {
   }
 
   to(kind: Kind): Converter {
+    let ret = ``;
+
     switch (kind) {
       case `hex`:
         return this;
       case `oct`:
-        return new OctalConverter(this._hex.toString(8));
+        ret = this._hex.toString(8);
+        return new OctalConverter(
+          ret.padStart(Math.ceil(ret.length / 3) * 3, `0`),
+        );
       case `binary`:
-        return new BinaryConverter(this._hex.toString(2));
+        ret = this._hex.toString(2);
+        return new BinaryConverter(
+          ret.padStart(Math.ceil(ret.length / 8) * 8, `0`),
+        );
       case `dec`:
-        return new DecimalConverter(this._hex.toString(10));
+        ret = this._hex.toString(10);
+        return new DecimalConverter(ret);
       case `text`:
         const v = this.value.padStart(
           Math.ceil(this.value.length / 2) * 2,
@@ -64,6 +74,8 @@ export default class HexadecimalConverter extends Converter {
   }
 
   delimit(delimiter = ` `): string {
-    return this.value.replace(/(.{2})/g, `$1${delimiter}`);
+    return (this.value.match(HexadecimalConverter._reSplit) ?? []).join(
+      delimiter,
+    );
   }
 }

@@ -60,3 +60,9 @@
 .checkbox {
   display: none;
 }
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}

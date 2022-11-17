@@ -1,14 +1,17 @@
 import Cipher from './cipher';
 
-type CaseStrategy = `ignore` | `maintain` | `skip`;
+export type CaseStrategy = `ignore` | `maintain` | `skip`;
+export type VigenereVariant = `standard` | `beaufort` | `beaufort-variant`;
 
 export default class VigenereCipher extends Cipher<string> {
-  _alphabet: string;
-  _casing: CaseStrategy;
-  _insertInvalid: boolean;
+  private _alphabet: string;
+  private _casing: CaseStrategy;
+  private _insertInvalid: boolean;
+  private _variant: VigenereVariant;
 
   constructor(
     key: string,
+    variant: VigenereVariant = `standard`,
     alphabet = `abcdefghijklmnopqrstuvwxyz`,
     casing: CaseStrategy = `maintain`,
     insertInvalid = true,
@@ -23,6 +26,7 @@ export default class VigenereCipher extends Cipher<string> {
     this._alphabet = alphabet;
     this._casing = casing;
     this._insertInvalid = insertInvalid;
+    this._variant = variant;
   }
 
   encode(message: string) {
@@ -55,7 +59,23 @@ export default class VigenereCipher extends Cipher<string> {
         throw new Error(`Key contains forbidden characters`);
       }
 
-      const newChar = alphabet[(index + keyIndex) % alphabet.length];
+      let idx;
+
+      switch (this._variant) {
+        case `standard`:
+          idx = index + keyIndex;
+          break;
+        case `beaufort`:
+          idx = keyIndex - index;
+          break;
+        case `beaufort-variant`:
+          idx = index - keyIndex;
+          break;
+      }
+
+      idx = ((idx % alphabet.length) + alphabet.length) % alphabet.length;
+
+      const newChar = alphabet[idx];
 
       str +=
         this._casing === `maintain` && !isLower
@@ -98,11 +118,23 @@ export default class VigenereCipher extends Cipher<string> {
         throw new Error(`Key contains forbidden characters`);
       }
 
-      const newChar =
-        alphabet[
-          (((index - keyIndex) % alphabet.length) + alphabet.length) %
-            alphabet.length
-        ];
+      let idx;
+
+      switch (this._variant) {
+        case `standard`:
+          idx = index - keyIndex;
+          break;
+        case `beaufort`:
+          idx = keyIndex - index;
+          break;
+        case `beaufort-variant`:
+          idx = index + keyIndex;
+          break;
+      }
+
+      idx = ((idx % alphabet.length) + alphabet.length) % alphabet.length;
+
+      const newChar = alphabet[idx];
 
       str +=
         this._casing === `maintain` && !isLower

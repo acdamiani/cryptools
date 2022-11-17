@@ -24,6 +24,7 @@ const algorithms: Algorithm[] = [
     name: `sha1`,
     browserAlgorithm: `SHA-1`,
     nodeAlgorithm: `sha1`,
+    browserExceptions: [`ie`, `edge`],
   },
   {
     name: `sha256`,
@@ -38,6 +39,7 @@ const algorithms: Algorithm[] = [
     name: `sha512`,
     browserAlgorithm: `SHA-512`,
     nodeAlgorithm: `sha512`,
+    browserExceptions: [`ie`],
   },
 ];
 
@@ -50,18 +52,14 @@ export default class Hash {
     | NodeInfo
     | ReactNativeInfo
     | null;
-  _encoder: TextEncoder | null;
 
   constructor(algorithm: string) {
     this._algorithm = algorithms.find((x) => x.name === algorithm) ?? null;
     this._env = detect() ?? null;
-    this._encoder =
-      typeof TextEncoder !== `undefined` ? new TextEncoder() : null;
   }
 
   public hash(message: string) {
     if (!this._env) throw new Error(`Unsupported environment`);
-    if (!this._encoder) throw new Error(`TextEncoder not avilable`);
 
     const bytes = new Uint8Array(getCodePoints(message));
     return this.createDigest(bytes);
@@ -77,7 +75,8 @@ export default class Hash {
         return new Promise((resolve) => resolve(md5(bytes)));
     }
 
-    if (!this._env) throw new Error(`Unsupported environment`);
+    if (!this._env || algorithm.browserExceptions?.includes(this._env.name))
+      throw new Error(`Unsupported environment`);
 
     const crypto = window.crypto || window.msCrypto;
     const subtle = crypto.subtle || crypto.webkitSubtle;

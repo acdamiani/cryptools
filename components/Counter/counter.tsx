@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,9 @@ interface InternalProps {
   min?: number;
   max?: number;
   suffix?: string;
-  initialValue?: number;
+  initialCount?: number;
   onCountChange?: (arg0: number) => any;
+  suffixStyle?: CSSProperties;
 }
 
 export type Props = InternalProps & React.InputHTMLAttributes<HTMLInputElement>;
@@ -20,7 +21,8 @@ export default function Counter({
   min = 0,
   max = 10000,
   suffix,
-  initialValue = min,
+  suffixStyle,
+  initialCount = min,
   className,
   onFocus,
   onBlur,
@@ -28,12 +30,33 @@ export default function Counter({
   onCountChange,
   ...props
 }: Props) {
-  const [inputValue, setInputValue] = useState<string>(initialValue.toString());
-  const [value, setValue] = useState<number>(initialValue);
+  const [inputValue, setInputValue] = useState<string>(initialCount.toString());
+  const [value, setValue] = useState<number>(initialCount);
   const [inputFocused, setInputFocused] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const setInputNative = (value: string) => {
+    const input = inputRef.current;
+
+    if (!input) {
+      return;
+    }
+
+    setInputValue(value);
+
+    const vs = Object.getOwnPropertyDescriptor(
+      HTMLInputElement.prototype,
+      `value`,
+    )?.set;
+    vs?.call(input, value);
+
+    input.dispatchEvent(new Event(`input`, { bubbles: true }));
+  };
 
   useEffect(() => {
     onCountChange?.(value);
+    setInputNative(value.toString());
   }, [value, onCountChange]);
 
   const updateValue = (input: string) => {
@@ -52,17 +75,13 @@ export default function Counter({
       <FontAwesomeIcon
         icon={faMinus}
         className={styles.icon}
-        onClick={() => {
-          setValue((v) => {
-            const val = v - 1 < min ? max : v - 1;
-            setInputValue(val.toString());
-            return val;
-          });
-        }}
+        onClick={() => setValue((v) => (v - 1 < min ? max : v - 1))}
       />
       <div className={styles.counterInput}>
         <input
           type="number"
+          ref={inputRef}
+          value={inputValue}
           className={classNames(styles.input, className)}
           onFocus={(e) => {
             setInputFocused(true);
@@ -70,32 +89,26 @@ export default function Counter({
           }}
           onBlur={(e) => {
             setInputFocused(false);
-            setInputValue(value.toString());
+            updateValue(e.target.value);
             onBlur?.(e);
           }}
           onChange={(e) => {
             setInputValue(e.target.value);
-            updateValue(e.target.value);
             onChange?.(e);
           }}
-          value={inputValue}
           {...props}
         />
         <div className={styles.number}>
           <span className={styles.value}>{value}</span>
-          <span className={styles.suffix}>{suffix}</span>
+          <span className={styles.suffix} style={suffixStyle}>
+            {suffix}
+          </span>
         </div>
       </div>
       <FontAwesomeIcon
         icon={faPlus}
         className={styles.icon}
-        onClick={() => {
-          setValue((v) => {
-            const val = v + 1 > max ? min : v + 1;
-            setInputValue(val.toString());
-            return val;
-          });
-        }}
+        onClick={() => setValue((v) => (v + 1 > max ? min : v + 1))}
       />
     </div>
   );

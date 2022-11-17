@@ -3,6 +3,7 @@ import {
   useEffect,
   ButtonHTMLAttributes,
   InputHTMLAttributes,
+  useRef,
 } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,9 +12,10 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import styles from '@/components/Toggle/toggle.module.css';
 
 interface ToggleProps {
+  label?: string;
   initialValue?: boolean;
   value?: boolean;
-  onChange?: (value: boolean) => void;
+  onValueChange?: (value: boolean) => void;
   iconOff?: IconDefinition;
   iconOn?: IconDefinition;
   id?: string;
@@ -21,42 +23,60 @@ interface ToggleProps {
 
 export type Props = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange' | 'checked'
+  'value' | 'checked'
 > &
   ToggleProps;
 
 export default function Toggle({
   initialValue,
   value,
-  onChange,
+  onValueChange,
   iconOff,
   iconOn,
   id,
+  label,
   ...props
 }: Props) {
-  const [toggled, setIsToggled] = useState<boolean>(
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [toggled, setToggled] = useState<boolean>(
     initialValue ?? value ?? false,
   );
   const isToggled = value ?? toggled;
 
   useEffect(() => {
-    onChange?.(toggled);
-  }, [toggled, onChange]);
+    onValueChange?.(toggled);
+  }, [toggled, onValueChange]);
+
+  useEffect(() => {
+    if (!inputRef.current) {
+      return;
+    }
+
+    if (inputRef.current.checked !== isToggled) {
+      inputRef.current.click();
+    }
+  }, [isToggled]);
 
   return (
-    <>
+    <div className={styles.toggle}>
+      {label && <label>{label}</label>}
       <button
         className={styles.button}
         type="button"
         role="switch"
         id={id}
-        onClick={() => setIsToggled((x) => !x)}
+        onClick={() => setToggled((x) => !x)}
         aria-checked={isToggled}
       >
         <input
           type="checkbox"
           className={styles.checkbox}
-          checked={isToggled}
+          ref={inputRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            props.onClick?.(e);
+          }}
           readOnly
           {...props}
         />
@@ -92,6 +112,6 @@ export default function Toggle({
           </span>
         </span>
       </button>
-    </>
+    </div>
   );
 }

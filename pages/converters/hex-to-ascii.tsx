@@ -1,30 +1,22 @@
 import Area from '@/components/Area/area';
 import Converter, {
-  ConverterProperties,
   SelectOptions,
   SelectAbbr,
 } from '@/components/Converter/converter';
-import TextConverter from '@/src/converters/text';
+import HexadecimalConverter from '@/src/converters/hex';
 import { useRouter } from 'next/router';
 
-export default function AsciiToOct() {
+export default function BinaryToAscii() {
   const router = useRouter();
 
-  const convert = (input: string, props: ConverterProperties): string => {
+  const convert = (input: string): string => {
     if (!input) {
       return ``;
     }
 
-    const tc = new TextConverter(input);
-    const del = props.delimiter ?? ``;
+    const hx = new HexadecimalConverter(input);
 
-    let ret = tc.to(`oct`).delimit(del);
-
-    if (props.prefix) {
-      ret = `0o` + del + ret;
-    }
-
-    return ret;
+    return hx.to(`text`).value;
   };
 
   const navigate = (from: SelectOptions, to: SelectOptions): void => {
@@ -39,14 +31,15 @@ export default function AsciiToOct() {
 
   return (
     <>
-      <h1>ASCII to Octal Converter</h1>
+      <h1>Hex to ASCII Converter</h1>
       <Area>
         <Converter
           convert={convert}
           onTargetsChange={navigate}
-          initialFrom="text"
-          initialTo="octal"
-          prefixText="0o"
+          initialFrom="hexadecimal"
+          initialTo="text"
+          showDelimiter={false}
+          showPrefix={false}
         />
       </Area>
     </>

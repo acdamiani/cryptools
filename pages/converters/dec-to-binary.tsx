@@ -4,10 +4,10 @@ import Converter, {
   SelectOptions,
   SelectAbbr,
 } from '@/components/Converter/converter';
-import TextConverter from '@/src/converters/text';
+import DecimalConverter from '@/src/converters/dec';
 import { useRouter } from 'next/router';
 
-export default function AsciiToOct() {
+export default function DecToHex() {
   const router = useRouter();
 
   const convert = (input: string, props: ConverterProperties): string => {
@@ -15,13 +15,13 @@ export default function AsciiToOct() {
       return ``;
     }
 
-    const tc = new TextConverter(input);
+    const dc = new DecimalConverter(input);
     const del = props.delimiter ?? ``;
 
-    let ret = tc.to(`oct`).delimit(del);
+    let ret = dc.to(`binary`).delimit(del);
 
     if (props.prefix) {
-      ret = `0o` + del + ret;
+      ret = `0b` + del + ret;
     }
 
     return ret;
@@ -39,14 +39,14 @@ export default function AsciiToOct() {
 
   return (
     <>
-      <h1>ASCII to Octal Converter</h1>
+      <h1>Decimal to Binary Converter</h1>
       <Area>
         <Converter
           convert={convert}
           onTargetsChange={navigate}
-          initialFrom="text"
-          initialTo="octal"
-          prefixText="0o"
+          initialFrom="decimal"
+          initialTo="binary"
+          prefixText="0b"
         />
       </Area>
     </>

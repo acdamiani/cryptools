@@ -8,6 +8,7 @@ import TextConverter from './text';
 
 export default class OctalConverter extends Converter {
   private static _reTestOctal = /^[0-7]+$/;
+  private static _reSplit = /.{1,3}/g;
 
   private _oct: BigInteger.BigInteger;
 
@@ -31,15 +32,24 @@ export default class OctalConverter extends Converter {
   }
 
   to(kind: Kind): Converter {
+    let ret = ``;
+
     switch (kind) {
       case `oct`:
         return this;
       case `dec`:
-        return new DecimalConverter(this._oct.toString(10));
+        ret = this._oct.toString(10);
+        return new DecimalConverter(ret);
       case `hex`:
-        return new HexadecimalConverter(this._oct.toString(16));
+        ret = this._oct.toString(16);
+        return new HexadecimalConverter(
+          ret.padStart(Math.ceil(ret.length / 2) * 2, `0`),
+        );
       case `binary`:
-        return new BinaryConverter(this._oct.toString(2));
+        ret = this._oct.toString(2);
+        return new BinaryConverter(
+          ret.padStart(Math.ceil(ret.length / 8) * 8, `0`),
+        );
       case `text`:
         const v = this.value.padStart(
           Math.ceil(this.value.length / 3) * 3,
@@ -60,5 +70,9 @@ export default class OctalConverter extends Converter {
 
         return new TextConverter(str);
     }
+  }
+
+  delimit(delimiter = ` `): string {
+    return (this.value.match(OctalConverter._reSplit) ?? []).join(delimiter);
   }
 }
