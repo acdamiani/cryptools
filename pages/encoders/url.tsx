@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Area from '@/components/Area/area';
 import TextArea from '@/components/TextArea/text-area';
 import CodeBlock, { Snippets } from '@/components/CodeBlock/code-block';
-import TextButtons from '@/components/TextButtons/text-buttons';
 
 const CODE_SNIPPETS: Snippets = {
   csharp: `using System.Web;
@@ -47,7 +46,6 @@ export default function Url() {
       </p>
       <Area>
         <TextArea value={text} onChange={(e) => setText(e.target.value)} />
-        <TextButtons />
         <strong>Code Snippets</strong>
         <CodeBlock snippets={CODE_SNIPPETS} />
       </Area>

@@ -14,7 +14,7 @@
   box-sizing: border-box;
 
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1rem;
 
   transition-property: background-color, border-color;
@@ -31,5 +31,6 @@
 
 .button-content {
   width: 100%;
+  line-height: normal;
   display: inline-block;
 }

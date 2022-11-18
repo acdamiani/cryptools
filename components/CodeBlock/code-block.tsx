@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import Prism from 'prismjs';
+import { PasteIcon, CheckCircleIcon } from '@primer/octicons-react';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-c';
@@ -36,7 +37,13 @@ export default function CodeBlock({ snippets }: Props) {
       <button
         className={classNames(styles.copy, copied ? styles.copied : ``)}
         onClick={copyClick}
-      />
+      >
+        {copied ? (
+          <CheckCircleIcon fill="#999999" size={16} className={styles.icon} />
+        ) : (
+          <PasteIcon fill="#999999" size={16} className={styles.icon} />
+        )}
+      </button>
       <select
         className={styles.lang}
         value={lang}

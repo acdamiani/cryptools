@@ -1,6 +1,14 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faCopy, faRotate, faSave } from '@fortawesome/free-solid-svg-icons';
-import { FormEvent, FormHTMLAttributes, useId, useRef, useState } from 'react';
+import { CopyIcon, SyncIcon, FileIcon } from '@primer/octicons-react';
+import {
+  FormEvent,
+  FormHTMLAttributes,
+  useId,
+  useRef,
+  useState,
+  ReactNode,
+} from 'react';
 import copy from 'copy-to-clipboard';
 import Button from '../Button/button';
 import LabeledElement from '../LabeledElement/labeled-element';
@@ -13,7 +21,7 @@ import ErrorComponent from '../Error/error';
 interface InternalProps {
   generateOutput?: (e: FormEvent<HTMLFormElement>) => string;
   buttonName?: string;
-  buttonIcon?: IconDefinition;
+  buttonIcon?: ReactNode;
 }
 
 export type Props = InternalProps & FormHTMLAttributes<HTMLFormElement>;
@@ -21,7 +29,7 @@ export type Props = InternalProps & FormHTMLAttributes<HTMLFormElement>;
 export default function Tool({
   generateOutput = () => ``,
   buttonName = `Generate`,
-  buttonIcon = faRotate,
+  buttonIcon = <SyncIcon size={16} />,
   className,
   onChange,
   children,
@@ -104,10 +112,10 @@ export default function Tool({
         <Button icon={buttonIcon} type="submit">
           {buttonName}
         </Button>
-        <Button icon={faSave} onClick={doSave} secondary>
+        <Button icon={<FileIcon size={16} />} onClick={doSave} secondary>
           Save Output
         </Button>
-        <Button icon={faCopy} onClick={doCopy} secondary>
+        <Button icon={<CopyIcon size={16} />} onClick={doCopy} secondary>
           Copy Output
         </Button>
       </div>

@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { ReactNode } from 'react';
 
 import classNames from 'classnames';
 
@@ -16,7 +15,7 @@ export interface ButtonProps {
   borderColorHover?: color;
   borderWidth?: React.CSSProperties['borderWidth'];
   padding?: React.CSSProperties['padding'];
-  icon?: IconDefinition;
+  icon?: ReactNode;
   iconColor?: color;
   secondary?: boolean;
 }
@@ -25,12 +24,14 @@ export type Props = ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   secondary = false,
-  textColor = secondary ? `var(--ct-c-font)` : `var(--ct-c-white-soft)`,
-  textColorHover = `var(--ct-c-font)`,
-  backgroundColor = secondary ? `var(--ct-c-bg-soft)` : `var(--ct-c-primary)`,
+  textColor = secondary ? `var(--ct-c-button-font)` : `var(--ct-c-white-soft)`,
+  textColorHover = secondary
+    ? `var(--ct-c-button-font)`
+    : `var(--ct-c-white-soft)`,
+  backgroundColor = secondary ? `var(--ct-c-button)` : `var(--ct-c-primary)`,
   backgroundColorHover = secondary
-    ? `var(--ct-c-bg-mute)`
-    : `var(--ct-c-primary-highlight)`,
+    ? `var(--ct-c-button-hover)`
+    : `var(--ct-c-primary-hover)`,
   borderColor = `transparent`,
   borderColorHover = `transparent`,
   borderWidth = `1px`,
@@ -67,19 +68,7 @@ const Button = ({
       `}</style>
       <span className={classNames(styles.buttonSkeleton, className)}>
         <button className={styles.button} type={type} {...inputProps}>
-          {icon ? (
-            <span className={styles.buttonPrefix}>
-              <FontAwesomeIcon
-                icon={icon}
-                className={styles.icon}
-                color={iconColor}
-                width={20}
-                height={20}
-              />
-            </span>
-          ) : (
-            ``
-          )}
+          {icon ? <span className={styles.buttonPrefix}>{icon}</span> : ``}
           {children ? (
             <span className={styles.buttonContent}>{children}</span>
           ) : (

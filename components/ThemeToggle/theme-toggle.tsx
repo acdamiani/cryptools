@@ -1,8 +1,7 @@
 import { useEffect, useId, useState } from 'react';
 
 import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { MoonIcon, SunIcon } from '@primer/octicons-react';
 
 import styles from '@/components/ThemeToggle/theme-toggle.module.css';
 
@@ -59,13 +58,13 @@ export default function ThemeToggle() {
       >
         <span className={styles.check}>
           <span className={styles.iconContainer}>
-            <FontAwesomeIcon
+            <SunIcon
               className={classNames(styles.icon, styles.sun)}
-              icon={faSun}
+              size={16}
             />
-            <FontAwesomeIcon
+            <MoonIcon
               className={classNames(styles.icon, styles.moon)}
-              icon={faMoon}
+              size={16}
             />
           </span>
         </span>

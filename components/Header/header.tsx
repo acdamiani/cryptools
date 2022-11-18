@@ -3,8 +3,7 @@ import Logo from '@/public/logo.svg';
 import Link from '../Link/link';
 
 import styles from '@/components/Header/header.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { ChevronDownIcon } from '@primer/octicons-react';
 
 export default function Header() {
   return (
@@ -19,10 +18,7 @@ export default function Header() {
               <div className={styles.flyout}>
                 <button className={styles.flyoutButton} type="button">
                   <span className={styles.flyoutText}>Conversion</span>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={styles.icon}
-                  />
+                  <ChevronDownIcon size={16} className={styles.icon} />
                 </button>
                 <div className={styles.flyoutBox}>
                   <Link className={styles.headerLink} href="/">
@@ -56,10 +52,7 @@ export default function Header() {
               <div className={styles.flyout}>
                 <button className={styles.flyoutButton} type="button">
                   <span className={styles.flyoutText}>Ciphers</span>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={styles.icon}
-                  />
+                  <ChevronDownIcon size={16} className={styles.icon} />
                 </button>
                 <div className={styles.flyoutBox}>
                   <Link className={styles.headerLink} href="/">
@@ -89,11 +82,8 @@ export default function Header() {
             <li>
               <div className={styles.flyout}>
                 <button className={styles.flyoutButton} type="button">
-                  <span className={styles.flyoutText}>Generators</span>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={styles.icon}
-                  />
+                  <span className={styles.flyoutText}>Hashes</span>
+                  <ChevronDownIcon size={16} className={styles.icon} />
                 </button>
                 <div className={styles.flyoutBox}>
                   <Link className={styles.headerLink} href="/">
@@ -118,10 +108,7 @@ export default function Header() {
               <div className={styles.flyout}>
                 <button className={styles.flyoutButton} type="button">
                   <span className={styles.flyoutText}>Encoders</span>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={styles.icon}
-                  />
+                  <ChevronDownIcon size={16} className={styles.icon} />
                 </button>
                 <div className={styles.flyoutBox}>
                   <Link className={styles.headerLink} href="/encoders/url">
@@ -135,31 +122,6 @@ export default function Header() {
                   </Link>
                   <Link className={styles.headerLink} href="/">
                     Punycode
-                  </Link>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className={styles.flyout}>
-                <button className={styles.flyoutButton} type="button">
-                  <span className={styles.flyoutText}>Networking</span>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={styles.icon}
-                  />
-                </button>
-                <div className={styles.flyoutBox}>
-                  <Link className={styles.headerLink} href="/">
-                    What is my IP?
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    DNS Lookup
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    DNS Record Lookup
-                  </Link>
-                  <Link className={styles.headerLink} href="/">
-                    Port Scanner
                   </Link>
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import Area from '@/components/Area/area';
+import CodeBlock from '@/components/CodeBlock/code-block';
 import Converter, {
   ConverterProperties,
   SelectOptions,
@@ -6,6 +7,10 @@ import Converter, {
 } from '@/components/Converter/converter';
 import TextConverter from '@/src/converters/text';
 import { useRouter } from 'next/router';
+
+const code = {
+  csharp: `Console.WriteLine("Hello World")`,
+};
 
 export default function AsciiToDec() {
   const router = useRouter();
@@ -49,6 +54,7 @@ export default function AsciiToDec() {
           showPrefix={false}
           showDelimiter={false}
         />
+        <CodeBlock snippets={code} />
       </Area>
     </>
   );

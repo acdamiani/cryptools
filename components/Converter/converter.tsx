@@ -3,7 +3,7 @@ import TextArea from '../TextArea/text-area';
 import Select from '../Select/select';
 import styles from './converter.module.css';
 import Button from '../Button/button';
-import { faRightLeft } from '@fortawesome/free-solid-svg-icons';
+import { ArrowSwitchIcon } from '@primer/octicons-react';
 import Toggle from '../Toggle/toggle';
 import LabeledElement from '../LabeledElement/labeled-element';
 import Tool from '../Tool/tool';
@@ -147,7 +147,7 @@ export default function Converter({
         <LabeledElement flexBasis={false} content="&nbsp;">
           <Button
             className={styles.convertButton}
-            icon={faRightLeft}
+            icon={<ArrowSwitchIcon size={16} />}
             disabled={conversionExceptions[toValue]?.includes(fromValue)}
             onClick={doSwap}
           />
