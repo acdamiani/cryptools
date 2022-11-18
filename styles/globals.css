@@ -121,8 +121,8 @@ body {
   --ct-c-divider: var(--ct-c-divider-light-2);
   --ct-c-border: var(--ct-c-gray-light-1);
   --ct-c-primary-hover: #e6055b;
-  --ct-c-button: var(--ct-c-gray-light-1);
-  --ct-c-button-hover: var(--ct-c-gray-light-3);
+  --ct-c-button: var(--ct-c-gray-light-3);
+  --ct-c-button-hover: var(--ct-c-gray-light-2);
   --ct-c-button-font: var(--ct-c-black-soft);
 }
 
@@ -137,7 +137,7 @@ body {
   --ct-c-divider: var(--ct-c-divider-dark-2);
   --ct-c-border: var(--ct-c-gray-dark-1);
   --ct-c-primary-hover: #fc5595;
-  --ct-c-button: var(--ct-c-gray-dark-5);
+  --ct-c-button: var(--ct-c-gray-dark-4);
   --ct-c-button-hover: var(--ct-c-gray-dark-3);
   --ct-c-button-font: var(--ct-c-white-soft);
 }

@@ -1,8 +1,8 @@
 import Cipher from './cipher';
 
 export default class CaesarCipher extends Cipher<number> {
-  _alphabet: string;
-  _insertInvalid: boolean;
+  private _alphabet: string;
+  private _insertInvalid: boolean;
 
   constructor(
     key: number,

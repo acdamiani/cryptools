@@ -2,19 +2,24 @@ import Area from '@/components/Area/area';
 import Counter from '@/components/Counter/counter';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
 import Row from '@/components/Row/row';
+import Select from '@/components/Select/select';
 import TextArea from '@/components/TextArea/text-area';
 import Toggle from '@/components/Toggle/toggle';
 import ToggleSwitch from '@/components/ToggleSwitch/toggle-switch';
 import Tool from '@/components/Tool/tool';
-import CaesarCipher from '@/src/ciphers/caesar';
+import VigenereCipher, {
+  CaseStrategy,
+  VigenereVariant,
+} from '@/src/ciphers/vigenere';
 import { FormEvent, useId, useState } from 'react';
 
 export default function Caesar() {
   const inputId = useId();
   const keyId = useId();
   const alphabetId = useId();
+  const casingId = useId();
+  const variantId = useId();
 
-  const [key, setKey] = useState(0);
   const [alphabet, setAlpahbet] = useState(`abcdefghijklmnopqrstuvwxyz`);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
@@ -22,13 +27,17 @@ export default function Caesar() {
       input: { value: string };
       alphabet: { value: string };
       'insert-invalid': { checked: boolean };
-      key: { value: number };
+      key: { value: string };
       mode: { checked: boolean };
+      casing: { value: CaseStrategy };
+      variant: { value: VigenereVariant };
     };
 
-    const c = new CaesarCipher(
+    const c = new VigenereCipher(
       target.key.value,
+      target.variant.value,
       target.alphabet.value,
+      target.casing.value,
       target[`insert-invalid`].checked,
     );
 
@@ -39,19 +48,16 @@ export default function Caesar() {
 
   return (
     <>
-      <h1>Caesar Cipher Encode and Decode Online</h1>
+      <h1>Vigenere Cipher Encode and Decode Online</h1>
       <Area>
         <Tool generateOutput={doConvert}>
           <Row>
             <LabeledElement content="Key" flexBasis={false} htmlFor={keyId}>
-              <Counter
-                min={0}
-                max={alphabet.length - 1}
+              <TextArea
                 id={keyId}
-                onCountChange={(c) => setKey(c)}
-                suffix={`a->${alphabet[key]}`}
-                suffixStyle={{ fontVariantLigatures: `normal` }}
                 name="key"
+                defaultValue="cryptools"
+                spellCheck={false}
               />
             </LabeledElement>
             <LabeledElement content="Alphabet" htmlFor={alphabetId}>
@@ -64,6 +70,13 @@ export default function Caesar() {
               />
             </LabeledElement>
           </Row>
+          <LabeledElement content="Variant" htmlFor={variantId}>
+            <Select name="variant" id={variantId}>
+              <option value="standard">Standard</option>
+              <option value="beaufort">Beaufort</option>
+              <option value="beaufort-variant">Beaufort Variant</option>
+            </Select>
+          </LabeledElement>
           <ToggleSwitch
             leftContent="Decode"
             rightContent="Encode"
@@ -72,6 +85,13 @@ export default function Caesar() {
           />
           <LabeledElement content={<strong>Input</strong>}>
             <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
+          </LabeledElement>
+          <LabeledElement content="Casing Strategy" htmlFor={casingId}>
+            <Select name="casing" id={casingId}>
+              <option value="maintain">Maintain</option>
+              <option value="ignore">Ignore</option>
+              <option value="skip">Skip</option>
+            </Select>
           </LabeledElement>
           <Toggle
             name="insert-invalid"

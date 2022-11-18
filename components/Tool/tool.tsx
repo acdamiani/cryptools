@@ -109,7 +109,7 @@ export default function Tool({
         onValueChange={(e) => setAuto(e)}
       />
       <div className={styles.buttons}>
-        <Button icon={buttonIcon} type="submit">
+        <Button icon={buttonIcon} type="submit" disabled={auto}>
           {buttonName}
         </Button>
         <Button icon={<FileIcon size={16} />} onClick={doSave} secondary>

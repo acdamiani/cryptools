@@ -1,0 +1,15 @@
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+} 
+
+.content {
+  display: inline-block;
+  line-height: normal;
+  transition: color 0.25s ease;
+}
+
+.highlight {
+  color: var(--ct-c-primary);
+}
