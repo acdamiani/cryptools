@@ -1,0 +1,52 @@
+.hamburger {
+  cursor: pointer;
+  position: relative;
+  width: 18px;
+  height: 12px;
+  margin: 1rem 0;
+}
+
+.line {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--ct-c-font);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 1;
+}
+
+.two {
+  transform: translateY(6px) scaleX(0.5);
+}
+
+.three {
+  transform: translateY(12px);
+}
+
+.hamburger:hover:not(.toggled) .one {
+  transform: scaleX(0.5);
+}
+
+.hamburger:hover:not(.toggled) .two {
+  transform: translateY(6px) scaleX(1);
+}
+
+.hamburger:hover:not(.toggled) .three {
+  transform: translateY(12px) scaleX(0.5);
+}
+
+.hamburger.toggled .one {
+  transform: scaleX(1) translateY(6px) rotate(45deg);
+}
+
+.hamburger.toggled .two {
+  opacity: 0;
+}
+
+.hamburger.toggled .three {
+  transform: scaleX(1) translateY(6px) rotate(-45deg);
+}

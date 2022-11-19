@@ -4,6 +4,33 @@ import Link from '../Link/link';
 
 import styles from '@/components/Header/header.module.css';
 import { ChevronDownIcon } from '@primer/octicons-react';
+import Hamburger from '../Hamburger/hamburger';
+
+type HeaderFoldout = {
+  text: string;
+  links: HeaderLink[];
+};
+
+type HeaderLink = {
+  text: string;
+  url: string;
+};
+
+const headerContents: HeaderFoldout[] = [
+  {
+    text: `Conversion`,
+    links: [
+      { text: `ASCII to Hex`, url: `/converters/ascii-to-hex` },
+      { text: `ASCII to Decimal`, url: `/converters/ascii-to-dec` },
+      { text: `ASCII to Octal`, url: `/converters/ascii-to-oct` },
+      { text: `ASCII to Binary`, url: `/converters/ascii-to-binary` },
+      { text: `Hex to ASCII`, url: `/converters/hex-to-ascii` },
+      { text: `Hex to Decimal`, url: `/converters/hex-to-dec` },
+      { text: `Hex to Octal`, url: `/converters/hex-to-oct` },
+      { text: `Hex to Binary`, url: `/converters/hex-to-binary` },
+    ],
+  },
+];
 
 export default function Header() {
   return (
@@ -14,6 +41,25 @@ export default function Header() {
         </div>
         <nav className={styles.nav}>
           <ul className={styles.link}>
+            {headerContents.map((x, i) => (
+              <div key={i} className={styles.flyout}>
+                <button className={styles.flyoutButton} type="button">
+                  <span className={styles.flyoutText}>{x.text}</span>
+                  <ChevronDownIcon size={16} className={styles.icon} />
+                </button>
+                <div className={styles.flyoutBox}>
+                  {x.links.map((l) => (
+                    <Link
+                      key={l.url}
+                      className={styles.headerLink}
+                      href={l.url}
+                    >
+                      {l.text}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
             <li>
               <div className={styles.flyout}>
                 <button className={styles.flyoutButton} type="button">
@@ -128,6 +174,9 @@ export default function Header() {
             </li>
             <li>
               <ThemeToggle />
+            </li>
+            <li>
+              <Hamburger className={styles.hamburger} />
             </li>
           </ul>
         </nav>
