@@ -1,7 +1,6 @@
 .footer {
   position: absolute;
   bottom: 0;
-
   width: 100%;
   height: var(--header-height);
   background-color: var(--ct-c-bg);
@@ -9,20 +8,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: background-color 0.25s ease, color 0.25s ease;
-
   gap: 1.5rem;
+  padding: 0 1rem;
 }
 
 .text {
   font-size: 1.15rem;
 }
 
-.link {
-  font-size: 1rem;
-}
-
 .coffee {
   display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .text {
+    font-size: 0.8125rem;
+  }
 }

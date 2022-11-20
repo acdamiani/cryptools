@@ -55,3 +55,13 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.swap-label {
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .swap-label {
+    visibility: visible;
+  }
+}

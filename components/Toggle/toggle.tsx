@@ -45,10 +45,6 @@ export default function Toggle({
   const isToggled = value ?? toggled;
 
   useEffect(() => {
-    onValueChange?.(toggled);
-  }, [toggled, onValueChange]);
-
-  useEffect(() => {
     if (!inputRef.current) {
       return;
     }
@@ -66,7 +62,10 @@ export default function Toggle({
         type="button"
         role="switch"
         id={id}
-        onClick={() => setToggled((x) => !x)}
+        onClick={() => {
+          setToggled((x) => !x);
+          onValueChange?.(!toggled);
+        }}
         aria-checked={isToggled}
       >
         <input

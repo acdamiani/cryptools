@@ -1,5 +1,6 @@
 .hamburger {
   cursor: pointer;
+  user-select: none;
   position: relative;
   width: 18px;
   height: 12px;

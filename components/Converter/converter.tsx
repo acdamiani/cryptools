@@ -144,7 +144,11 @@ export default function Converter({
             ))}
           </Select>
         </LabeledElement>
-        <LabeledElement flexBasis={false} content="&nbsp;">
+        <LabeledElement
+          flexBasis={false}
+          content="Swap"
+          className={styles.swapLabel}
+        >
           <Button
             className={styles.convertButton}
             icon={<ArrowSwitchIcon size={16} />}

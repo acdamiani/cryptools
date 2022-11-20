@@ -6,12 +6,6 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <span className={styles.text}>Made with ❤️ by August Damiani</span>
-      <Link className={styles.link} href="privacy-policy">
-        Privacy Policy
-      </Link>
-      <Link className={styles.link} href="terms-of-use">
-        Terms of Use
-      </Link>
       <a href="https://ko-fi.com/W7W8FW50R" target="_blank" rel="noreferrer">
         <img
           height="36"

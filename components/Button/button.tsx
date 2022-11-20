@@ -68,7 +68,15 @@ const Button = ({
       `}</style>
       <span className={classNames(styles.buttonSkeleton, className)}>
         <button className={styles.button} type={type} {...inputProps}>
-          {icon ? <span className={styles.buttonPrefix}>{icon}</span> : ``}
+          {icon ? (
+            <span
+              className={children ? styles.buttonPrefix : styles.buttonContent}
+            >
+              {icon}
+            </span>
+          ) : (
+            ``
+          )}
           {children ? (
             <span className={styles.buttonContent}>{children}</span>
           ) : (
