@@ -41,7 +41,7 @@
 }
 
 .icon.expanded {
-  transform: rotate(45deg);
+  transform: rotate(90deg);
 }
 
 .foldout-content.expanded {

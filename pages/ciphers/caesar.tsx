@@ -7,14 +7,13 @@ import Toggle from '@/components/Toggle/toggle';
 import ToggleSwitch from '@/components/ToggleSwitch/toggle-switch';
 import Tool from '@/components/Tool/tool';
 import CaesarCipher from '@/src/ciphers/caesar';
-import { FormEvent, useId, useState } from 'react';
+import { FormEvent, useEffect, useId, useState } from 'react';
 
 export default function Caesar() {
   const inputId = useId();
   const keyId = useId();
   const alphabetId = useId();
 
-  const [key, setKey] = useState(0);
   const [alphabet, setAlpahbet] = useState(`abcdefghijklmnopqrstuvwxyz`);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
@@ -48,8 +47,7 @@ export default function Caesar() {
                 min={0}
                 max={alphabet.length - 1}
                 id={keyId}
-                onCountChange={(c) => setKey(c)}
-                suffix={`a->${alphabet[key]}`}
+                suffix={(k) => (alphabet ? `a->${alphabet[k]}` : ``)}
                 suffixStyle={{ fontVariantLigatures: `normal` }}
                 name="key"
               />

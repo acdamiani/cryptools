@@ -1,10 +1,4 @@
-import {
-  useState,
-  useEffect,
-  ButtonHTMLAttributes,
-  InputHTMLAttributes,
-  useRef,
-} from 'react';
+import { useState, useEffect, InputHTMLAttributes, useRef } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';

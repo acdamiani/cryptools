@@ -1,7 +1,7 @@
 import { HTMLAttributes, useState } from 'react';
 import classNames from 'classnames';
 import styles from './header-foldout.module.css';
-import { PlusIcon } from '@primer/octicons-react';
+import { ChevronRightIcon } from '@primer/octicons-react';
 
 interface InternalProps {
   title?: string;
@@ -31,7 +31,7 @@ export default function HeaderFoldout({
         onClick={() => setExpanded((e) => !e)}
       >
         <span className={styles.foldoutTitle}>{title}</span>
-        <PlusIcon
+        <ChevronRightIcon
           size={16}
           fill="var(--ct-c-border)"
           className={classNames(styles.icon, expanded && styles.expanded)}

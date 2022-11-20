@@ -1,4 +1,10 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react';
+import {
+  CSSProperties,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +15,7 @@ import styles from '@/components/Counter/counter.module.css';
 interface InternalProps {
   min?: number;
   max?: number;
-  suffix?: string;
+  suffix?: string | ((key: number) => string);
   initialCount?: number;
   onCountChange?: (arg0: number) => any;
   suffixStyle?: CSSProperties;
@@ -53,6 +59,13 @@ export default function Counter({
 
     input.dispatchEvent(new Event(`input`, { bubbles: true }));
   };
+
+  const useIsomorphicEffect =
+    typeof document !== `undefined` ? useLayoutEffect : useEffect;
+
+  useIsomorphicEffect(() => {
+    setValue((v) => Math.max(min, Math.min(max, v)));
+  }, [min, max]);
 
   useEffect(() => {
     onCountChange?.(value);
@@ -101,7 +114,7 @@ export default function Counter({
         <div className={styles.number}>
           <span className={styles.value}>{value}</span>
           <span className={styles.suffix} style={suffixStyle}>
-            {suffix}
+            {suffix && (typeof suffix === `string` ? suffix : suffix(value))}
           </span>
         </div>
       </div>

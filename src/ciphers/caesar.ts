@@ -24,6 +24,10 @@ export default class CaesarCipher extends Cipher<number> {
     const alphabet = this._alphabet;
     let str = ``;
 
+    if (!alphabet) {
+      throw new Error(`Alphabet must exist`);
+    }
+
     for (let i = 0; i < message.length; i++) {
       let char = message[i];
       const isLower = char.toLowerCase() === char;
@@ -48,6 +52,10 @@ export default class CaesarCipher extends Cipher<number> {
   decode(message: string) {
     const alphabet = this._alphabet;
     let str = ``;
+
+    if (!alphabet) {
+      throw new Error(`Alphabet must exist`);
+    }
 
     for (let i = 0; i < message.length; i++) {
       let char = message[i];

@@ -137,7 +137,7 @@
 .flyout-box.right {
   top: -0.25rem;
   left: calc(100% + 0.25rem);
-  transform: translateX(0.5rem);
+  transform: translateX(-0.5rem);
 }
 
 .flyout:hover > .flyout-box {
