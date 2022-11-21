@@ -17,6 +17,8 @@ import Converter from '@/components/Converter/converter';
 import Error from '@/components/Error/error';
 import VigenereCipher from '@/src/ciphers/vigenere';
 import BaconCipher from '@/src/ciphers/bacon';
+import RIPEMD160 from '@/src/hashes/ripemd-160';
+import { getCodePoints } from '@/src/text';
 
 function buf2hex(buffer: ArrayBuffer) {
   // buffer is an ArrayBuffer
@@ -26,22 +28,43 @@ function buf2hex(buffer: ArrayBuffer) {
 }
 
 const convert = () => {
-  // md5().then((md5) => console.log(buf2hex(md5.default(Buffer.from(arg0)))));
-  // const bin = `0B 101010  10101 101 10 10 01 11 1`;
-  // const c = new BinaryConverter(bin);
+  const r = new RIPEMD160();
 
-  const v = new BaconCipher(`unique`);
-  const m = `The quick brown fox jumps over the lazy dog`;
-  const e = v.encode(m);
-  const d = v.decode(e);
+  // console.log(
+  //   buf2hex(
+  //     r.hash(new Uint8Array(getCodePoints(`abcdefghijklmnopqrstuvwxyz`))),
+  //   ),
+  // );
 
-  console.log(m);
-  console.log(e);
-  console.log(d);
-};
+  //   const test: { msg: string; hash: string }[] = [
+  //     { msg: ``, hash: `9c1185a5c5e9fc54612808977ee8f548b2258d31` },
+  //     { msg: `a`, hash: `0bdc9d2d256b3ee9daae347be6f4dc835a467ffe` },
+  //     { msg: `abc`, hash: `8eb208f7e05d987a9b044a8e98c6b087f15a0bfc` },
+  //     { msg: `message digest`, hash: `5d0689ef49d2fae572b881b123a85ffa21595f36` },
+  //     {
+  //       msg: `abcdefghijklmnopqrstuvwxyz`,
+  //       hash: `f71c27109c692c1b56bbdceb5b9d2865b3708dbc`,
+  //     },
+  //     {
+  //       msg: `abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq`,
+  //       hash: `12a053384a9c0c88e405a06c27dcf49ada62eb2b`,
+  //     },
+  //     {
+  //       msg: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`,
+  //       hash: `b0e20b6e3116640286ed3a87a5713079b21f5189`,
+  //     },
+  //     { msg: `hello world`, hash: `98c615784ccb5fe5936fbc0cbe9dfdb408d92f0f` },
+  //   ];
 
-const getAlphabetChar = (n: number) => {
-  return `abcdefghijklmnopqrstuvwxyz`[n % 26];
+  //   for (const t of test) {
+  //     const hash = buf2hex(r.hash(new Uint8Array(getCodePoints(t.msg))));
+  //     console.log(
+  //       `Hash of`,
+  //       t.msg,
+  //       hash,
+  //       hash === t.hash ? `matches!` : `does not match!`,
+  //     );
+  //   }
 };
 
 export default function AsciiToText() {

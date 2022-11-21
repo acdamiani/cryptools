@@ -75,8 +75,24 @@ const headerContents: HeaderItem[] = [
     ],
   },
   {
-    text: `Test Link`,
-    url: `/to/nowhere`,
+    text: `Hashes`,
+    url: [
+      { text: `MD5`, url: `/hashes/md5` },
+      { text: `SHA-1`, url: `/hashes/sha1` },
+      { text: `SHA-256`, url: `/hashes/sha256` },
+      { text: `SHA-384`, url: `/hashes/sha384` },
+      { text: `SHA-512`, url: `/hashes/sha512` },
+      { text: `RIPEMD-160`, url: `/hashes/ripemd-160` },
+    ],
+  },
+  {
+    text: `Encoders`,
+    url: [
+      { text: `URL`, url: `/encoders/url` },
+      { text: `Punycode`, url: `/encoders/punycode` },
+      { text: `Base32`, url: `/encoders/base32` },
+      { text: `Base64`, url: `/enocders/base64` },
+    ],
   },
 ];
 
