@@ -2,11 +2,6 @@ import { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-
-config.autoAddCss = false;
-
 import '@/styles/globals.css';
 import 'normalize.css';
 import '@/styles/prism.css';

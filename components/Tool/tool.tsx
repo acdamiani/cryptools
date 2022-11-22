@@ -1,5 +1,3 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faCopy, faRotate, faSave } from '@fortawesome/free-solid-svg-icons';
 import { CopyIcon, SyncIcon, FileIcon } from '@primer/octicons-react';
 import {
   FormEvent,
@@ -12,14 +10,15 @@ import {
 import copy from 'copy-to-clipboard';
 import Button from '../Button/button';
 import LabeledElement from '../LabeledElement/labeled-element';
-import TextArea from '../TextArea/text-area';
+import TextArea, { Props as TextAreaProps } from '../TextArea/text-area';
 import Toggle from '../Toggle/toggle';
 import styles from './tool.module.css';
 import classNames from 'classnames';
 import ErrorComponent from '../Error/error';
 
 interface InternalProps {
-  generateOutput?: (e: FormEvent<HTMLFormElement>) => string;
+  generateOutput?: (e: FormEvent<HTMLFormElement>) => Promise<string> | string;
+  outputProps?: Omit<TextAreaProps, 'id' | 'name'>;
   buttonName?: string;
   buttonIcon?: ReactNode;
 }
@@ -30,6 +29,7 @@ export default function Tool({
   generateOutput = () => ``,
   buttonName = `Generate`,
   buttonIcon = <SyncIcon size={16} />,
+  outputProps,
   className,
   onChange,
   children,
@@ -50,8 +50,9 @@ export default function Tool({
     };
 
     try {
-      target.output.value = generateOutput(e);
-      setErrorText(``);
+      Promise.resolve(generateOutput(e))
+        .then((t) => (target.output.value = t))
+        .then(() => setErrorText(``));
     } catch (e) {
       if (typeof e === `string`) {
         setErrorText(e);
@@ -123,10 +124,11 @@ export default function Tool({
       <LabeledElement content={<b>Output</b>}>
         <TextArea
           rows={3}
+          spellCheck="false"
           id={outputId}
           name="output"
-          spellCheck="false"
           readOnly
+          {...outputProps}
         />
       </LabeledElement>
     </form>

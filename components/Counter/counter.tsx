@@ -5,11 +5,8 @@ import {
   useRef,
   useState,
 } from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { PlusIcon, DashIcon } from '@primer/octicons-react';
 import classNames from 'classnames';
-
 import styles from '@/components/Counter/counter.module.css';
 
 interface InternalProps {
@@ -85,11 +82,12 @@ export default function Counter({
     <div
       className={classNames(styles.counter, inputFocused ? styles.focus : ``)}
     >
-      <FontAwesomeIcon
-        icon={faMinus}
+      <span
         className={styles.icon}
         onClick={() => setValue((v) => (v - 1 < min ? max : v - 1))}
-      />
+      >
+        <DashIcon size={16} fill="var(--ct-c-font)" />
+      </span>
       <div className={styles.counterInput}>
         <input
           type="number"
@@ -118,11 +116,12 @@ export default function Counter({
           </span>
         </div>
       </div>
-      <FontAwesomeIcon
-        icon={faPlus}
+      <span
         className={styles.icon}
         onClick={() => setValue((v) => (v + 1 > max ? min : v + 1))}
-      />
+      >
+        <PlusIcon size={16} fill="var(--ct-c-font)" />
+      </span>
     </div>
   );
 }

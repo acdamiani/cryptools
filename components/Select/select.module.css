@@ -26,11 +26,13 @@
 
 .prefix {
   position: absolute;
+  display: inline-flex;
   left: 1rem;
 }
 
 .suffix {
   position: absolute;
+  display: inline-flex;
   right: 0.65rem;
   width: 0.95rem;
 }

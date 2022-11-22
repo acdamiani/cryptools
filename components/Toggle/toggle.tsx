@@ -1,7 +1,10 @@
-import { useState, useEffect, InputHTMLAttributes, useRef } from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  useState,
+  useEffect,
+  InputHTMLAttributes,
+  useRef,
+  ReactNode,
+} from 'react';
 
 import styles from '@/components/Toggle/toggle.module.css';
 
@@ -10,8 +13,8 @@ interface ToggleProps {
   initialValue?: boolean;
   value?: boolean;
   onValueChange?: (value: boolean) => void;
-  iconOff?: IconDefinition;
-  iconOn?: IconDefinition;
+  iconOff?: ReactNode;
+  iconOn?: ReactNode;
   id?: string;
 }
 
@@ -81,24 +84,22 @@ export default function Toggle({
         >
           <span className={styles.iconContainer}>
             {iconOff ? (
-              <FontAwesomeIcon
+              <span
                 className={styles.icon}
-                icon={iconOff}
-                style={{
-                  opacity: isToggled ? 0 : 1,
-                }}
-              />
+                style={{ opacity: isToggled ? 0 : 1 }}
+              >
+                {iconOff}
+              </span>
             ) : (
               ``
             )}
             {iconOn ? (
-              <FontAwesomeIcon
+              <span
                 className={styles.icon}
-                icon={iconOn}
-                style={{
-                  opacity: isToggled ? 1 : 0,
-                }}
-              />
+                style={{ opacity: isToggled ? 0 : 1 }}
+              >
+                {iconOn}
+              </span>
             ) : (
               ``
             )}

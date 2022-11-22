@@ -1,11 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faRotate,
-  faKey,
-  faLock,
-  faFont,
-} from '@fortawesome/free-solid-svg-icons';
-
 import styles from '@/styles/Home.module.css';
 import Link from '@/components/Link/link';
 import Head from 'next/head';
@@ -21,7 +13,6 @@ export default function Home() {
         <div className={styles.cardContainer}>
           <h3>Conversion</h3>
           <div className={styles.card}>
-            <FontAwesomeIcon className={styles.icon} icon={faRotate} />
             <ul className={styles.links}>
               <li>
                 <Link className={styles.link} href="/">
@@ -59,7 +50,6 @@ export default function Home() {
         <div className={styles.cardContainer}>
           <h3>Ciphers</h3>
           <div className={styles.card}>
-            <FontAwesomeIcon className={styles.icon} icon={faKey} />
             <ul className={styles.links}>
               <li>
                 <Link className={styles.link} href="/">
@@ -102,7 +92,6 @@ export default function Home() {
         <div className={styles.cardContainer}>
           <h3>Hashes</h3>
           <div className={styles.card}>
-            <FontAwesomeIcon className={styles.icon} icon={faLock} />
             <ul className={styles.links}>
               <li>
                 <Link className={styles.link} href="/">
@@ -140,7 +129,6 @@ export default function Home() {
         <div className={styles.cardContainer}>
           <h3>Encoders</h3>
           <div className={styles.card}>
-            <FontAwesomeIcon className={styles.icon} icon={faFont} />
             <ul className={styles.links}>
               <li>
                 <Link className={styles.link} href="/">

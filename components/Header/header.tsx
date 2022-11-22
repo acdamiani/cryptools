@@ -82,7 +82,7 @@ const headerContents: HeaderItem[] = [
       { text: `SHA-256`, url: `/hashes/sha256` },
       { text: `SHA-384`, url: `/hashes/sha384` },
       { text: `SHA-512`, url: `/hashes/sha512` },
-      { text: `RIPEMD-160`, url: `/hashes/ripemd-160` },
+      { text: `RIPEMD-160`, url: `/hashes/ripemd160` },
     ],
   },
   {

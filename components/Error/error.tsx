@@ -1,7 +1,6 @@
 import { CSSProperties } from 'react';
 import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { AlertFillIcon } from '@primer/octicons-react';
 
 import styles from '@/components/Error/error.module.css';
 
@@ -52,7 +51,7 @@ export default function Error({
       {...props}
     >
       <span className={styles.headerContainer}>
-        <FontAwesomeIcon icon={faCircleExclamation} className={styles.icon} />
+        <AlertFillIcon size={16} fill="var(--ct-c-white-soft)" />
         <h3 className={styles.header}>{header}</h3>
       </span>
       {children}

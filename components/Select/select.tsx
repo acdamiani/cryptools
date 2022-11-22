@@ -1,13 +1,11 @@
 import classNames from 'classnames';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-
 import styles from '@/components/Select/select.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { ChevronDownIcon } from '@primer/octicons-react';
+import { ReactNode } from 'react';
 
 interface LocalProps {
-  prefixIcon?: IconDefinition;
-  suffixIcon?: IconDefinition;
+  prefixIcon?: ReactNode;
+  suffixIcon?: ReactNode;
 }
 
 export type Props = React.SelectHTMLAttributes<HTMLSelectElement> & LocalProps;
@@ -22,7 +20,7 @@ export default function Select({
 }: Props) {
   return (
     <div className={styles.selectContainer}>
-      {prefixIcon ? <FontAwesomeIcon icon={prefixIcon} /> : ``}
+      {prefixIcon ? <span className={styles.prefix}>{prefixIcon}</span> : ``}
       <select
         className={classNames(className, styles.select)}
         style={{
@@ -34,9 +32,11 @@ export default function Select({
         {children}
       </select>
       {suffixIcon ? (
-        <FontAwesomeIcon icon={suffixIcon} className={styles.prefix} />
+        <span className={styles.suffix}>{suffixIcon}</span>
       ) : (
-        <FontAwesomeIcon icon={faChevronDown} className={styles.suffix} />
+        <span className={styles.suffix}>
+          <ChevronDownIcon />
+        </span>
       )}
     </div>
   );

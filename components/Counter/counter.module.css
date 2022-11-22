@@ -76,7 +76,4 @@
 .icon {
   cursor: pointer;
   user-select: none;
-  width: 15px;
-  height: 15px;
-  color: var(--ct-c-font);
 }

@@ -27,9 +27,6 @@
     ]
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.2.0",
-    "@fortawesome/free-solid-svg-icons": "6.2.0",
-    "@fortawesome/react-fontawesome": "0.2.0",
     "@primer/octicons-react": "17.9.0",
     "big-integer": "1.6.51",
     "classnames": "2.3.2",
@@ -40,8 +37,7 @@
     "normalize.css": "8.0.1",
     "prismjs": "1.29.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-select": "5.5.4"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
