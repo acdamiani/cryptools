@@ -19,7 +19,7 @@
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
     "analyze": "cross-env ANALYZE=true next build",
-    "test": "mocha -r ts-node/register -r tsconfig-paths/register 'test/**/*.ts'"
+    "test": "mocha -r ts-node/register -r tsconfig-paths/register 'test/**/*.spec.ts'"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [

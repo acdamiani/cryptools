@@ -170,7 +170,7 @@ function pdecode(message: string) {
     output.splice(i++, 0, n);
   }
 
-  return stringFromCodePoint(...output);
+  return stringFromCodePoint(output);
 }
 
 function map(array: Array<any>, fn: (arg0: any) => any) {
