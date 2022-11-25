@@ -1,26 +1,69 @@
 import Encoder from '@/src/encoders/encoder';
 import { getBytes, getString } from '../text';
 
-export default class Base64Encoder extends Encoder {
-  _alphabet: string;
+const base64Variants = [`base64`, `base64url`, `rfc2045`, `rfc1421`] as const;
 
-  constructor(
-    alphabet = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-  ) {
+export type Base64Variant = typeof base64Variants[number];
+
+type Base64VariantOptions = {
+  alphabet: string;
+  padding: string | null;
+  foreign?: boolean;
+  maxLength?: number;
+};
+
+export const VARIANT_OPTIONS: Record<Base64Variant, Base64VariantOptions> = {
+  base64: {
+    alphabet: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    padding: `=`,
+  },
+  base64url: {
+    alphabet: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_`,
+    padding: null,
+  },
+  rfc1421: {
+    alphabet: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    padding: `=`,
+    maxLength: 64,
+  },
+  rfc2045: {
+    alphabet: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    padding: `=`,
+    maxLength: 76,
+    foreign: true,
+  },
+};
+
+export const VARIANT_LABELS: Record<Base64Variant, string> = {
+  base64: `Base64 (RFC 3548, RFC 4648)`,
+  base64url: `Base64url (RFC 4648 §5)`,
+  rfc1421: `Original Base64 (RFC 1421)`,
+  rfc2045: `Transfer encoding for MIME (RFC 2045)`,
+};
+
+export default class Base64Encoder extends Encoder {
+  private static _lineSeparator = `\r\n`;
+  private _variant: Base64Variant;
+
+  constructor(variant: Base64Variant = `base64`) {
     super();
+
+    this._variant = variant;
+
+    const { alphabet } = VARIANT_OPTIONS[variant];
 
     if (alphabet.length !== 64) {
       throw new Error(`Alphabet should be exactly 64 characters long`);
     } else if (String.prototype.concat(...new Set(alphabet)) !== alphabet) {
       throw new Error(`All alphabet characters should be unique`);
     }
-
-    this._alphabet = alphabet;
   }
 
   encode(message: string): string {
+    const { alphabet, padding, maxLength } = VARIANT_OPTIONS[this._variant];
+
     const bytes = getBytes(message);
-    const pad = `=`;
+    const pad = padding ?? ``;
 
     let ret = ``;
     let b1, b2, b3, o1, o2, o3, o4;
@@ -35,17 +78,32 @@ export default class Base64Encoder extends Encoder {
       o4 = b3 & 0b111111;
 
       ret +=
-        this._alphabet[o1] +
-        this._alphabet[o2] +
-        (isNaN(b2) ? pad : this._alphabet[o3]) +
-        (isNaN(b3) ? pad : this._alphabet[o4]);
+        alphabet[o1] +
+        alphabet[o2] +
+        (isNaN(b2) ? pad : alphabet[o3]) +
+        (isNaN(b3) ? pad : alphabet[o4]);
+    }
+
+    if (maxLength) {
+      let lim = ``;
+
+      for (let i = 0; i < ret.length; i += maxLength) {
+        lim +=
+          (lim === `` ? `` : Base64Encoder._lineSeparator) +
+          ret.substring(i, i + maxLength);
+      }
+
+      ret = lim;
     }
 
     return ret;
   }
 
   decode(message: string): string {
-    const pad = `=`;
+    const { alphabet, padding, maxLength, foreign } =
+      VARIANT_OPTIONS[this._variant];
+
+    const pad = padding ?? ``;
     const length = message.length;
     const octets = [];
     let char, o;
@@ -53,12 +111,19 @@ export default class Base64Encoder extends Encoder {
     for (let i = 0; i < length; i++) {
       char = message[i];
 
-      if (char !== pad) {
-        o = this._alphabet.indexOf(char);
+      if (
+        maxLength &&
+        char === Base64Encoder._lineSeparator[0] &&
+        message.substring(i, i + Base64Encoder._lineSeparator.length) ===
+          Base64Encoder._lineSeparator
+      ) {
+        i = i + Base64Encoder._lineSeparator.length - 1;
+      } else if (char !== pad) {
+        o = alphabet.indexOf(char);
 
         if (o !== -1) {
           octets.push(o);
-        } else {
+        } else if (!foreign) {
           throw new Error(`Character ${char} not found in alphabet`);
         }
       }
@@ -89,5 +154,9 @@ export default class Base64Encoder extends Encoder {
     bytes = bytes.slice(0, size - padSize);
 
     return getString(bytes);
+  }
+
+  static getVariantsAsArray(): string[] {
+    return Array.from(base64Variants);
   }
 }
