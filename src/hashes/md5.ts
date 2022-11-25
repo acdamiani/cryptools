@@ -1,3 +1,5 @@
+import Hash from './hash';
+
 const WA = 0x67452301;
 const WB = 0xefcdab89;
 const WC = 0x98badcfe;
@@ -154,48 +156,50 @@ function transform(ctx: number[], blk: number[]) {
   ctx[3] = add32(d, ctx[3]);
 }
 
-export default function md5(bytes: Uint8Array): Uint8Array {
-  const mutBytes = Array.from(bytes);
-  const b = mutBytes.length;
+export default class MD5 extends Hash {
+  protected _hashBytes(bytes: Uint8Array): Promise<Uint8Array> {
+    const mutBytes = Array.from(bytes);
+    const b = mutBytes.length;
 
-  mutBytes.push(0b10000000);
-  while (mutBytes.length % 64 !== 56) mutBytes.push(0x00);
+    mutBytes.push(0b10000000);
+    while (mutBytes.length % 64 !== 56) mutBytes.push(0x00);
 
-  let shift: number;
-  for (let i = 0; i < 8; i++) {
-    if (i === 0) {
-      // mul result by 8
-      mutBytes.push((b & 0b11111) << 3);
-    } else {
-      shift = i * 8 - 3;
-      mutBytes.push(shift < 32 ? (b >> shift) & 0xff : 0);
+    let shift: number;
+    for (let i = 0; i < 8; i++) {
+      if (i === 0) {
+        // mul result by 8
+        mutBytes.push((b & 0b11111) << 3);
+      } else {
+        shift = i * 8 - 3;
+        mutBytes.push(shift < 32 ? (b >> shift) & 0xff : 0);
+      }
     }
+
+    const n = mutBytes.length / 4;
+    const m = new Array(n);
+
+    for (let i = 0; i < n; i++) {
+      m[i] =
+        (mutBytes[i * 4 + 3] << 24) +
+        (mutBytes[i * 4 + 2] << 16) +
+        (mutBytes[i * 4 + 1] << 8) +
+        mutBytes[i * 4];
+    }
+
+    const ibuf = [WA, WB, WC, WD];
+
+    for (let i = 0; i < n; i += 16) {
+      transform(ibuf, m.slice(i, i + 16));
+    }
+
+    const res = new Array(16);
+    for (let i = 0, j = 0; j < 16; i++, j += 4) {
+      res[j] = ibuf[i] & 0xff;
+      res[j + 1] = (ibuf[i] >> 8) & 0xff;
+      res[j + 2] = (ibuf[i] >> 16) & 0xff;
+      res[j + 3] = (ibuf[i] >> 24) & 0xff;
+    }
+
+    return new Promise((resolve) => resolve(new Uint8Array(res)));
   }
-
-  const n = mutBytes.length / 4;
-  const m = new Array(n);
-
-  for (let i = 0; i < n; i++) {
-    m[i] =
-      (mutBytes[i * 4 + 3] << 24) +
-      (mutBytes[i * 4 + 2] << 16) +
-      (mutBytes[i * 4 + 1] << 8) +
-      mutBytes[i * 4];
-  }
-
-  const ibuf = [WA, WB, WC, WD];
-
-  for (let i = 0; i < n; i += 16) {
-    transform(ibuf, m.slice(i, i + 16));
-  }
-
-  const res = new Array(16);
-  for (let i = 0, j = 0; j < 16; i++, j += 4) {
-    res[j] = ibuf[i] & 0xff;
-    res[j + 1] = (ibuf[i] >> 8) & 0xff;
-    res[j + 2] = (ibuf[i] >> 16) & 0xff;
-    res[j + 3] = (ibuf[i] >> 24) & 0xff;
-  }
-
-  return new Uint8Array(res);
 }

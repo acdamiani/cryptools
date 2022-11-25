@@ -15,6 +15,7 @@ import Toggle from '../Toggle/toggle';
 import styles from './tool.module.css';
 import classNames from 'classnames';
 import ErrorComponent from '../Error/error';
+import { saveAs } from 'file-saver';
 
 interface InternalProps {
   generateOutput?: (e: FormEvent<HTMLFormElement>) => Promise<string> | string;
@@ -49,17 +50,24 @@ export default function Tool({
       output: { value: string };
     };
 
-    try {
-      Promise.resolve(generateOutput(e))
-        .then((t) => (target.output.value = t))
-        .then(() => setErrorText(``));
-    } catch (e) {
-      if (typeof e === `string`) {
-        setErrorText(e);
-      } else if (e instanceof Error) {
-        setErrorText(e.message);
+    new Promise<string>((resolve, reject) => {
+      try {
+        resolve(generateOutput(e));
+      } catch (e) {
+        reject(e);
       }
-    }
+    })
+      .then((t) => {
+        target.output.value = t;
+      })
+      .then(() => setErrorText(``))
+      .catch((e) => {
+        if (typeof e === `string`) {
+          setErrorText(e);
+        } else if (e instanceof Error) {
+          setErrorText(e.message);
+        }
+      });
   };
 
   const doCopy = () => {
@@ -79,7 +87,8 @@ export default function Tool({
       return;
     }
 
-    copy(el.value);
+    const blob = new Blob([el.value], { type: `text/plain;charset=utf-8` });
+    saveAs(blob, `output.txt`);
   };
 
   const doChange = (e: FormEvent<HTMLFormElement>) => {

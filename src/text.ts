@@ -129,7 +129,7 @@ export function stringFromCharCode(value: number) {
   return String.fromCharCode(value);
 }
 
-export function stringFromCodePoint(...codePoints: number[]) {
+export function stringFromCodePoint(codePoints: number[]) {
   return String.fromCodePoint(...codePoints);
 }
 

@@ -33,6 +33,13 @@ export default class VigenereCipher extends Cipher<string> {
     const alphabet = this._alphabet;
     let str = ``;
 
+    if (
+      this._key.split(``).filter((k) => alphabet.includes(k)).length !==
+      this._key.length
+    ) {
+      throw new Error(`Key contains forbidden characters`);
+    }
+
     for (let i = 0, k = 0; i < message.length; i++) {
       let char = message[i];
       const isLower = char.toLowerCase() === char;
@@ -54,10 +61,6 @@ export default class VigenereCipher extends Cipher<string> {
 
       const keyChar = this._key[k % this._key.length].toLowerCase();
       const keyIndex = alphabet.indexOf(keyChar);
-
-      if (keyIndex === -1) {
-        throw new Error(`Key contains forbidden characters`);
-      }
 
       let idx;
 
@@ -92,6 +95,13 @@ export default class VigenereCipher extends Cipher<string> {
     const alphabet = this._alphabet;
     let str = ``;
 
+    if (
+      this._key.split(``).filter((k) => alphabet.includes(k)).length !==
+      this._key.length
+    ) {
+      throw new Error(`Key contains forbidden characters`);
+    }
+
     for (let i = 0, k = 0; i < message.length; i++) {
       let char = message[i];
       const isLower = char.toLowerCase() === char;
@@ -113,10 +123,6 @@ export default class VigenereCipher extends Cipher<string> {
 
       const keyChar = this._key[k % this._key.length].toLowerCase();
       const keyIndex = alphabet.indexOf(keyChar);
-
-      if (keyIndex === -1) {
-        throw new Error(`Key contains forbidden characters`);
-      }
 
       let idx;
 

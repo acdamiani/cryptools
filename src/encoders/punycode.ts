@@ -195,7 +195,7 @@ function mapDomain(string: string, fn: (arg0: string) => string) {
   return result + encoded;
 }
 
-export default class Punycode extends Encoder {
+export default class PunycodeEncoder extends Encoder {
   encode(message: string): string {
     return mapDomain(message, (str) =>
       regexNonASCII.test(str) ? `xn--` + pencode(str) : str,
