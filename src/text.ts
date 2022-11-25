@@ -69,14 +69,12 @@ export function getCodePointsFromBytes(bytes: Uint8Array): number[] {
   return codePoints.slice(0, j);
 }
 
-export function getBytes(string: string) {
-  const codePoints = getCodePoints(string);
+export function getBytesFromCodePoints(codePoints: number[]) {
   const bytes = new Uint8Array(codePoints.length * 4);
   let j = 0;
-  let i, codePoint;
 
-  for (i = 0; i < codePoints.length; i++) {
-    codePoint = codePoints[i];
+  for (let i = 0; i < codePoints.length; i++) {
+    const codePoint = codePoints[i];
 
     if (codePoint <= 0x7f) {
       bytes[j++] = codePoint;
@@ -96,6 +94,11 @@ export function getBytes(string: string) {
   }
 
   return bytes.slice(0, j);
+}
+
+export function getBytes(string: string) {
+  const codePoints = getCodePoints(string);
+  return getBytesFromCodePoints(codePoints);
 }
 
 export function getString(bytes: Uint8Array) {

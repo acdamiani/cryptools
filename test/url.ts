@@ -14,7 +14,7 @@ const vectors: UrlTestVector[] = [
   },
   {
     from: `!*\'();:@&=+$,/?#[]`,
-    to: `%21%2a%27%28%29%3b%3a%40%26%3d%2b%24%2c%2f%3f%23%5b%5d`,
+    to: `%21%2A%27%28%29%3B%3A%40%26%3D%2B%24%2C%2F%3F%23%5B%5D`,
   },
   {
     from: `https://www.google.com/search?client=firefox-b-1-d&q=hello+world`,
@@ -23,6 +23,10 @@ const vectors: UrlTestVector[] = [
   {
     from: `https://cryptools.dev/encoders/url`,
     to: `https%3A%2F%2Fcryptools.dev%2Fencoders%2Furl`,
+  },
+  {
+    from: `i like emojis 😱`,
+    to: `i%20like%20emojis%20%F0%9F%98%B1`,
   },
 ];
 
