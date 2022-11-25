@@ -1,8 +1,8 @@
 import Area from '@/components/Area/area';
 import Hash from '@/components/Hash/hash';
-import BrowserHash from '@/src/hashes/browserHash';
+import BrowserHash from '@/src/hashes/browser';
 
-export default function MD5() {
+export default function SHA256() {
   const sha256 = new BrowserHash(`sha256`);
 
   return (

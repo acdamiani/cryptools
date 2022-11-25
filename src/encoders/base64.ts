@@ -133,7 +133,7 @@ export default class Base64Encoder extends Encoder {
 
     if (padSize === 3) {
       throw new Error(
-        `A single remaining encoded character in teh last quadruple ora  padding of 3 characters is not allowed`,
+        `A single remaining encoded character in the last quadruple or a padding of 3 characters is not allowed`,
       );
     }
 

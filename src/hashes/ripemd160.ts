@@ -84,7 +84,7 @@ function jjj(opc: number[], x: number, s: number) {
   op(opc, j, x, s, 0x50a28be6);
 }
 
-export default class RIPEMD160 extends Hash {
+export default class RIPEMD160Hash extends Hash {
   private _transform(ctx: number[], blk: number[]) {
     let [a, b, c, d, e] = ctx,
       [aa, bb, cc, dd, ee] = ctx;

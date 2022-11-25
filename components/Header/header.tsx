@@ -70,8 +70,9 @@ const headerContents: HeaderItem[] = [
     url: [
       { text: `Caesar`, url: `/ciphers/caesar` },
       { text: `Vigenere`, url: `/ciphers/vigenere` },
-      { text: `ROT13`, url: `/ciphers/caesar` },
-      { text: `a1z26`, url: `/ciphers/caesar` },
+      { text: `ROT13`, url: `/ciphers/rot13` },
+      { text: `a1z26`, url: `/ciphers/a1z26` },
+      { text: `Bacon`, url: `/ciphers/bacon` },
     ],
   },
   {
