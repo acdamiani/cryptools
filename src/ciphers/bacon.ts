@@ -1,6 +1,6 @@
 import Cipher from './cipher';
 
-export type CipherVariant = `original` | `unique`;
+export type BaconVariant = `original` | `unique`;
 
 type BaconAlphabet = {
   alphabet: string;
@@ -72,26 +72,26 @@ const uniqueAlphabet: BaconAlphabet = {
 };
 
 export default class BaconCipher extends Cipher {
-  private _variant: CipherVariant;
+  private _variant: BaconVariant;
   private _aMark: string;
   private _bMark: string;
-  private _reWhitespace = /\s+/g;
-  private _reChunk = /(.{1,5})/g;
+  private static _reWhitespace = /\s+/g;
+  private static _reChunk = /(.{1,5})/g;
 
-  constructor(variant: CipherVariant = `original`, aMark = `a`, bMark = `b`) {
+  constructor(variant: BaconVariant = `original`, aMark = `a`, bMark = `b`) {
     super();
 
     this._variant = variant;
 
     if (aMark.length !== 1) {
-      throw new Error(`The length of mark one should be equal to one`);
+      throw new Error(`The length of the A mark should be equal to one`);
     } else if (aMark === bMark) {
-      throw new Error(`Marks one and two cannot be equal`);
+      throw new Error(`Marks A and B cannot be equal`);
     }
     this._aMark = aMark;
 
     if (bMark.length !== 1) {
-      throw new Error(`The length of mark two should be equal to two`);
+      throw new Error(`The length of the B mark should be equal to one`);
     }
     this._bMark = bMark;
   }
@@ -113,7 +113,7 @@ export default class BaconCipher extends Cipher {
       .map((x) => (x === `a` ? this._aMark : this._bMark))
       .join(``);
 
-    ret = ret.replace(this._reChunk, `$1 `);
+    ret = ret.replace(BaconCipher._reChunk, `$1 `);
 
     return ret;
   }
@@ -121,9 +121,9 @@ export default class BaconCipher extends Cipher {
   decode(message: string): string {
     const baconAlphabet =
       this._variant === `original` ? originalAlphabet : uniqueAlphabet;
-    message = message.replace(this._reWhitespace, ``);
+    message = message.replace(BaconCipher._reWhitespace, ``);
 
-    const chunked = message.match(this._reChunk);
+    const chunked = message.match(BaconCipher._reChunk);
 
     if (!chunked) {
       return ``;

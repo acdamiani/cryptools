@@ -7,7 +7,8 @@ import {
   ReactNativeInfo,
   SearchBotDeviceInfo,
 } from 'detect-browser';
-import crypto from 'crypto';
+
+const crypto = () => import(`crypto`);
 
 export type BrowserHashFunction = `sha1` | `sha256` | `sha384` | `sha512`;
 
@@ -58,13 +59,12 @@ export default class BrowserHash extends Hash {
     }
 
     if (this._env.name === `node`) {
-      return new Promise((resolve) => {
-        const result = crypto
+      return crypto().then((c) => {
+        const result = c
           .createHash(nodeAlgorithms[this._algorithm])
           .update(bytes)
           .digest();
-
-        resolve(new Uint8Array(result));
+        return new Uint8Array(result);
       });
     } else {
       const crypto = window.crypto || window.msCrypto;

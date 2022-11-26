@@ -70,9 +70,9 @@ const headerContents: HeaderItem[] = [
     url: [
       { text: `Caesar`, url: `/ciphers/caesar` },
       { text: `Vigenere`, url: `/ciphers/vigenere` },
+      { text: `Bacon`, url: `/ciphers/bacon` },
       { text: `ROT13`, url: `/ciphers/rot13` },
       { text: `a1z26`, url: `/ciphers/a1z26` },
-      { text: `Bacon`, url: `/ciphers/bacon` },
     ],
   },
   {
@@ -92,7 +92,7 @@ const headerContents: HeaderItem[] = [
       { text: `URL`, url: `/encoders/url` },
       { text: `Punycode`, url: `/encoders/punycode` },
       { text: `Base32`, url: `/encoders/base32` },
-      { text: `Base64`, url: `/enocders/base64` },
+      { text: `Base64`, url: `/encoders/base64` },
     ],
   },
 ];
