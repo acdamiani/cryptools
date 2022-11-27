@@ -1,14 +1,14 @@
 import BigInteger from 'big-integer';
 import BinaryConverter from './binary';
-import Converter, { Kind, ConverterErrors } from './converter';
+import Converter, { ConverterKind, ConverterErrors } from './converter';
 import { getString } from '../text';
-import DecimalConverter from './dec';
 import OctalConverter from './oct';
 import TextConverter from './text';
+import DecimalConverter from './dec';
 
 export default class HexadecimalConverter extends Converter {
-  private static _reTextHex = /^(0x|0X)?[a-fA-F0-9]+$/;
-  private static _reNormalize = /^(0x|0X)|\s/g;
+  private static _reTextHex = /^-?[a-fA-F0-9]+$/;
+  private static _reNormalize = /^(-?)(?:(0x|0X)?\s*)(.+)$/;
   private static _reSplit = /.{1,2}/g;
 
   private _hex: BigInteger.BigInteger;
@@ -23,7 +23,7 @@ export default class HexadecimalConverter extends Converter {
   }
 
   private _validate(value: string): string {
-    value = value.replace(HexadecimalConverter._reNormalize, ``);
+    value = value.replace(HexadecimalConverter._reNormalize, `$1$3`);
 
     if (!HexadecimalConverter._reTextHex.test(value)) {
       throw new Error(ConverterErrors[`invalid-value`]);
@@ -32,31 +32,21 @@ export default class HexadecimalConverter extends Converter {
     return value;
   }
 
-  to(kind: Kind): Converter {
-    let ret = ``;
-
+  to(kind: ConverterKind): Converter {
     switch (kind) {
       case `hex`:
         return this;
       case `oct`:
-        ret = this._hex.toString(8);
-        return new OctalConverter(
-          ret.padStart(Math.ceil(ret.length / 3) * 3, `0`),
-        );
+        return new OctalConverter(Converter.stringFrom(this._hex, `oct`));
       case `binary`:
-        ret = this._hex.toString(2);
-        return new BinaryConverter(
-          ret.padStart(Math.ceil(ret.length / 8) * 8, `0`),
-        );
+        return new BinaryConverter(Converter.stringFrom(this._hex, `binary`));
       case `dec`:
-        ret = this._hex.toString(10);
-        return new DecimalConverter(ret);
+        return new DecimalConverter(Converter.stringFrom(this._hex, `dec`));
       case `text`:
-        const v = this.value.padStart(
-          Math.ceil(this.value.length / 2) * 2,
-          `0`,
-        );
+        const abs = this._hex.abs().toString(16);
+        const v = abs.padStart(Math.ceil(abs.length / 2) * 2, `0`);
         const bytes: number[] = [];
+
         for (let i = 0; i < v.length; i += 2) {
           const o = v.substring(i, i + 2);
           bytes.push(parseInt(o, 16));

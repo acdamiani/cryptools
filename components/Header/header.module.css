@@ -81,12 +81,17 @@
 
 .header-link {
   font-size: 0.8125rem;
-  color: var(--ct-c-font);
+  line-height: 0.9375rem;
+  color: var(--ct-c-font) !important;
   font-weight: 500;
   margin: 0;
   padding: 0;
   height: 16px;
   width: 100%;
+}
+
+.header-link:hover {
+  color: var(--ct-c-primary) !important;
 }
 
 .big,

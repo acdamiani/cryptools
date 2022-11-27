@@ -1,6 +1,6 @@
 import { getCodePoints } from '../text';
 import BinaryConverter from './binary';
-import Converter, { Kind } from './converter';
+import Converter, { ConverterKind } from './converter';
 import DecimalConverter from './dec';
 import HexadecimalConverter from './hex';
 import OctalConverter from './oct';
@@ -13,7 +13,7 @@ export default class TextConverter extends Converter {
     this.value = value;
   }
 
-  to(kind: Kind): Converter {
+  to(kind: ConverterKind): Converter {
     const codePoints = getCodePoints(this.value);
 
     switch (kind) {

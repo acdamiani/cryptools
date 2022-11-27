@@ -15,5 +15,12 @@ export default abstract class Hash {
       return [...hashed].map((x) => x.toString(16).padStart(2, `0`)).join(``);
     });
   }
+
+  async hashBytes(bytes: Uint8Array): Promise<string> {
+    return this._hashBytes(bytes).then((hashed) => {
+      return [...hashed].map((x) => x.toString(16).padStart(2, `0`)).join(``);
+    });
+  }
+
   protected abstract _hashBytes(bytes: Uint8Array): Promise<Uint8Array>;
 }

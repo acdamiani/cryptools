@@ -1,12 +1,10 @@
 .link {
-  font-weight: 400;
-  font-size: 1rem;
+  color: var(--ct-c-primary);
+  transition: color 0.25s ease;
 
-  color: var(--ct-c-font);
-  transition: color 0.15s ease;
+  cursor: pointer;
 }
 
 .link:hover {
-  cursor: pointer;
-  color: var(--ct-c-primary);
+  color: var(--ct-c-primary-hover);
 }

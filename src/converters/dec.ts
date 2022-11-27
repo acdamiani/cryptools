@@ -1,11 +1,11 @@
 import BigInteger from 'big-integer';
 import BinaryConverter from './binary';
-import Converter, { Kind, ConverterErrors } from './converter';
+import Converter, { ConverterKind, ConverterErrors } from './converter';
 import HexadecimalConverter from './hex';
 import OctalConverter from './oct';
 
 export default class DecimalConverter extends Converter {
-  private static _reTestDec = /^\d+$/;
+  private static _reTestDec = /^-?\d+$/;
   private static _reSplit = /.{1,3}/g;
 
   private _dec: BigInteger.BigInteger;
@@ -29,27 +29,16 @@ export default class DecimalConverter extends Converter {
     return value;
   }
 
-  to(kind: Kind): Converter {
-    let ret = ``;
-
+  to(kind: ConverterKind): Converter {
     switch (kind) {
       case `dec`:
         return this;
       case `oct`:
-        ret = this._dec.toString(8);
-        return new OctalConverter(
-          ret.padStart(Math.ceil(ret.length / 3) * 3, `0`),
-        );
+        return new OctalConverter(Converter.stringFrom(this._dec, `oct`));
       case `binary`:
-        ret = this._dec.toString(2);
-        return new BinaryConverter(
-          ret.padStart(Math.ceil(ret.length / 8) * 8, `0`),
-        );
+        return new BinaryConverter(Converter.stringFrom(this._dec, `binary`));
       case `hex`:
-        ret = this._dec.toString(16);
-        return new HexadecimalConverter(
-          ret.padStart(Math.ceil(ret.length / 2) * 2, `0`),
-        );
+        return new HexadecimalConverter(Converter.stringFrom(this._dec, `hex`));
       case `text`:
         throw new Error(ConverterErrors[`not-implemented`]);
     }

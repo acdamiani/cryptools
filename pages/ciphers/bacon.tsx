@@ -46,6 +46,7 @@ export default function Bacon() {
                 name="a-mark"
                 defaultValue="a"
                 spellCheck={false}
+                thin
               />
             </LabeledElement>
             <LabeledElement content="B Mark" htmlFor={bId}>
@@ -54,6 +55,7 @@ export default function Bacon() {
                 name="b-mark"
                 defaultValue="b"
                 spellCheck={false}
+                thin
               />
             </LabeledElement>
           </Row>

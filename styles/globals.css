@@ -17,6 +17,7 @@ body {
   font-family: var(--ct-font-family);
   letter-spacing: 0.2px;
   font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
   color: var(--ct-c-font);
   background-color: var(--ct-c-bg);

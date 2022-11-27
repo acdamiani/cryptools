@@ -1,10 +1,11 @@
-import { ChangeEvent, FormEvent, useEffect, useId } from 'react';
+import { ChangeEvent, FormEvent, useId } from 'react';
 import LabeledElement from '../LabeledElement/labeled-element';
 import TextArea from '../TextArea/text-area';
 import Tool from '../Tool/tool';
 import { WorkflowIcon } from '@primer/octicons-react';
 import Select from '../Select/select';
 import { useRouter } from 'next/router';
+import ToggleSwitch from '../ToggleSwitch/toggle-switch';
 
 const selectOptions = [
   `sha1`,
@@ -27,12 +28,16 @@ const selectLabels: Record<SelectOptions, string> = {
 
 interface InternalProps {
   hash: (input: string) => string | Promise<string>;
+  hashBytes: (input: Uint8Array) => string | Promise<string>;
   hashName: SelectOptions;
   outputRows?: number;
 }
 
+const reTestHex = /^[a-fA-F0-9]+$/;
+
 export default function Hash({
   hash,
+  hashBytes,
   hashName,
   outputRows = 1,
 }: InternalProps) {
@@ -50,9 +55,27 @@ export default function Hash({
   ): string | Promise<string> => {
     const target = e.target as typeof e.target & {
       input: { value: string };
+      interpret: { checked: boolean };
     };
 
-    return hash(target.input.value);
+    if (!target.interpret.checked) {
+      return hash(target.input.value);
+    } else {
+      if (target.input.value === ``) {
+        return ``;
+      }
+
+      if (!reTestHex.test(target.input.value)) {
+        throw new Error(`Not a valid hex string`);
+      }
+
+      const byteCount = Math.ceil(target.input.value.length / 2);
+      const val = target.input.value.padStart(byteCount * 2, `0`);
+
+      return hashBytes(
+        Uint8Array.from(val.match(/.{2}/g)!.map((byte) => parseInt(byte, 16))),
+      );
+    }
   };
 
   return (
@@ -71,6 +94,7 @@ export default function Hash({
           ))}
         </Select>
       </LabeledElement>
+      <ToggleSwitch leftContent="Text" rightContent="Bytes" name="interpret" />
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
         <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
       </LabeledElement>

@@ -46,10 +46,13 @@ export default function AsciiToHex() {
       <main>
         <h2>Converting ASCII to Hex</h2>
         <p>
-          ASCII is the simplest way of transforming text characters, which can
-          includes numbers, letters, symbols, and other non-visible characters
-          to a number. This number can be of any form, but generally, ASCII
-          characters are represented by a two-digit hex string.
+          ASCII is one of the oldest character encodings, allowing for
+          computerse to represent binary numbers as text. Due to hardware
+          limitations at the time of its inception, ASCII has only 128 code
+          points, and only 95 of them are printable characters. For this reason,
+          most modern computers use UTF-8, which represents the millions of code
+          points covered by Unicode. However, UTF-8 has the same first 128 code
+          points as ASCII, making compatibility a non-issue.
         </p>
         <p>
           The steps to convert an ASCII character to a hex string are as
@@ -76,7 +79,7 @@ export default function AsciiToHex() {
           all 1,112,064 valid Unicode characters. Other, less popular encodings
           have been created, primarily for the purpose of better representing
           other script types, or as proprietary encodings for specific machines.
-          Most encodings are supported in this converter.
+          This converter uses UTF-8 encoding.
         </p>
         <h3>ASCII Table</h3>
         <table>

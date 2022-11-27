@@ -1,14 +1,14 @@
 import BigInteger from 'big-integer';
 import { getString } from '../text';
-import Converter, { Kind, ConverterErrors } from './converter';
+import Converter, { ConverterKind, ConverterErrors } from './converter';
 import DecimalConverter from './dec';
 import HexadecimalConverter from './hex';
 import OctalConverter from './oct';
 import TextConverter from './text';
 
 export default class BinaryConverter extends Converter {
-  private static _reTestBinary = /^(0b|0B)?[01]+$/;
-  private static _reNormalize = /^(0b|0B)|\s/g;
+  private static _reTestBinary = /^-?(0b|0B)?[01]+$/;
+  private static _reNormalize = /^(-?)(?:(0b|0B)?\s*)(.+)$/;
   private static _reSplit = /.{1,8}/g;
 
   private _binary: BigInteger.BigInteger;
@@ -23,7 +23,7 @@ export default class BinaryConverter extends Converter {
   }
 
   private _validate(value: string): string {
-    value = value.replace(BinaryConverter._reNormalize, ``);
+    value = value.replace(BinaryConverter._reNormalize, `$1$3`);
 
     if (!BinaryConverter._reTestBinary.test(value)) {
       throw new Error(ConverterErrors[`invalid-value`]);
@@ -32,35 +32,25 @@ export default class BinaryConverter extends Converter {
     return value;
   }
 
-  to(kind: Kind): Converter {
-    let ret = ``;
-
+  to(kind: ConverterKind): Converter {
     switch (kind) {
       case `binary`:
         return this;
       case `dec`:
-        ret = this._binary.toString(10);
-        return new DecimalConverter(ret);
+        return new DecimalConverter(Converter.stringFrom(this._binary, `dec`));
       case `oct`:
-        ret = this._binary.toString(8);
-        return new OctalConverter(
-          ret.padStart(Math.ceil(ret.length / 3) * 3, `0`),
-        );
+        return new OctalConverter(Converter.stringFrom(this._binary, `oct`));
       case `hex`:
-        ret = this._binary.toString(16);
         return new HexadecimalConverter(
-          ret.padStart(Math.ceil(ret.length / 2) * 2, `0`),
+          Converter.stringFrom(this._binary, `hex`),
         );
       case `text`:
-        const v = this.value.padStart(
-          Math.ceil(this.value.length / 8) * 8,
-          `0`,
-        );
+        const abs = this._binary.abs().toString(2);
+        const v = abs.padStart(Math.ceil(abs.length / 8) * 8, `0`);
         const bytes: number[] = [];
         for (let i = 0; i < v.length; i += 8) {
           const o = v.substring(i, i + 8);
           bytes.push(parseInt(o, 2));
-          console.log(parseInt(o, 2));
         }
 
         let str: string;

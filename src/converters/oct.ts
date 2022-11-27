@@ -1,13 +1,13 @@
 import BigInteger from 'big-integer';
 import { getString } from '../text';
 import BinaryConverter from './binary';
-import Converter, { Kind, ConverterErrors } from './converter';
+import Converter, { ConverterKind, ConverterErrors } from './converter';
 import DecimalConverter from './dec';
 import HexadecimalConverter from './hex';
 import TextConverter from './text';
 
 export default class OctalConverter extends Converter {
-  private static _reTestOctal = /^[0-7]+$/;
+  private static _reTestOctal = /^-?[0-7]+$/;
   private static _reSplit = /.{1,3}/g;
 
   private _oct: BigInteger.BigInteger;
@@ -25,31 +25,24 @@ export default class OctalConverter extends Converter {
     value = value.replace(Converter._reStripWhitespace, ``);
 
     if (!OctalConverter._reTestOctal.test(value)) {
-      throw new Error(ConverterErrors[`invalid-value`]);
+      throw new Error(
+        `Given value ${value} is not representible by this converter`,
+      );
     }
 
     return value;
   }
 
-  to(kind: Kind): Converter {
-    let ret = ``;
-
+  to(kind: ConverterKind): Converter {
     switch (kind) {
       case `oct`:
         return this;
       case `dec`:
-        ret = this._oct.toString(10);
-        return new DecimalConverter(ret);
+        return new DecimalConverter(Converter.stringFrom(this._oct, `dec`));
       case `hex`:
-        ret = this._oct.toString(16);
-        return new HexadecimalConverter(
-          ret.padStart(Math.ceil(ret.length / 2) * 2, `0`),
-        );
+        return new HexadecimalConverter(Converter.stringFrom(this._oct, `hex`));
       case `binary`:
-        ret = this._oct.toString(2);
-        return new BinaryConverter(
-          ret.padStart(Math.ceil(ret.length / 8) * 8, `0`),
-        );
+        return new BinaryConverter(Converter.stringFrom(this._oct, `binary`));
       case `text`:
         const v = this.value.padStart(
           Math.ceil(this.value.length / 3) * 3,
