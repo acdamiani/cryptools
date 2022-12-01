@@ -1,6 +1,7 @@
 .block {
   position: relative;
   background-color: var(--ct-c-code-bg);
+  border: none;
   border-radius: 5px;
   padding-top: 1.35rem;
 }

@@ -116,7 +116,7 @@ body {
 
 :root {
   --ct-c-bg: var(--ct-c-white);
-  --ct-c-code-bg: #292d3e;
+  --ct-c-code-inline-bg: var(--ct-c-gray-light-5);
   --ct-c-code-bg-highlight: #343848;
   --ct-c-bg-mute: var(--ct-c-white-mute);
   --ct-c-bg-soft: var(--ct-c-white-soft);
@@ -131,6 +131,7 @@ body {
 }
 
 .dark {
+  --ct-c-code-inline-bg: var(--ct-c-gray-dark-3);
   --ct-c-bg: var(--ct-c-black-pure);
   --ct-c-bg-mute: var(--ct-c-black-mute);
   --ct-c-bg-soft: var(--ct-c-black-soft);
@@ -236,7 +237,7 @@ tr {
 th,
 td {
   padding: 0.5rem 0.4rem 0.6rem 0.4rem;
-  text-align: left;
+  text-align: center;
   vertical-align: top;
   border-left: 1px solid var(--ct-c-border);
 }
@@ -258,6 +259,10 @@ tbody:last-child tr:last-child td:first-child {
 code,
 pre {
   font-family: var(--ct-mono-font-family);
+  background-color: var(--ct-c-code-inline-bg);
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--ct-c-border);
   word-wrap: break-word;
   white-space: pre-wrap;
 }

@@ -1,6 +1,7 @@
 import Area from '@/components/Area/area';
 import Counter from '@/components/Counter/counter';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
+import Link from '@/components/Link/link';
 import Row from '@/components/Row/row';
 import Select from '@/components/Select/select';
 import TextArea from '@/components/TextArea/text-area';
@@ -12,6 +13,8 @@ import VigenereCipher, {
   VigenereVariant,
 } from '@/src/ciphers/vigenere';
 import { FormEvent, useId, useState } from 'react';
+import TabulaRecta from '@/public/svg/tabula-recta.svg';
+import { MathJaxContext, MathJax } from 'better-react-mathjax';
 
 export default function Caesar() {
   const inputId = useId();
@@ -100,6 +103,108 @@ export default function Caesar() {
           />
         </Tool>
       </Area>
+      <h2>The Vigenère cipher</h2>
+      <main>
+        <p>
+          The Vigenère cipher is a more complex application of the{' '}
+          <Link href="/ciphers/caesar">Caesar cipher</Link>, where it encodes
+          text using a given key in the form of text. It uses a table of shifted
+          Caesar ciphers, and using the key, uses the table to encode a letter.
+          This table, called a <em>tabula recta</em>, is shown below.
+        </p>
+        <TabulaRecta width={500} height={500} viewBox="0 0 864 864" />
+        <h3>The encoding process</h3>
+        <p>
+          Say you want to encode the message <code>HELLOWORLD</code> with key{' '}
+          <code>CRYPTOOLS</code>. When encoding using a key shorter than the
+          message, the key is repeated so its length is the length of the input
+          text. In this case, this results in key text of{' '}
+          <code>CRYPTOOLSC</code>. The encoding process moves through the
+          message sequentially, starting with the first letter and matching it
+          to the first letter of the key. To find the ciphered letter, find the
+          intersection of the current message letter and the current key letter.
+        </p>
+        <p>
+          The encoding process for the first letter:
+          <ol>
+            <li>Find the message letter at index [0] -&gt; &quot;H&quot;</li>
+            <li>Find the key letter at index [0] -&gt; &quot;C&quot;</li>
+            <li>
+              Using the table, find their intersection -&gt; &quot;J&quot;
+            </li>
+            <li>Repeat for next letter in message</li>
+          </ol>
+        </p>
+        <p>
+          The encoding process for the last letter:
+          <ol>
+            <li>Find the message letter at index [9] -&gt; &quot;D&quot;</li>
+            <li>Find the key letter at index [9] -&gt; &quot;C&quot;</li>
+            <li>
+              Using the table, find their intersection -&gt; &quot;F&quot;
+            </li>
+            <li>Last letter, exit</li>
+          </ol>
+        </p>
+        <p>
+          The resulting encoded text is <code>JVJAHKCCDF</code>.
+        </p>
+        <MathJaxContext>
+          <p>
+            This process can also be expressed algebraically, where{' '}
+            <MathJax inline>{'\\(C_i\\)'}</MathJax> is the current character at
+            index <MathJax inline>{'\\(i\\)'}</MathJax> being encoded, and{' '}
+            <MathJax inline>{'\\(K_i\\)'}</MathJax> is the key character being
+            encoded at the same index. These values represent the character's
+            index in the Caesar alphabet.
+          </p>
+          <p>
+            <MathJax>{'\\(E_K(C_i)=(C_i+K_i)\\mod 26\\)'}</MathJax>
+          </p>
+          <p>
+            Decryption is performed by subtracting the key's shift value instead
+            of adding it.
+          </p>
+          <p>
+            <MathJax>{'\\(D_K(C_i)=(C_i-K_i)\\mod 26\\)'}</MathJax>
+          </p>
+          <p>
+            More generally, when <MathJax inline>{'\\(l\\)'}</MathJax> is the
+            length of the key, and <MathJax inline>{'\\(m\\)'}</MathJax> as the
+            length of the alphabet, encryption and decryption can be written as
+            such:
+          </p>
+          <p>
+            <MathJax>{'\\(E_K(C_i)=(C_i+K_{i\\bmod l})\\mod m\\)'}</MathJax>
+          </p>
+          <p>
+            <MathJax>{'\\(D_K(C_i)=(C_i-K_{i\\bmod l})\\mod m\\)'}</MathJax>
+          </p>
+          <h3>Vigenère variants</h3>
+          <p>
+            The <strong>Beaufort variant</strong> is a modification of the
+            Vigenere cipher where the encryption and decryption steps are
+            switched (encryption performs subtraction and decryption performs
+            addition).
+          </p>
+          <p>
+            Using the same message <code>HELLOWORLD</code> and key{' '}
+            <code>CRYPTOOLS</code>, it would result in an encrypted message{' '}
+            <code>FNNWVIAGTB</code>.
+          </p>
+          <p>
+            The <strong>Beaufort cipher</strong> is a different modification of
+            the Vigenere cipher in which the message index is subtracted from
+            the key index in both encryption and decryption.
+          </p>
+          <p>So, encryption and decryption can be written as</p>
+          <p>
+            <MathJax>
+              {'\\(E_K(C_i)=D_K(C_i)=(K_{i\\bmod l}-C_i)\\mod m\\)'}
+            </MathJax>
+          </p>
+        </MathJaxContext>
+      </main>
     </>
   );
 }

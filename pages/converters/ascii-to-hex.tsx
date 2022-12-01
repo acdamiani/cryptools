@@ -67,10 +67,12 @@ export default function AsciiToHex() {
         <p>An ASCII table is provided below for your convenience.</p>
         <h3>Example: Encoding the letter &quot;A&quot; into hex</h3>
         <p>Using the ASCII table, the conversion is as follows:</p>
-        <pre>
-          &quot;A&quot; = 65<sub>10</sub> = 4×16+1 = 4×16<sup>1</sup>+1×16
-          <sup>0</sup> = 41<sub>16</sub>
-        </pre>
+        <p>
+          <code>
+            &quot;A&quot; = 65<sub>10</sub> = 4×16+1 = 4×16<sup>1</sup>+1×16
+            <sup>0</sup> = 41<sub>16</sub>
+          </code>
+        </p>
         <h3>Alternate Encodings</h3>
         <p>
           ASCII is not the only encoding type used today. In its non-extended
