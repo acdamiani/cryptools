@@ -40,8 +40,7 @@
     "normalize.css": "8.0.1",
     "prismjs": "1.29.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tsconfig-paths": "link:tsconfig-paths"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
@@ -68,6 +67,7 @@
     "mocha": "10.1.0",
     "prettier": "2.7.1",
     "ts-node": "10.9.1",
+    "tsconfig-paths": "4.1.1",
     "typescript": "4.8.4"
   }
 }

@@ -38,7 +38,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   ts-node: 10.9.1
-  tsconfig-paths: link:tsconfig-paths
+  tsconfig-paths: 4.1.1
   typescript: 4.8.4
 
 dependencies:
@@ -55,7 +55,6 @@ dependencies:
   prismjs: 1.29.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  tsconfig-paths: link:tsconfig-paths
 
 devDependencies:
   '@commitlint/cli': 17.1.2
@@ -82,6 +81,7 @@ devDependencies:
   mocha: 10.1.0
   prettier: 2.7.1
   ts-node: 10.9.1_32pi7snzzbarjvfhwlvtgaxef4
+  tsconfig-paths: 4.1.1
   typescript: 4.8.4
 
 packages:
@@ -5452,6 +5452,15 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
+      minimist: 1.2.6
+      strip-bom: 3.0.0
+    dev: true
+
+  /tsconfig-paths/4.1.1:
+    resolution: {integrity: sha512-VgPrtLKpRgEAJsMj5Q/I/mXouC6A/7eJ/X4Nuk6o0cRPwBtznYxTCU4FodbexbzH9somBPEXYi0ZkUViUpJ21Q==}
+    engines: {node: '>=6'}
+    dependencies:
+      json5: 2.2.1
       minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
