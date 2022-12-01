@@ -9,7 +9,11 @@ export default function SHA256() {
     <>
       <h1>SHA-256 Hash Generator Online</h1>
       <Area>
-        <Hash hash={sha256.hash.bind(sha256)} hashName="sha256" />
+        <Hash
+          hash={sha256.hash.bind(sha256)}
+          hashBytes={sha256.hashBytes.bind(sha256)}
+          hashName="sha256"
+        />
       </Area>
     </>
   );

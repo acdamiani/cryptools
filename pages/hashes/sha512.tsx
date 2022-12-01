@@ -11,6 +11,7 @@ export default function SHA512() {
       <Area>
         <Hash
           hash={sha512.hash.bind(sha512)}
+          hashBytes={sha512.hashBytes.bind(sha512)}
           hashName="sha512"
           outputRows={2}
         />

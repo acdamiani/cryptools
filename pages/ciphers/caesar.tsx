@@ -8,7 +8,7 @@ import ToggleSwitch from '@/components/ToggleSwitch/toggle-switch';
 import Tool from '@/components/Tool/tool';
 import CaesarCipher from '@/src/ciphers/caesar';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
-import { FormEvent, useEffect, useId, useState } from 'react';
+import { FormEvent, useId, useState } from 'react';
 import Link from '@/components/Link/link';
 
 export default function Caesar() {
@@ -85,7 +85,7 @@ export default function Caesar() {
         <p>
           The Caesar Cipher is one of the most famous encryption methods, named
           after Julius Caesar, who used it to obsure his private
-          correspondences. It's method for ecncryption and decryption is
+          correspondences. It&apos;s method for ecncryption and decryption is
           extremely simple. It requires a key, which can be any integer,
           positive or negative, representing the shift of each letter in the
           alphabet. As an example, shown in the below table, the default
@@ -95,7 +95,7 @@ export default function Caesar() {
         <table>
           <thead style={{}}>
             <tr>
-              <th style={{ textAlign: 'left' }}>Alphabet</th>
+              <th style={{ textAlign: `left` }}>Alphabet</th>
               <th>A</th>
               <th>B</th>
               <th>C</th>
@@ -126,7 +126,7 @@ export default function Caesar() {
           </thead>
           <tbody>
             <tr>
-              <td style={{ textAlign: 'left' }}>Shift: +3</td>
+              <td style={{ textAlign: `left` }}>Shift: +3</td>
               <td>D</td>
               <td>E</td>
               <td>F</td>
@@ -155,7 +155,7 @@ export default function Caesar() {
               <td>C</td>
             </tr>
             <tr>
-              <td style={{ textAlign: 'left' }}>Shift: +7</td>
+              <td style={{ textAlign: `left` }}>Shift: +7</td>
               <td>H</td>
               <td>I</td>
               <td>J</td>
@@ -186,37 +186,37 @@ export default function Caesar() {
           </tbody>
         </table>
         <p>
-          The Message "Hello World" encoded using the second row would be "Khoor
-          Zruog", while encoding it using the third row would result in the
-          ciphered message "Olssv Dvysk"
+          The Message &quot;Hello World&quot; encoded using the second row would
+          be &quot;Khoor Zruog&quot;, while encoding it using the third row
+          would result in the ciphered message &quot;Olssv Dvysk&quot;
         </p>
         <MathJaxContext>
           <p>
-            The mathmatical operation for encoding a character{' '}
-            <MathJax inline>{'\\(C\\)'}</MathJax> with a given key{' '}
-            <MathJax inline>{'\\(S\\)'}</MathJax> is shown below.{' '}
-            <MathJax inline>{'\\(C\\)'}</MathJax> is equal to the character's
+            The mathmatical operation for encoding a character{` `}
+            <MathJax inline>{`\\(C\\)`}</MathJax> with a given key{` `}
+            <MathJax inline>{`\\(S\\)`}</MathJax> is shown below.{` `}
+            <MathJax inline>{`\\(C\\)`}</MathJax> is equal to the character`s
             index in the caesar alphabet.
           </p>
-          <MathJax>{'\\(E_S(C)=(C+S)\\mod 26\\)'}</MathJax>
+          <MathJax>{`\\(E_S(C)=(C+S)\\mod 26\\)`}</MathJax>
           <p>
             Decryption is performed by subtracting the shift value instead of
             adding it.
           </p>
-          <MathJax>{'\\(D_S(C)=(C-S)\\mod 26\\)'}</MathJax>
+          <MathJax>{`\\(D_S(C)=(C-S)\\mod 26\\)`}</MathJax>
         </MathJaxContext>
         <h3>Applications</h3>
         <p>
           The Caesar cipher offers virtually no cryptographic security, only
           hiding information from cursory glances. However, it is an excellent
           introduction to the cryptography concept of symmetric encryption, as
-          it introduces the concept of a key (the "shift"), and the data (the
-          message you want to obscure).
+          it introduces the concept of a key (the &quot;shift&quot;), and the
+          data (the message you want to obscure).
         </p>
         <p>
-          A more complex version of the Caesar cipher is the{' '}
+          A more complex version of the Caesar cipher is the{` `}
           <Link href="/ciphers/vigenere">Vigenere cipher</Link>, which is
-          essentially a Caesar cipher applied to two dimensions. The{' '}
+          essentially a Caesar cipher applied to two dimensions. The{` `}
           <Link href="/ciphers/rot13">ROT-13 cipher</Link> is a Caesar cipher
           with a shift value of 13, and since there are 26 letters in the Latin
           alphabet, its encryption process is also its decryption process.

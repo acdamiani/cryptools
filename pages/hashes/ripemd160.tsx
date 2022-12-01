@@ -9,7 +9,11 @@ export default function RIPEMD160() {
     <>
       <h1>RIPEMD-160 Hash Generator Online</h1>
       <Area>
-        <Hash hash={ripemd160.hash.bind(ripemd160)} hashName="ripemd160" />
+        <Hash
+          hash={ripemd160.hash.bind(ripemd160)}
+          hashBytes={ripemd160.hashBytes.bind(ripemd160)}
+          hashName="ripemd160"
+        />
       </Area>
     </>
   );

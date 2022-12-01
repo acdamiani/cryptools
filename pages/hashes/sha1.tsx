@@ -9,7 +9,11 @@ export default function SHA1() {
     <>
       <h1>SHA-1 Hash Generator Online</h1>
       <Area>
-        <Hash hash={sha1.hash.bind(sha1)} hashName="sha1" />
+        <Hash
+          hash={sha1.hash.bind(sha1)}
+          hashBytes={sha1.hashBytes.bind(sha1)}
+          hashName="sha1"
+        />
       </Area>
     </>
   );

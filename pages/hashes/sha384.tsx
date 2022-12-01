@@ -9,7 +9,11 @@ export default function SHA384() {
     <>
       <h1>SHA-384 Hash Generator Online</h1>
       <Area>
-        <Hash hash={sha384.hash.bind(sha384)} hashName="sha384" />
+        <Hash
+          hash={sha384.hash.bind(sha384)}
+          hashBytes={sha384.hashBytes.bind(sha384)}
+          hashName="sha384"
+        />
       </Area>
     </>
   );

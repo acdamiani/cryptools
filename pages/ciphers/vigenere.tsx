@@ -1,5 +1,4 @@
 import Area from '@/components/Area/area';
-import Counter from '@/components/Counter/counter';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
 import Link from '@/components/Link/link';
 import Row from '@/components/Row/row';
@@ -12,9 +11,10 @@ import VigenereCipher, {
   CaseStrategy,
   VigenereVariant,
 } from '@/src/ciphers/vigenere';
-import { FormEvent, useId, useState } from 'react';
+import { FormEvent, useId } from 'react';
 import TabulaRecta from '@/public/svg/tabula-recta.svg';
 import { MathJaxContext, MathJax } from 'better-react-mathjax';
+import Scrollable from '@/components/Scrollable/scrollable';
 
 export default function Caesar() {
   const inputId = useId();
@@ -22,8 +22,6 @@ export default function Caesar() {
   const alphabetId = useId();
   const casingId = useId();
   const variantId = useId();
-
-  const [alphabet, setAlpahbet] = useState(`abcdefghijklmnopqrstuvwxyz`);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
@@ -67,7 +65,6 @@ export default function Caesar() {
               <TextArea
                 id={alphabetId}
                 defaultValue="abcdefghijklmnopqrstuvwxyz"
-                onChange={(e) => setAlpahbet(e.target.value)}
                 name="alphabet"
                 spellCheck={false}
               />
@@ -106,19 +103,22 @@ export default function Caesar() {
       <h2>The Vigenère cipher</h2>
       <main>
         <p>
-          The Vigenère cipher is a more complex application of the{' '}
+          The Vigenère cipher is a more complex application of the{` `}
           <Link href="/ciphers/caesar">Caesar cipher</Link>, where it encodes
           text using a given key in the form of text. It uses a table of shifted
           Caesar ciphers, and using the key, uses the table to encode a letter.
           This table, called a <em>tabula recta</em>, is shown below.
         </p>
-        <TabulaRecta width={500} height={500} viewBox="0 0 864 864" />
+        <Scrollable>
+          <TabulaRecta width={500} height={500} />
+        </Scrollable>
         <h3>The encoding process</h3>
         <p>
-          Say you want to encode the message <code>HELLOWORLD</code> with key{' '}
+          Say you want to encode the message <code>HELLOWORLD</code> with key
+          {` `}
           <code>CRYPTOOLS</code>. When encoding using a key shorter than the
           message, the key is repeated so its length is the length of the input
-          text. In this case, this results in key text of{' '}
+          text. In this case, this results in key text of{` `}
           <code>CRYPTOOLSC</code>. The encoding process moves through the
           message sequentially, starting with the first letter and matching it
           to the first letter of the key. To find the ciphered letter, find the
@@ -151,34 +151,34 @@ export default function Caesar() {
         </p>
         <MathJaxContext>
           <p>
-            This process can also be expressed algebraically, where{' '}
-            <MathJax inline>{'\\(C_i\\)'}</MathJax> is the current character at
-            index <MathJax inline>{'\\(i\\)'}</MathJax> being encoded, and{' '}
-            <MathJax inline>{'\\(K_i\\)'}</MathJax> is the key character being
-            encoded at the same index. These values represent the character's
-            index in the Caesar alphabet.
+            This process can also be expressed algebraically, where{` `}
+            <MathJax inline>{`\\(C_i\\)`}</MathJax> is the current character at
+            index <MathJax inline>{`\\(i\\)`}</MathJax> being encoded, and{` `}
+            <MathJax inline>{`\\(K_i\\)`}</MathJax> is the key character being
+            encoded at the same index. These values represent the
+            character&apos;s index in the Caesar alphabet.
           </p>
           <p>
-            <MathJax>{'\\(E_K(C_i)=(C_i+K_i)\\mod 26\\)'}</MathJax>
+            <MathJax>{`\\(E_K(C_i)=(C_i+K_i)\\mod 26\\)`}</MathJax>
           </p>
           <p>
-            Decryption is performed by subtracting the key's shift value instead
-            of adding it.
+            Decryption is performed by subtracting the key&apos;s shift value
+            instead of adding it.
           </p>
           <p>
-            <MathJax>{'\\(D_K(C_i)=(C_i-K_i)\\mod 26\\)'}</MathJax>
+            <MathJax>{`\\(D_K(C_i)=(C_i-K_i)\\mod 26\\)`}</MathJax>
           </p>
           <p>
-            More generally, when <MathJax inline>{'\\(l\\)'}</MathJax> is the
-            length of the key, and <MathJax inline>{'\\(m\\)'}</MathJax> as the
+            More generally, when <MathJax inline>{`\\(l\\)`}</MathJax> is the
+            length of the key, and <MathJax inline>{`\\(m\\)`}</MathJax> as the
             length of the alphabet, encryption and decryption can be written as
             such:
           </p>
           <p>
-            <MathJax>{'\\(E_K(C_i)=(C_i+K_{i\\bmod l})\\mod m\\)'}</MathJax>
+            <MathJax>{`\\(E_K(C_i)=(C_i+K_{i\\bmod l})\\mod m\\)`}</MathJax>
           </p>
           <p>
-            <MathJax>{'\\(D_K(C_i)=(C_i-K_{i\\bmod l})\\mod m\\)'}</MathJax>
+            <MathJax>{`\\(D_K(C_i)=(C_i-K_{i\\bmod l})\\mod m\\)`}</MathJax>
           </p>
           <h3>Vigenère variants</h3>
           <p>
@@ -188,8 +188,8 @@ export default function Caesar() {
             addition).
           </p>
           <p>
-            Using the same message <code>HELLOWORLD</code> and key{' '}
-            <code>CRYPTOOLS</code>, it would result in an encrypted message{' '}
+            Using the same message <code>HELLOWORLD</code> and key{` `}
+            <code>CRYPTOOLS</code>, it would result in an encrypted message{` `}
             <code>FNNWVIAGTB</code>.
           </p>
           <p>
@@ -200,7 +200,7 @@ export default function Caesar() {
           <p>So, encryption and decryption can be written as</p>
           <p>
             <MathJax>
-              {'\\(E_K(C_i)=D_K(C_i)=(K_{i\\bmod l}-C_i)\\mod m\\)'}
+              {`\\(E_K(C_i)=D_K(C_i)=(K_{i\\bmod l}-C_i)\\mod m\\)`}
             </MathJax>
           </p>
         </MathJaxContext>
