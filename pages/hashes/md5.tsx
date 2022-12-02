@@ -37,7 +37,7 @@ export default function MD5() {
         <p>
           The following bytes, for example, produce the same MD5 hash, even
           though they have different values (the second one has a 2 in place of
-          a 0).
+          a 0&mdash;only a difference of 2 bits).
         </p>
         <p>
           <ul>
@@ -61,8 +61,9 @@ export default function MD5() {
         <p>
           Despite its proven insecurity, the hash is still widely used. In older
           Unix systems, for example, passwords are stored (hashed) in the{` `}
-          <code>/etc/shadow</code> file using the MD5 algorithm. The SHA-2
-          family of algorithms are much more secure, and some of them&mdash;
+          publicly available <code>/etc/passwd</code> file using the MD5
+          algorithm. The SHA-2 family of algorithms are much more secure, and
+          some of them&mdash;
           <Link href="/hashes/sha256">SHA-256</Link>,{` `}
           <Link href="/hashes/sha384">SHA-384</Link>, and{` `}
           <Link href="/hashes/sha512">SHA-512</Link>&mdash;are on this website
