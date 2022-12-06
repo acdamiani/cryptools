@@ -4,10 +4,12 @@ import Prism from 'prismjs';
 import { PasteIcon, CheckCircleIcon } from '@primer/octicons-react';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-csharp';
-import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-ruby';
+import 'prismjs/components/prism-go';
 
 import styles from '@/components/CodeBlock/code-block.module.css';
 import copy from 'copy-to-clipboard';
@@ -16,18 +18,32 @@ interface InternalProps {
   snippets: Snippets;
 }
 
-export type Snippets = Record<string, string>;
+export type CodeBlockLanguage =
+  | 'csharp'
+  | 'javascript'
+  | 'ruby'
+  | 'python'
+  | 'go'
+  | 'java';
+
+export type Snippets = Partial<Record<CodeBlockLanguage, string>>;
 
 export type Props = InternalProps;
 
 export default function CodeBlock({ snippets }: Props) {
-  const [lang, setLang] = useState(Object.keys(snippets)[0]);
+  const keys: CodeBlockLanguage[] = Object.keys(snippets).sort((a, b) =>
+    a.localeCompare(b),
+  ) as CodeBlockLanguage[];
+
+  const [lang, setLang] = useState<CodeBlockLanguage>(
+    keys.includes(`javascript`) ? `javascript` : keys[0],
+  );
   const [copied, setCopied] = useState(false);
 
   const copyClick = () => {
     if (copied) return;
 
-    copy(snippets[lang]);
+    copy(snippets[lang] || ``);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
@@ -47,19 +63,20 @@ export default function CodeBlock({ snippets }: Props) {
       <select
         className={styles.lang}
         value={lang}
-        onChange={(e) => setLang(e.target.value)}
+        onChange={(e) => setLang(e.target.value as CodeBlockLanguage)}
       >
-        {Object.keys(snippets).map((x) => (
+        {keys.map((x) => (
           <option value={x} key={x}>
             {x}
           </option>
         ))}
       </select>
-      <pre className={`language-${lang}`}>
+      <pre className={classNames(`language-${lang}`, styles.pre)}>
         <code
+          className={styles.code}
           dangerouslySetInnerHTML={{
             __html: Prism.highlight(
-              snippets[lang],
+              snippets[lang] || ``,
               Prism.languages[lang],
               lang,
             ),

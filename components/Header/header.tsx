@@ -114,9 +114,17 @@ const doHeaderItem = (item: HeaderItem, topLevel: boolean) => {
       >
         <span className={styles.flyoutText}>{item.text}</span>
         {topLevel ? (
-          <ChevronDownIcon size={16} className={styles.icon} />
+          <ChevronDownIcon
+            size={14}
+            className={styles.icon}
+            fill="var(--ct-c-font)"
+          />
         ) : (
-          <ChevronRightIcon size={16} className={styles.icon} />
+          <ChevronRightIcon
+            size={14}
+            className={styles.icon}
+            fill="var(--ct-c-font)"
+          />
         )}
       </button>
       <div className={classNames(styles.flyoutBox, !topLevel && styles.right)}>

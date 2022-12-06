@@ -85,3 +85,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.pre {
+  border: none;
+}
+
+.code {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
