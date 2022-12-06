@@ -273,6 +273,11 @@ pre {
   white-space: pre-wrap;
 }
 
+pre a,
+code a {
+  text-decoration: underline;
+}
+
 mjx-container {
   display: inherit;
   overflow-x: auto;

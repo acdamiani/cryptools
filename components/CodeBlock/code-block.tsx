@@ -1,15 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import classNames from 'classnames';
 import Prism from 'prismjs';
 import { PasteIcon, CheckCircleIcon } from '@primer/octicons-react';
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-csharp';
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-php';
-import 'prismjs/components/prism-ruby';
-import 'prismjs/components/prism-go';
 
 import styles from '@/components/CodeBlock/code-block.module.css';
 import copy from 'copy-to-clipboard';
@@ -39,11 +31,14 @@ export default function CodeBlock({ snippets }: Props) {
     keys.includes(`javascript`) ? `javascript` : keys[0],
   );
   const [copied, setCopied] = useState(false);
+  const code = useRef<HTMLPreElement>(null);
 
   const copyClick = () => {
-    if (copied) return;
+    if (copied || !code.current) {
+      return;
+    }
 
-    copy(snippets[lang] || ``);
+    copy(code.current.textContent || ``);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
@@ -71,7 +66,7 @@ export default function CodeBlock({ snippets }: Props) {
           </option>
         ))}
       </select>
-      <pre className={classNames(`language-${lang}`, styles.pre)}>
+      <pre className={classNames(`language-${lang}`, styles.pre)} ref={code}>
         <code
           className={styles.code}
           dangerouslySetInnerHTML={{

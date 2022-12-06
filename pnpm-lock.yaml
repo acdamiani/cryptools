@@ -15,6 +15,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.40.1
   '@typescript-eslint/parser': 5.40.1
   assert: 2.0.0
+  babel-plugin-prismjs: 2.1.0
   better-react-mathjax: 2.0.2
   big-integer: 1.6.51
   classnames: 2.3.2
@@ -69,6 +70,7 @@ devDependencies:
   '@types/react-dom': 18.0.6
   '@typescript-eslint/eslint-plugin': 5.40.1_ukgdydjtebaxmxfqp5v5ulh64y
   '@typescript-eslint/parser': 5.40.1_z4bbprzjrhnsfa24uvmcbu7f5q
+  babel-plugin-prismjs: 2.1.0_prismjs@1.29.0
   cross-env: 7.0.3
   eslint: 8.25.0
   eslint-config-next: 12.3.1_z4bbprzjrhnsfa24uvmcbu7f5q
@@ -2361,6 +2363,14 @@ packages:
       '@babel/helper-define-polyfill-provider': 0.3.3_@babel+core@7.19.6
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /babel-plugin-prismjs/2.1.0_prismjs@1.29.0:
+    resolution: {integrity: sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==}
+    peerDependencies:
+      prismjs: ^1.18.0
+    dependencies:
+      prismjs: 1.29.0
     dev: true
 
   /balanced-match/1.0.2:
@@ -4770,7 +4780,6 @@ packages:
   /prismjs/1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
-    dev: false
 
   /prop-types/15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}

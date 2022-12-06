@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import '@/styles/globals.css';
 import 'normalize.css';
 import '@/styles/prism.css';
+
 import Page from '@/layouts/page';
 
 export type NextPageWithLayout<P = Record<string, never>, IP = P> = NextPage<
