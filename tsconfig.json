@@ -31,6 +31,6 @@
       "@/layouts/*": ["./layouts/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "index.d.ts"],
   "exclude": ["node_modules"]
 }
