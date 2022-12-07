@@ -4,12 +4,10 @@ declare module '*.svg' {
   export default SVG;
 }
 
-declare global {
-  interface Window {
-    msCrypto?: any;
-  }
+declare interface Window {
+  msCrypto?: any;
+}
 
-  interface Crypto {
-    webkitSubtle?: any;
-  }
+declare interface Crypto {
+  webkitSubtle?: any;
 }
