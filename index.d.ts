@@ -1,15 +1,13 @@
-export {};
-
 declare module '*.svg' {
-  const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-  export default ReactComponent;
+  import React from 'react';
+  const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
+  export default SVG;
 }
 
-declare global {
-  interface Window {
-    msCrypto?: any;
-  }
-  interface Crypto {
-    webkitSubtle?: any;
-  }
+declare interface Window {
+  msCrypto?: any;
+}
+
+declare interface Crypto {
+  webkitSubtle?: any;
 }
