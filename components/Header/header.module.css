@@ -169,6 +169,7 @@
   padding: 0;
   display: flex;
   align-items: center;
+  gap: 0.1rem;
 }
 
 .flyout:hover > .flyout-button {

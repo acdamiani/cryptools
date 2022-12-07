@@ -76,4 +76,12 @@
 .icon {
   cursor: pointer;
   user-select: none;
+  border-radius: 5px;
+  display: flex;
+  padding: 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.icon:hover {
+  background-color: var(--ct-c-button-hover);
 }

@@ -2,8 +2,8 @@ import { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 
-import '@/styles/globals.css';
 import 'normalize.css';
+import '@/styles/globals.css';
 import '@/styles/prism.css';
 
 import Page from '@/layouts/page';

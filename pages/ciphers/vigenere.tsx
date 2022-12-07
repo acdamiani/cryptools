@@ -124,28 +124,20 @@ export default function Caesar() {
           to the first letter of the key. To find the ciphered letter, find the
           intersection of the current message letter and the current key letter.
         </p>
-        <p>
-          The encoding process for the first letter:
-          <ol>
-            <li>Find the message letter at index [0] -&gt; &quot;H&quot;</li>
-            <li>Find the key letter at index [0] -&gt; &quot;C&quot;</li>
-            <li>
-              Using the table, find their intersection -&gt; &quot;J&quot;
-            </li>
-            <li>Repeat for next letter in message</li>
-          </ol>
-        </p>
-        <p>
-          The encoding process for the last letter:
-          <ol>
-            <li>Find the message letter at index [9] -&gt; &quot;D&quot;</li>
-            <li>Find the key letter at index [9] -&gt; &quot;C&quot;</li>
-            <li>
-              Using the table, find their intersection -&gt; &quot;F&quot;
-            </li>
-            <li>Last letter, exit</li>
-          </ol>
-        </p>
+        <p>The encoding process for the first letter:</p>
+        <ol>
+          <li>Find the message letter at index [0] -&gt; &quot;H&quot;</li>
+          <li>Find the key letter at index [0] -&gt; &quot;C&quot;</li>
+          <li>Using the table, find their intersection -&gt; &quot;J&quot;</li>
+          <li>Repeat for next letter in message</li>
+        </ol>
+        <p>The encoding process for the last letter:</p>
+        <ol>
+          <li>Find the message letter at index [9] -&gt; &quot;D&quot;</li>
+          <li>Find the key letter at index [9] -&gt; &quot;C&quot;</li>
+          <li>Using the table, find their intersection -&gt; &quot;F&quot;</li>
+          <li>Last letter, exit</li>
+        </ol>
         <p>
           The resulting encoded text is <code>JVJAHKCCDF</code>.
         </p>

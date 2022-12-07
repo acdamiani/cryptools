@@ -2,7 +2,6 @@ import Area from '@/components/Area/area';
 import CodeBlock, { Snippets } from '@/components/CodeBlock/code-block';
 import Encoder from '@/components/Encoder/encoder';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
-import Link from '@/components/Link/link';
 import PunycodeEncoder from '@/src/encoders/punycode';
 
 const CODE_SNIPPETS: Snippets = {
@@ -34,6 +33,20 @@ export default function Punycode() {
           <CodeBlock snippets={CODE_SNIPPETS} />
         </LabeledElement>
       </Area>
+      <h2>The Punycode encoding</h2>
+      <p>
+        Punycode is a specialized representation of Unicode with a limited
+        character set, specifically designed for domain names. DNS (Domain Name
+        Resolution), while it technically can handle all Unicode characters,
+        favors a limited character set called letter-digit-hyphen (LDH).
+        Punycode seeks to encode arbitray Unicode domain names into this
+        character set.
+      </p>
+      <p>
+        Punycode is a specific algorithm based off of the more general
+        Bootstring algorithm, which composes strings of smaller sets of basic
+        code points from any larger set.
+      </p>
     </>
   );
 }

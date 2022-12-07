@@ -117,13 +117,13 @@ const doHeaderItem = (item: HeaderItem, topLevel: boolean) => {
           <ChevronDownIcon
             size={14}
             className={styles.icon}
-            fill="var(--ct-c-font)"
+            fill="currentColor"
           />
         ) : (
           <ChevronRightIcon
             size={14}
             className={styles.icon}
-            fill="var(--ct-c-font)"
+            fill="currentColor"
           />
         )}
       </button>

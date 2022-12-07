@@ -1,6 +1,48 @@
 import Area from '@/components/Area/area';
 import Hash from '@/components/Hash/hash';
 import RIPEMD160Hash from '@/src/hashes/ripemd160';
+import CodeBlock, { Snippets } from '@/components/CodeBlock/code-block';
+
+const CODE_SNIPPETS: Snippets = {
+  csharp: `using System;
+using System.Text;
+using System.Security.Cryptography;
+
+string message = "Hello World";
+RIPEMD160Managed hash = new RIPEMD160Managed();
+
+string hashed = String.Empty;
+byte[] bytes = hash.ComputeHash(Encoding.ASCII.GetBytes(message));
+
+foreach (byte b in bytes)
+{
+  hashed += b.ToString("x2");
+}
+
+Console.WriteLine("Computed hash of {0}: {1}", message, hashed);`,
+  javascript: `// using Node.js crypto
+const crypto = require('crypto');
+
+const message = 'Hello World';
+
+const hash = crypto.createHash('ripemd160')
+  .update(message)
+  .digest('hex');
+
+console.log(\`Computed hash of \${message}: \${hash}\`);`,
+  ruby: `require 'digest'
+
+message = 'Hello World'
+hash = Digest::RMD160.hexdigest(message)
+
+puts "Computed hash of #{message}: #{hash}"`,
+  python: `from hashlib import new
+
+message = 'Hello World'
+hash = new('ripemd160', message.encode('utf-8')).hexdigest()
+
+print(f'Computed hash of {message}: {hash}')`,
+};
 
 export default function RIPEMD160() {
   const ripemd160 = new RIPEMD160Hash();
@@ -14,6 +56,7 @@ export default function RIPEMD160() {
           hashBytes={ripemd160.hashBytes.bind(ripemd160)}
           hashName="ripemd160"
         />
+        <CodeBlock snippets={CODE_SNIPPETS} />
       </Area>
       <main>
         <h2>The RIPEMD-160 Hash Algorithm</h2>
