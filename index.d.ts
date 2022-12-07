@@ -1,5 +1,3 @@
-export {};
-
 declare module '*.svg' {
   import React from 'react';
   const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
@@ -10,6 +8,7 @@ declare global {
   interface Window {
     msCrypto?: any;
   }
+
   interface Crypto {
     webkitSubtle?: any;
   }
