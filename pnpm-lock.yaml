@@ -5,7 +5,7 @@ specifiers:
   '@commitlint/config-conventional': 17.1.0
   '@next/bundle-analyzer': 12.3.1
   '@primer/octicons-react': 17.9.0
-  '@svgr/webpack': 6.5.0
+  '@svgr/webpack': 6.5.1
   '@types/file-saver': 2.0.5
   '@types/mocha': 10.0.0
   '@types/node': 16.11.65
@@ -59,7 +59,7 @@ devDependencies:
   '@commitlint/cli': 17.1.2
   '@commitlint/config-conventional': 17.1.0
   '@next/bundle-analyzer': 12.3.1
-  '@svgr/webpack': 6.5.0
+  '@svgr/webpack': 6.5.1
   '@types/file-saver': 2.0.5
   '@types/mocha': 10.0.0
   '@types/node': 16.11.65
@@ -1911,8 +1911,8 @@ packages:
       svgo: 2.8.0
     dev: true
 
-  /@svgr/webpack/6.5.0:
-    resolution: {integrity: sha512-rM/Z4pwMhqvAXEHoHIlE4SeTb0ToQNmJuBdiHwhP2ZtywyX6XqrgCv2WX7K/UCgNYJgYbekuylgyjnuLUHTcZQ==}
+  /@svgr/webpack/6.5.1:
+    resolution: {integrity: sha512-cQ/AsnBkXPkEK8cLbv4Dm7JGXq2XrumKnL1dRpJD9rIO2fTIlJI9a1uCciYG1F2aUsox/hJQyNGbt3soDxSRkA==}
     engines: {node: '>=10'}
     dependencies:
       '@babel/core': 7.20.5
