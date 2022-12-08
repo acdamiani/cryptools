@@ -62,7 +62,9 @@ export default function CodeBlock({ snippets }: Props) {
       </select>
       <div
         className={styles.codeBlock}
-        dangerouslySetInnerHTML={{ __html: snippets?.[lang] || `` }}
+        dangerouslySetInnerHTML={{
+          __html: snippets?.[lang] || ``,
+        }}
         ref={code}
       />
     </div>

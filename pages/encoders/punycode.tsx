@@ -6,16 +6,41 @@ import highlight from '@/src/code';
 import PunycodeEncoder from '@/src/encoders/punycode';
 
 const CODE_SNIPPETS: CodeBlockHTML = {
+  csharp: `using System;
+using System.Globalization;
+  
+IdnMapping mapping = new IdnMapping();
+
+// Encoding domain names
+Console.WriteLine(mapping.GetAscii(@"mañana.com")); // 'xn--maana-pta.com'
+Console.WriteLine(mapping.GetAscii(@"☃-⌘.com")); // 'xn----dqo34k.com'
+
+// Decoding domain names
+Console.WriteLine(mapping.GetUnicode("xn--maana-pta.com")); // 'mañana.com'
+Console.WriteLine(mapping.GetUnicode("xn----dqo34k.com")); // '☃-⌘.com'`,
+  go: `// Using supplementary [idna](https://pkg.go.dev/golang.org/x/net/idna) package
+import (
+    "fmt"
+    "idna"
+)
+
+// Encoding domain names
+fmt.Println(idna.ToASCII("mañana.com")) // 'xn--maana-pta.com'
+fmt.Println(idna.ToASCII("☃-⌘.com")) // 'xn----dqo34k.com'
+
+// Decoding domain names
+fmt.Println(idna.ToUnicode("xn--maana-pta.com")) // 'mañana.com'
+fmt.Println(idna.ToUnicode("xn----dqo34k.com")) // '☃-⌘.com'`,
   javascript: `// Using [punycode](https://www.npmjs.com/package/punycode) 
 const punycode = require('punycode');
 
 // Encoding domain names
-punycode.encode('mañana'); // 'maana-pta'
-punycode.encode('☃-⌘'); // '--dqo34k'
+punycode.toASCII('mañana.com'); // 'xn--maana-pta.com'
+punycode.toASCII('☃-⌘.com'); // 'xn----dqo34k.com'
 
 // Decoding domain names
-punycode.decode('maana-pta'); // 'mañana'
-punycode.decode('--dqo34k'); // '☃-⌘'`,
+punycode.toUnicode('xn--maana-pta.com'); // 'mañana.com'
+punycode.toUnicode('xn----dqo34k.com'); // '☃-⌘.com'`,
 };
 
 export default function Punycode({ code }: { code: CodeBlockHTML }) {

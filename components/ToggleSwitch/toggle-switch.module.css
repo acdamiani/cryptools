@@ -7,7 +7,7 @@
 .content {
   display: inline-block;
   line-height: normal;
-  transition: color 0.25s ease;
+  transition: color 0.15s ease;
 }
 
 .highlight {

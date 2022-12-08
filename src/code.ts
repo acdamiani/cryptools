@@ -21,8 +21,15 @@ export default async function highlight(
   });
 
   const ret: HighlighterCode = {};
+  const keys = Object.keys(code);
 
-  for (const key of Object.keys(code) as CodeLanguage[]) {
+  if (keys.length === 0) {
+    ret.javascript = highlighter.codeToHtml(`// No valid code`, {
+      lang: `javascript`,
+    });
+  }
+
+  for (const key of keys as CodeLanguage[]) {
     const html = highlighter.codeToHtml(code[key] || ``, { lang: key });
     const $ = cheerio.load(html);
 
@@ -37,6 +44,8 @@ export default async function highlight(
     });
 
     ret[key] = $.html();
+
+    console.log(ret[key]);
   }
 
   return ret;
