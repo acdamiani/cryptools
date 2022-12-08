@@ -1,4 +1,4 @@
-import { useState, HTMLAttributes, useEffect } from 'react';
+import { useState, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import styles from './hamburger.module.css';
 

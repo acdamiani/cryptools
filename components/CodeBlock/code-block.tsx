@@ -1,37 +1,31 @@
 import { useRef, useState } from 'react';
 import classNames from 'classnames';
-import Prism from 'prismjs';
 import { PasteIcon, CheckCircleIcon } from '@primer/octicons-react';
 
 import styles from '@/components/CodeBlock/code-block.module.css';
 import copy from 'copy-to-clipboard';
+import { CodeLanguage } from '@/src/code';
 
 interface InternalProps {
-  snippets: Snippets;
+  snippets: CodeBlockHTML;
 }
 
-export type CodeBlockLanguage =
-  | 'csharp'
-  | 'javascript'
-  | 'ruby'
-  | 'python'
-  | 'go'
-  | 'java';
-
-export type Snippets = Partial<Record<CodeBlockLanguage, string>>;
+export type CodeBlockHTML = Partial<Record<CodeLanguage, string>>;
 
 export type Props = InternalProps;
 
 export default function CodeBlock({ snippets }: Props) {
-  const keys: CodeBlockLanguage[] = Object.keys(snippets).sort((a, b) =>
-    a.localeCompare(b),
-  ) as CodeBlockLanguage[];
+  const keys: CodeLanguage[] = snippets
+    ? (Object.keys(snippets).sort((a, b) =>
+        a.localeCompare(b),
+      ) as CodeLanguage[])
+    : [];
 
-  const [lang, setLang] = useState<CodeBlockLanguage>(
+  const [lang, setLang] = useState<CodeLanguage>(
     keys.includes(`javascript`) ? `javascript` : keys[0],
   );
   const [copied, setCopied] = useState(false);
-  const code = useRef<HTMLPreElement>(null);
+  const code = useRef<HTMLDivElement>(null);
 
   const copyClick = () => {
     if (copied || !code.current) {
@@ -58,7 +52,7 @@ export default function CodeBlock({ snippets }: Props) {
       <select
         className={styles.lang}
         value={lang}
-        onChange={(e) => setLang(e.target.value as CodeBlockLanguage)}
+        onChange={(e) => setLang(e.target.value as CodeLanguage)}
       >
         {keys.map((x) => (
           <option value={x} key={x}>
@@ -66,18 +60,11 @@ export default function CodeBlock({ snippets }: Props) {
           </option>
         ))}
       </select>
-      <pre className={classNames(`language-${lang}`, styles.pre)} ref={code}>
-        <code
-          className={styles.code}
-          dangerouslySetInnerHTML={{
-            __html: Prism.highlight(
-              snippets[lang] || ``,
-              Prism.languages[lang],
-              lang,
-            ),
-          }}
-        ></code>
-      </pre>
+      <div
+        className={styles.codeBlock}
+        dangerouslySetInnerHTML={{ __html: snippets?.[lang] || `` }}
+        ref={code}
+      />
     </div>
   );
 }

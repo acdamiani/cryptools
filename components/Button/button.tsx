@@ -16,7 +16,6 @@ export interface ButtonProps {
   borderWidth?: React.CSSProperties['borderWidth'];
   padding?: React.CSSProperties['padding'];
   icon?: ReactNode;
-  iconColor?: color;
   secondary?: boolean;
 }
 
@@ -37,7 +36,6 @@ const Button = ({
   borderWidth = `1px`,
   padding = `0.5rem 1rem`,
   icon,
-  iconColor = textColor,
   className,
   type = `button`,
   children,

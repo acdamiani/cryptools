@@ -86,13 +86,15 @@
   transform: translate(-50%, -50%);
 }
 
-.pre {
-  border: none;
-}
-
-.code {
+.code-block {
   border: none;
   background: none;
   margin: 0;
   padding: 0;
+  overflow-x: auto;
+}
+
+.code-block pre:global(.shiki) {
+  background-color: var(--ct-c-code-bg) !important;
+  padding: 0 1rem;
 }

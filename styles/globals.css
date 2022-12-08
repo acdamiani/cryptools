@@ -22,7 +22,7 @@ body {
   color: var(--ct-c-font);
   background-color: var(--ct-c-bg);
   text-rendering: optimizeLegibility;
-  transition: color 0.25s ease, background-color 0.25s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 :root {
@@ -116,6 +116,7 @@ body {
 
 :root {
   --ct-c-bg: var(--ct-c-white);
+  --ct-c-code-bg: #282d3f;
   --ct-c-code-inline-bg: var(--ct-c-gray-light-5);
   --ct-c-code-bg-highlight: #343848;
   --ct-c-bg-mute: var(--ct-c-white-mute);
@@ -262,8 +263,7 @@ tbody:last-child tr:last-child td:first-child {
   border-radius: 0 0 0 5px;
 }
 
-code,
-pre {
+pre:not(.shiki) {
   font-family: var(--ct-mono-font-family);
   background-color: var(--ct-c-code-inline-bg);
   padding: 1px 4px;
@@ -273,8 +273,7 @@ pre {
   white-space: pre-wrap;
 }
 
-pre a,
-code a {
+pre a {
   text-decoration: underline;
 }
 

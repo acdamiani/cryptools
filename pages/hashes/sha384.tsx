@@ -1,9 +1,10 @@
 import Area from '@/components/Area/area';
 import Hash from '@/components/Hash/hash';
-import CodeBlock, { Snippets } from '@/components/CodeBlock/code-block';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import BrowserHash from '@/src/hashes/browser';
+import highlight from '@/src/code';
 
-const CODE_SNIPPETS: Snippets = {
+const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
 using System.Text;
 using System.Security.Cryptography;
@@ -83,7 +84,7 @@ func main() {
 }`,
 };
 
-export default function SHA384() {
+export default function SHA384({ code }: { code: CodeBlockHTML }) {
   const sha384 = new BrowserHash(`sha384`);
 
   return (
@@ -95,8 +96,14 @@ export default function SHA384() {
           hashBytes={sha384.hashBytes.bind(sha384)}
           hashName="sha384"
         />
-        <CodeBlock snippets={CODE_SNIPPETS} />
+        <CodeBlock snippets={code} />
       </Area>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }

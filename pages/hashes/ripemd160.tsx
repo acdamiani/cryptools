@@ -1,9 +1,10 @@
 import Area from '@/components/Area/area';
 import Hash from '@/components/Hash/hash';
 import RIPEMD160Hash from '@/src/hashes/ripemd160';
-import CodeBlock, { Snippets } from '@/components/CodeBlock/code-block';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
+import highlight from '@/src/code';
 
-const CODE_SNIPPETS: Snippets = {
+const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
 using System.Text;
 using System.Security.Cryptography;
@@ -44,7 +45,7 @@ hash = new('ripemd160', message.encode('utf-8')).hexdigest()
 print(f'Computed hash of {message}: {hash}')`,
 };
 
-export default function RIPEMD160() {
+export default function RIPEMD160({ code }: { code: CodeBlockHTML }) {
   const ripemd160 = new RIPEMD160Hash();
 
   return (
@@ -56,7 +57,7 @@ export default function RIPEMD160() {
           hashBytes={ripemd160.hashBytes.bind(ripemd160)}
           hashName="ripemd160"
         />
-        <CodeBlock snippets={CODE_SNIPPETS} />
+        <CodeBlock snippets={code} />
       </Area>
       <main>
         <h2>The RIPEMD-160 Hash Algorithm</h2>
@@ -85,4 +86,10 @@ export default function RIPEMD160() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }

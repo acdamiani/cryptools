@@ -12,7 +12,7 @@
   padding: 0;
   margin: 0;
 
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .button:hover {
@@ -32,7 +32,7 @@
 
   border-radius: 50%;
 
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  transition: background-color 0.15s ease, transform 0.15s ease;
   box-shadow: var(--ct-box-shadow);
 }
 
@@ -55,7 +55,7 @@
   height: 12px;
   color: var(--ct-c-font);
 
-  transition: opacity 0.25s ease;
+  transition: opacity 0.15s ease;
 }
 
 .flex {

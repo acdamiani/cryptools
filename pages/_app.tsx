@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 
 import 'normalize.css';
 import '@/styles/globals.css';
-import '@/styles/prism.css';
 
 import Page from '@/layouts/page';
 

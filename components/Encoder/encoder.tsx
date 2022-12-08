@@ -6,7 +6,6 @@ import Tool from '../Tool/tool';
 import { TypographyIcon } from '@primer/octicons-react';
 import Select from '../Select/select';
 import { useRouter } from 'next/router';
-import EncoderInstance from '@/src/encoders/encoder';
 
 const selectOptions = [`base32`, `base64`, `url`, `punycode`] as const;
 export type SelectOptions = typeof selectOptions[number];

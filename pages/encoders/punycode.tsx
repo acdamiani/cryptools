@@ -1,11 +1,12 @@
 import Area from '@/components/Area/area';
-import CodeBlock, { Snippets } from '@/components/CodeBlock/code-block';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import Encoder from '@/components/Encoder/encoder';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
+import highlight from '@/src/code';
 import PunycodeEncoder from '@/src/encoders/punycode';
 
-const CODE_SNIPPETS: Snippets = {
-  javascript: `// Using [punycode](https://www.npmjs.com/package/punycode)
+const CODE_SNIPPETS: CodeBlockHTML = {
+  javascript: `// Using [punycode](https://www.npmjs.com/package/punycode) 
 const punycode = require('punycode');
 
 // Encoding domain names
@@ -17,7 +18,7 @@ punycode.decode('maana-pta'); // 'mañana'
 punycode.decode('--dqo34k'); // '☃-⌘'`,
 };
 
-export default function Punycode() {
+export default function Punycode({ code }: { code: CodeBlockHTML }) {
   const punycode = new PunycodeEncoder();
 
   return (
@@ -30,7 +31,7 @@ export default function Punycode() {
           encoderName="punycode"
         />
         <LabeledElement content={<strong>Code Snippets</strong>}>
-          <CodeBlock snippets={CODE_SNIPPETS} />
+          <CodeBlock snippets={code} />
         </LabeledElement>
       </Area>
       <h2>The Punycode encoding</h2>
@@ -49,4 +50,10 @@ export default function Punycode() {
       </p>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }

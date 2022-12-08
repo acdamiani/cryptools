@@ -1,5 +1,3 @@
-import Link from '../Link/link';
-
 import styles from '@/components/Footer/footer.module.css';
 
 export default function Footer() {
@@ -7,6 +5,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <span className={styles.text}>Made with ❤️ by August Damiani</span>
       <a href="https://ko-fi.com/W7W8FW50R" target="_blank" rel="noreferrer">
+        {/* eslint-disable @next/next/no-img-element */}
         <img
           height="36"
           className={styles.coffee}
