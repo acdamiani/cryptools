@@ -44,8 +44,6 @@ export default async function highlight(
     });
 
     ret[key] = $.html();
-
-    console.log(ret[key]);
   }
 
   return ret;

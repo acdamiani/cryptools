@@ -100,3 +100,12 @@
   font-size: 0.75rem;
   tab-size: 1rem;
 }
+
+.code-block code {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  tab-size: inherit;
+}

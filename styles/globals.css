@@ -27,7 +27,7 @@ body {
 
 :root {
   --header-height: 4rem;
-  --footer-height: 4rem;
+  --footer-height: 5rem;
 
   --ct-box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 2px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
@@ -129,6 +129,11 @@ body {
   --ct-c-button: var(--ct-c-gray-light-3);
   --ct-c-button-hover: var(--ct-c-gray-light-2);
   --ct-c-button-font: var(--ct-c-black-soft);
+  --ct-c-text-1: var(--ct-c-text-light-1);
+  --ct-c-text-2: var(--ct-c-text-light-2);
+  --ct-c-text-3: var(--ct-c-text-light-3);
+  --ct-c-text-4: var(--ct-c-text-light-4);
+  --ct-c-text-5: var(--ct-c-text-light-5);
 }
 
 .dark {
@@ -146,6 +151,11 @@ body {
   --ct-c-button: var(--ct-c-gray-dark-4);
   --ct-c-button-hover: var(--ct-c-gray-dark-3);
   --ct-c-button-font: var(--ct-c-white-soft);
+  --ct-c-text-1: var(--ct-c-text-dark-1);
+  --ct-c-text-2: var(--ct-c-text-dark-2);
+  --ct-c-text-3: var(--ct-c-text-dark-3);
+  --ct-c-text-4: var(--ct-c-text-dark-4);
+  --ct-c-text-5: var(--ct-c-text-dark-5);
 }
 
 a {
@@ -263,7 +273,7 @@ tbody:last-child tr:last-child td:first-child {
   border-radius: 0 0 0 5px;
 }
 
-pre:not(.shiki) {
+code {
   font-family: var(--ct-mono-font-family);
   background-color: var(--ct-c-code-inline-bg);
   padding: 1px 4px;
@@ -273,7 +283,7 @@ pre:not(.shiki) {
   white-space: pre-wrap;
 }
 
-pre a {
+code a {
   text-decoration: underline;
 }
 

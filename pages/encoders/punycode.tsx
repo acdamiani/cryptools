@@ -20,8 +20,8 @@ Console.WriteLine(mapping.GetUnicode("xn--maana-pta.com")); // 'mañana.com'
 Console.WriteLine(mapping.GetUnicode("xn----dqo34k.com")); // '☃-⌘.com'`,
   go: `// Using supplementary [idna](https://pkg.go.dev/golang.org/x/net/idna) package
 import (
-    "fmt"
-    "idna"
+  "fmt"
+  "idna"
 )
 
 // Encoding domain names
