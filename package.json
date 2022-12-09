@@ -36,7 +36,7 @@
     "copy-to-clipboard": "3.3.3",
     "detect-browser": "5.3.0",
     "file-saver": "2.0.5",
-    "next": "12.3.4",
+    "next": "13.0.6",
     "normalize.css": "8.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
-    "@next/bundle-analyzer": "12.3.4",
+    "@next/bundle-analyzer": "13.0.6",
     "@svgr/webpack": "6.5.1",
     "@types/file-saver": "2.0.5",
     "@types/mocha": "10.0.1",
@@ -58,7 +58,7 @@
     "cheerio": "1.0.0-rc.12",
     "cross-env": "7.0.3",
     "eslint": "8.29.0",
-    "eslint-config-next": "12.3.4",
+    "eslint-config-next": "13.0.6",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "3.5.2",
     "eslint-plugin-import": "2.26.0",
