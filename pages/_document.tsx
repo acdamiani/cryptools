@@ -5,13 +5,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link
-          rel="preload"
-          href="/fonts/inter-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
         <Script
           id="get-color-scheme"
           strategy="beforeInteractive"

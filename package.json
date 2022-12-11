@@ -29,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "@next/font": "13.0.6",
     "@primer/octicons-react": "17.9.0",
     "better-react-mathjax": "2.0.2",
     "big-integer": "1.6.51",

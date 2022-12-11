@@ -14,10 +14,12 @@ export default function Link({
   ...props
 }: Props) {
   return (
-    <NextLink href={href}>
-      <a className={classNames(styles.link, className)} {...props}>
-        {children}
-      </a>
+    <NextLink
+      href={href}
+      className={classNames(styles.link, className)}
+      {...props}
+    >
+      {children}
     </NextLink>
   );
 }

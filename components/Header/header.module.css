@@ -172,6 +172,11 @@
   gap: 0.1rem;
 }
 
+.flyout-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 2px 2px var(--ct-c-primary);
+}
+
 .flyout:hover > .flyout-button {
   color: var(--ct-c-gray);
 }

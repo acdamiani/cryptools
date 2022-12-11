@@ -5,6 +5,7 @@ import {
   useRef,
   ReactNode,
 } from 'react';
+import { CircleIcon } from '@primer/octicons-react';
 
 import styles from '@/components/Toggle/toggle.module.css';
 
@@ -13,8 +14,6 @@ interface ToggleProps {
   initialValue?: boolean;
   value?: boolean;
   onValueChange?: (value: boolean) => void;
-  iconOff?: ReactNode;
-  iconOn?: ReactNode;
   id?: string;
 }
 
@@ -28,8 +27,6 @@ export default function Toggle({
   initialValue,
   value,
   onValueChange,
-  iconOff,
-  iconOn,
   id,
   label,
   ...props
@@ -81,30 +78,7 @@ export default function Toggle({
           style={{
             transform: isToggled ? `translateX(18px)` : ``,
           }}
-        >
-          <span className={styles.iconContainer}>
-            {iconOff ? (
-              <span
-                className={styles.icon}
-                style={{ opacity: isToggled ? 0 : 1 }}
-              >
-                {iconOff}
-              </span>
-            ) : (
-              ``
-            )}
-            {iconOn ? (
-              <span
-                className={styles.icon}
-                style={{ opacity: isToggled ? 0 : 1 }}
-              >
-                {iconOn}
-              </span>
-            ) : (
-              ``
-            )}
-          </span>
-        </span>
+        />
       </button>
     </div>
   );
