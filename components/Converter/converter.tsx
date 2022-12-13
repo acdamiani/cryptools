@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useId, useState } from 'react';
+import { FormEvent, useEffect, useId, useRef, useState } from 'react';
 import TextArea from '../TextArea/text-area';
 import Select from '../Select/select';
 import styles from './converter.module.css';
@@ -8,6 +8,7 @@ import Toggle from '../Toggle/toggle';
 import LabeledElement from '../LabeledElement/labeled-element';
 import Tool from '../Tool/tool';
 import Row from '../Row/row';
+import { useRouter } from 'next/router';
 
 const selectOptions = [
   `text`,
@@ -76,6 +77,19 @@ export default function Converter({
   const [toValue, setToValue] = useState<SelectOptions>(initialTo);
   const [delimiter, setDelimiter] = useState<DelimiterOptions>(`space`);
 
+  const router = useRouter();
+  const defaultInput = router.query[`input`];
+
+  const ref = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (defaultInput && ref.current) {
+      ref.current.dispatchEvent(
+        new Event(`submit`, { cancelable: true, bubbles: true }),
+      );
+    }
+  }, [defaultInput]);
+
   useEffect(() => {
     onTargetsChange?.(fromValue, toValue);
   }, [fromValue, toValue, onTargetsChange]);
@@ -122,7 +136,7 @@ export default function Converter({
   };
 
   return (
-    <Tool generateOutput={doConvert}>
+    <Tool generateOutput={doConvert} ref={ref}>
       <Row>
         <LabeledElement htmlFor={fromId} content="From">
           <Select
@@ -179,7 +193,13 @@ export default function Converter({
         </LabeledElement>
       </Row>
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
-        <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
+        <TextArea
+          rows={3}
+          id={inputId}
+          name="input"
+          spellCheck="false"
+          defaultValue={defaultInput}
+        />
       </LabeledElement>
       {showDelimiter && (
         <LabeledElement htmlFor={delimiterId} content="Delimiter">

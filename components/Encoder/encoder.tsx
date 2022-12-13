@@ -1,4 +1,11 @@
-import { ChangeEvent, FormEvent, ReactNode, useId } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  ReactNode,
+  useEffect,
+  useId,
+  useRef,
+} from 'react';
 import ToggleSwitch from '../ToggleSwitch/toggle-switch';
 import LabeledElement from '../LabeledElement/labeled-element';
 import TextArea from '../TextArea/text-area';
@@ -40,6 +47,17 @@ export default function Encoder({
   const hashId = useId();
 
   const router = useRouter();
+  const defaultInput = router.query[`input`];
+
+  const ref = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (defaultInput && ref.current) {
+      ref.current.dispatchEvent(
+        new Event(`submit`, { cancelable: true, bubbles: true }),
+      );
+    }
+  }, [defaultInput]);
 
   const navigate = (e: ChangeEvent<HTMLSelectElement>) => {
     router.push(`/encoders/${e.target.value}`);
@@ -72,6 +90,7 @@ export default function Encoder({
       outputProps={{ rows: outputRows }}
       buttonName="Encode/Decode"
       buttonIcon={<TypographyIcon size={16} />}
+      ref={ref}
     >
       <LabeledElement htmlFor={hashId} content="Encoder">
         <Select id={hashId} defaultValue={encoderName} onChange={navigate}>
@@ -89,7 +108,13 @@ export default function Encoder({
         name="mode"
       />
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
-        <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
+        <TextArea
+          rows={3}
+          id={inputId}
+          name="input"
+          spellCheck="false"
+          defaultValue={router.query[`input`] || ``}
+        />
       </LabeledElement>
       {children}
     </Tool>

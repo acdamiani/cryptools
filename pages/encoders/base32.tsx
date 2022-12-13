@@ -7,8 +7,19 @@ import Base32Encoder, {
   VARIANT_LABELS,
 } from '@/src/encoders/base32';
 import { useId } from 'react';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
+import highlight from '@/src/code';
 
-export default function Base32() {
+const CODE_SNIPPETS: CodeBlockHTML = {
+  javascript: `// Using the javascript [base32](https://www.npmjs.com/package/base32) library
+const base32 = require('base32');
+
+// Encoding Base32
+
+// Decoding Base32`,
+};
+
+export default function Base32({ code }: { code: CodeBlockHTML }) {
   const variantId = useId();
 
   return (
@@ -37,7 +48,16 @@ export default function Base32() {
             </Select>
           </LabeledElement>
         </Encoder>
+        <LabeledElement content={<strong>Code Snippets</strong>}>
+          <CodeBlock snippets={code} />
+        </LabeledElement>
       </Area>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }

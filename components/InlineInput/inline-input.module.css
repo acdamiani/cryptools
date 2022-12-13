@@ -1,0 +1,21 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  width: 100%;
+}
+
+.input > textarea {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 2.5rem;
+}
+
+.button > button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 2.5rem;
+}

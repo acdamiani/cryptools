@@ -10,12 +10,12 @@ import HeaderFoldout from '../HeaderFoldout/header-foldout';
 import { useRouter } from 'next/router';
 import Area from '../Area/area';
 
-type HeaderItem = {
+export type HeaderItem = {
   text: string;
   url?: string | HeaderItem[];
 };
 
-const headerContents: HeaderItem[] = [
+export const HEADER_CONTENTS: HeaderItem[] = [
   {
     text: `Conversion`,
     url: [
@@ -204,7 +204,7 @@ export default function Header() {
         </div>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
-            {headerContents.map((x, i) => (
+            {HEADER_CONTENTS.map((x, i) => (
               <li key={i}>{doHeaderItem(x, true)}</li>
             ))}
             <li className={styles.theme}>
@@ -221,7 +221,7 @@ export default function Header() {
         {hamburger && (
           <div className={styles.screen}>
             <nav className={styles.screenNav}>
-              {headerContents.map((x) => doMobileHeaderItem(x, true))}
+              {HEADER_CONTENTS.map((x) => doMobileHeaderItem(x, true))}
               <Area
                 className={styles.themeArea}
                 borderColor="var(--ct-c-divider)"

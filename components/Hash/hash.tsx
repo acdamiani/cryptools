@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useId } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useId, useRef } from 'react';
 import LabeledElement from '../LabeledElement/labeled-element';
 import TextArea from '../TextArea/text-area';
 import Tool from '../Tool/tool';
@@ -45,6 +45,17 @@ export default function Hash({
   const hashId = useId();
 
   const router = useRouter();
+  const defaultInput = router.query[`input`];
+
+  const ref = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (defaultInput && ref.current) {
+      ref.current.dispatchEvent(
+        new Event(`submit`, { cancelable: true, bubbles: true }),
+      );
+    }
+  }, [defaultInput]);
 
   const navigate = (e: ChangeEvent<HTMLSelectElement>) => {
     router.push(`/hashes/${e.target.value}`);
@@ -84,6 +95,7 @@ export default function Hash({
       outputProps={{ rows: outputRows }}
       buttonName="Hash"
       buttonIcon={<WorkflowIcon size={16} />}
+      ref={ref}
     >
       <LabeledElement htmlFor={hashId} content="Hash">
         <Select id={hashId} defaultValue={hashName} onChange={navigate}>
@@ -96,7 +108,13 @@ export default function Hash({
       </LabeledElement>
       <ToggleSwitch leftContent="Text" rightContent="Bytes" name="interpret" />
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
-        <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
+        <TextArea
+          rows={3}
+          id={inputId}
+          name="input"
+          spellCheck="false"
+          defaultValue={defaultInput}
+        />
       </LabeledElement>
     </Tool>
   );

@@ -36,8 +36,7 @@ export default function MD5() {
         </p>
         <p>
           The following bytes, for example, produce the same MD5 hash, even
-          though they have different values (the second one has a 2 in place of
-          a 0&mdash;only a difference of 2 bits).
+          though they have <em>slightly</em> different values.
         </p>
         <p>
           <ul>

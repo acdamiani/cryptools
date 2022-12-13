@@ -1,158 +1,86 @@
 import styles from '@/styles/Home.module.css';
-import Link from '@/components/Link/link';
+import Area from '@/components/Area/area';
 import Head from 'next/head';
+import { SyncIcon, TypographyIcon, WorkflowIcon } from '@primer/octicons-react';
+import InlineInput from '@/components/InlineInput/inline-input';
+import Link from '@/components/Link/link';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <>
       <Head>
         <title>Conversion, ciphers, and encoders online - Cryptools</title>
       </Head>
       <h1>Online Tools for Developers</h1>
-      <div className={styles.cards}>
-        <div className={styles.cardContainer}>
-          <h3>Conversion</h3>
-          <div className={styles.card}>
-            <ul className={styles.links}>
-              <li>
-                <Link className={styles.link} href="/">
-                  ASCII to Hex
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  ASCII to Binary
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Hex to ASCII
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Hex to Decimal
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Hex to Octal
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Hex to Binary
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={styles.cardContainer}>
-          <h3>Ciphers</h3>
-          <div className={styles.card}>
-            <ul className={styles.links}>
-              <li>
-                <Link className={styles.link} href="/">
-                  Caesar Cipher
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Vigenère Cipher
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Pig Latin
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Polyalphabetic Cipher
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Substitution Cipher
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Beaufort Cipher
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Arnold Cipher
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={styles.cardContainer}>
-          <h3>Hashes</h3>
-          <div className={styles.card}>
-            <ul className={styles.links}>
-              <li>
-                <Link className={styles.link} href="/">
-                  MD5
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  SHA-1
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  SHA-256
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  SHA-384
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  SHA-512
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  RIPEMD-160
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={styles.cardContainer}>
-          <h3>Encoders</h3>
-          <div className={styles.card}>
-            <ul className={styles.links}>
-              <li>
-                <Link className={styles.link} href="/">
-                  Base32
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Base64
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  URL
-                </Link>
-              </li>
-              <li>
-                <Link className={styles.link} href="/">
-                  Punycode
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <p>
+        Cryptools is a reference website for common cryptography and computer
+        science operations. Source code for common programming languages is
+        included, in case you need implementation details for many of these
+        operations. If you have suggestions for the website, a bug to report, or
+        anything else you&apos;d like to tell me about, feel free to create a
+        new{` `}
+        <Link href="https://github.com/acdamiani/cryptools/issues/new/choose">
+          issue
+        </Link>
+        {` `}
+        on Github.
+      </p>
+      <h2>Popular</h2>
+      <div className={styles.popular}>
+        <Area>
+          <h3 className={styles.popularHeader}>MD5 Hash</h3>
+          <span>A MD5 hash generator that hashes either text or bytes.</span>
+          <InlineInput
+            buttonText="Hash"
+            buttonIcon={<WorkflowIcon />}
+            onClick={(e, v) =>
+              router.push({ pathname: `/hashes/md5`, query: { input: v } })
+            }
+          />
+        </Area>
+        <Area>
+          <h3 className={styles.popularHeader}>Base64 Encode</h3>
+          <span>Encode arbitrary text into its Base64 representation.</span>
+          <InlineInput
+            buttonText="Encode"
+            buttonIcon={<TypographyIcon />}
+            onClick={(e, v) =>
+              router.push({ pathname: `/encoders/base64`, query: { input: v } })
+            }
+          />
+        </Area>
+        <Area>
+          <h3 className={styles.popularHeader}>Text to Hex</h3>
+          <span>Convert Unicode characters into UTF-8 hex bytes.</span>
+          <InlineInput
+            buttonText="Encode"
+            buttonIcon={<SyncIcon />}
+            onClick={(e, v) =>
+              router.push({
+                pathname: `/converters/ascii-to-hex`,
+                query: { input: v },
+              })
+            }
+          />
+        </Area>
+        <Area>
+          <h3 className={styles.popularHeader}>Vigenère Cipher</h3>
+          <span>Cipher some text using a Vigenère cipher.</span>
+          <InlineInput
+            buttonText="Cipher"
+            buttonIcon={<SyncIcon />}
+            onClick={(e, v) =>
+              router.push({
+                pathname: `/ciphers/vigenere`,
+                query: { input: v },
+              })
+            }
+          />
+        </Area>
+        <h3></h3>
       </div>
     </>
   );

@@ -31,16 +31,16 @@ fmt.Println(idna.ToASCII("☃-⌘.com")) // 'xn----dqo34k.com'
 // Decoding domain names
 fmt.Println(idna.ToUnicode("xn--maana-pta.com")) // 'mañana.com'
 fmt.Println(idna.ToUnicode("xn----dqo34k.com")) // '☃-⌘.com'`,
-  javascript: `// Using [punycode](https://www.npmjs.com/package/punycode) 
+  javascript: `// Using the [punycode](https://www.npmjs.com/package/punycode) library
 const punycode = require('punycode');
 
 // Encoding domain names
-punycode.toASCII('mañana.com'); // 'xn--maana-pta.com'
-punycode.toASCII('☃-⌘.com'); // 'xn----dqo34k.com'
+console.log(punycode.toASCII('mañana.com')); // 'xn--maana-pta.com'
+console.log(punycode.toASCII('☃-⌘.com')); // 'xn----dqo34k.com'
 
 // Decoding domain names
-punycode.toUnicode('xn--maana-pta.com'); // 'mañana.com'
-punycode.toUnicode('xn----dqo34k.com'); // '☃-⌘.com'`,
+console.log(punycode.toUnicode('xn--maana-pta.com')); // 'mañana.com'
+console.log(punycode.toUnicode('xn----dqo34k.com')); // '☃-⌘.com'`,
 };
 
 export default function Punycode({ code }: { code: CodeBlockHTML }) {

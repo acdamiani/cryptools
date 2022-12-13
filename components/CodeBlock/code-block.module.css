@@ -97,7 +97,7 @@
 .code-block pre:global(.shiki) {
   background-color: var(--ct-c-code-bg) !important;
   padding: 0 1rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   tab-size: 1rem;
 }
 

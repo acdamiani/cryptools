@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import styles from '@/components/TextArea/text-area.module.css';
 
-export interface TextAreaProps {
+interface InternalProps {
   textColor?: React.CSSProperties['color'];
   backgroundColor?: React.CSSProperties['backgroundColor'];
   borderColor?: React.CSSProperties['borderColor'];
@@ -14,7 +14,7 @@ export interface TextAreaProps {
   thin?: boolean;
 }
 
-export type Props = TextAreaProps &
+export type TextAreaProps = InternalProps &
   React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export default function TextArea({
@@ -28,7 +28,7 @@ export default function TextArea({
   className,
   children,
   ...props
-}: Props) {
+}: TextAreaProps) {
   const textArea = useRef<HTMLTextAreaElement>(null);
   return (
     <>

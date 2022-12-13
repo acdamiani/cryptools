@@ -1,5 +1,7 @@
 .text-skeleton {
-  display: inline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 

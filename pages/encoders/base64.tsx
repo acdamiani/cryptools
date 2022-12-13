@@ -7,8 +7,12 @@ import Base64Encoder, {
   VARIANT_LABELS,
 } from '@/src/encoders/base64';
 import { useId } from 'react';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
+import highlight from '@/src/code';
 
-export default function Base64() {
+const CODE_SNIPPETS: CodeBlockHTML = {};
+
+export default function Base64({ code }: { code: CodeBlockHTML }) {
   const variantId = useId();
 
   return (
@@ -37,7 +41,16 @@ export default function Base64() {
             </Select>
           </LabeledElement>
         </Encoder>
+        <LabeledElement content={<strong>Code Snippets</strong>}>
+          <CodeBlock snippets={code} />
+        </LabeledElement>
       </Area>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }
