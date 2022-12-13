@@ -1,6 +1,6 @@
 .input-container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 
@@ -11,11 +11,13 @@
 .input > textarea {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  height: 2.5rem;
+}
+
+.button {
+  align-items: stretch;
 }
 
 .button > button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  height: 2.5rem;
 }

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Button from '../Button/button';
 import TextArea, { TextAreaProps } from '../TextArea/text-area';
 import styles from './inline-input.module.css';
