@@ -31,7 +31,7 @@ specifiers:
   file-saver: 2.0.5
   husky: 8.0.2
   lint-staged: 13.1.0
-  mocha: 10.1.0
+  mocha: 10.2.0
   next: 13.0.6
   normalize.css: 8.0.1
   prettier: 2.8.1
@@ -79,7 +79,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_5dgjrgoi64tgrv3zzn3walur3u
   husky: 8.0.2
   lint-staged: 13.1.0
-  mocha: 10.1.0
+  mocha: 10.2.0
   prettier: 2.8.1
   shiki: 0.11.1
   ts-node: 10.9.1_73migmg77y47omm5253gettkxi
@@ -4413,8 +4413,8 @@ packages:
     resolution: {integrity: sha512-7NO5s6n10TIV96d4g2uDpG7ZDpIhMh0QNfGdJw/W47JswFcosz457wqz/b5sAKvl12sxINGFCn80NZHKwxQEXA==}
     dev: false
 
-  /mocha/10.1.0:
-    resolution: {integrity: sha512-vUF7IYxEoN7XhQpFLxQAEMtE4W91acW4B6En9l97MwE9stL1A9gusXfoHZCLVHDUJ/7V5+lbCM6yMqzo5vNymg==}
+  /mocha/10.2.0:
+    resolution: {integrity: sha512-IDY7fl/BecMwFHzoqF2sg/SHHANeBoMMXFlS9r0OXKDssYE1M5O43wUY/9BVPeIvfH2zmEbBfseqN9gBQZzXkg==}
     engines: {node: '>= 14.0.0'}
     hasBin: true
     dependencies:
@@ -5839,7 +5839,7 @@ packages:
       require-directory: 2.1.1
       string-width: 4.2.3
       y18n: 5.0.8
-      yargs-parser: 20.2.4
+      yargs-parser: 20.2.9
     dev: true
 
   /yargs/17.6.2:
