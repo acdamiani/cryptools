@@ -8,15 +8,20 @@ import ToggleSwitch from '@/components/ToggleSwitch/toggle-switch';
 import Tool from '@/components/Tool/tool';
 import CaesarCipher from '@/src/ciphers/caesar';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
-import { FormEvent, useId, useState } from 'react';
+import { FormEvent, useId, useRef, useState } from 'react';
 import Link from '@/components/Link/link';
+import useFormFill from 'hooks/useFormFill';
 
 export default function Caesar() {
   const inputId = useId();
   const keyId = useId();
   const alphabetId = useId();
 
-  const [alphabet, setAlpahbet] = useState(`abcdefghijklmnopqrstuvwxyz`);
+  const [alphabet, setAlphabet] = useState(`abcdefghijklmnopqrstuvwxyz`);
+
+  const ref = useRef<HTMLFormElement>(null);
+
+  useFormFill(ref, [`input`, `key`]);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
@@ -42,7 +47,7 @@ export default function Caesar() {
     <>
       <h1>Caesar Cipher Encode and Decode Online</h1>
       <Area>
-        <Tool generateOutput={doConvert}>
+        <Tool generateOutput={doConvert} ref={ref}>
           <Row>
             <LabeledElement content="Key" flexBasis={false} htmlFor={keyId}>
               <Counter
@@ -58,7 +63,7 @@ export default function Caesar() {
               <TextArea
                 id={alphabetId}
                 defaultValue="abcdefghijklmnopqrstuvwxyz"
-                onChange={(e) => setAlpahbet(e.target.value)}
+                onChange={(e) => setAlphabet(e.target.value)}
                 name="alphabet"
                 spellCheck={false}
               />

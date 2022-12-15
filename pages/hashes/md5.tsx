@@ -38,16 +38,14 @@ export default function MD5() {
           The following bytes, for example, produce the same MD5 hash, even
           though they have <em>slightly</em> different values.
         </p>
-        <p>
-          <ul>
-            <li>
-              <code>{collisions[0]}</code>
-            </li>
-            <li>
-              <code>{collisions[1]}</code>
-            </li>
-          </ul>
-        </p>
+        <ul>
+          <li>
+            <code>{collisions[0]}</code>
+          </li>
+          <li>
+            <code>{collisions[1]}</code>
+          </li>
+        </ul>
         <h3>Uses for MD5</h3>
         <p>
           Hashing algorithms like MD5 are useful because they always produce the

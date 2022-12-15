@@ -76,7 +76,7 @@ export default function Toggle({
         <span
           className={styles.check}
           style={{
-            transform: isToggled ? `translateX(18px)` : ``,
+            transform: isToggled ? `translateX(18px)` : `none`,
           }}
         />
       </button>

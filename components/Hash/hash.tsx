@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useId, useRef } from 'react';
+import { ChangeEvent, FormEvent, useId, useRef } from 'react';
 import LabeledElement from '../LabeledElement/labeled-element';
 import TextArea from '../TextArea/text-area';
 import Tool from '../Tool/tool';
@@ -6,6 +6,7 @@ import { WorkflowIcon } from '@primer/octicons-react';
 import Select from '../Select/select';
 import { useRouter } from 'next/router';
 import ToggleSwitch from '../ToggleSwitch/toggle-switch';
+import useFormFill from 'hooks/useFormFill';
 
 const selectOptions = [
   `sha1`,
@@ -45,17 +46,10 @@ export default function Hash({
   const hashId = useId();
 
   const router = useRouter();
-  const defaultInput = router.query[`input`];
 
   const ref = useRef<HTMLFormElement>(null);
 
-  useEffect(() => {
-    if (defaultInput && ref.current) {
-      ref.current.dispatchEvent(
-        new Event(`submit`, { cancelable: true, bubbles: true }),
-      );
-    }
-  }, [defaultInput]);
+  useFormFill(ref, `input`);
 
   const navigate = (e: ChangeEvent<HTMLSelectElement>) => {
     router.push(`/hashes/${e.target.value}`);
@@ -108,13 +102,7 @@ export default function Hash({
       </LabeledElement>
       <ToggleSwitch leftContent="Text" rightContent="Bytes" name="interpret" />
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
-        <TextArea
-          rows={3}
-          id={inputId}
-          name="input"
-          spellCheck="false"
-          defaultValue={defaultInput}
-        />
+        <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
       </LabeledElement>
     </Tool>
   );

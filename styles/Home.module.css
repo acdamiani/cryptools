@@ -22,3 +22,9 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+@media only screen and (max-width: 800px) {
+  .popular {
+    grid-template-columns: 1fr;
+  }
+}

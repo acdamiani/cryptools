@@ -15,6 +15,7 @@
 
 .button {
   align-items: stretch;
+  width: unset;
 }
 
 .button > button {

@@ -11,10 +11,11 @@ import VigenereCipher, {
   CaseStrategy,
   VigenereVariant,
 } from '@/src/ciphers/vigenere';
-import { FormEvent, useId } from 'react';
+import { FormEvent, useId, useRef } from 'react';
 import TabulaRecta from '@/public/svg/tabula-recta.svg';
 import { MathJaxContext, MathJax } from 'better-react-mathjax';
 import Scrollable from '@/components/Scrollable/scrollable';
+import useFormFill from 'hooks/useFormFill';
 
 export default function Caesar() {
   const inputId = useId();
@@ -22,6 +23,10 @@ export default function Caesar() {
   const alphabetId = useId();
   const casingId = useId();
   const variantId = useId();
+
+  const ref = useRef<HTMLFormElement>(null);
+
+  useFormFill(ref, `input`);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
@@ -51,7 +56,7 @@ export default function Caesar() {
     <>
       <h1>Vigenere Cipher Encode and Decode Online</h1>
       <Area>
-        <Tool generateOutput={doConvert}>
+        <Tool generateOutput={doConvert} ref={ref}>
           <Row>
             <LabeledElement content="Key" flexBasis={false} htmlFor={keyId}>
               <TextArea

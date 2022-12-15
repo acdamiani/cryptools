@@ -33,7 +33,6 @@ export default function Counter({
   onCountChange,
   ...props
 }: Props) {
-  const [inputValue, setInputValue] = useState<string>(initialCount.toString());
   const [value, setValue] = useState<number>(initialCount);
   const [inputFocused, setInputFocused] = useState(false);
 
@@ -45,8 +44,6 @@ export default function Counter({
     if (!input) {
       return;
     }
-
-    setInputValue(value);
 
     const vs = Object.getOwnPropertyDescriptor(
       HTMLInputElement.prototype,
@@ -92,7 +89,6 @@ export default function Counter({
         <input
           type="number"
           ref={inputRef}
-          value={inputValue}
           className={classNames(styles.input, className)}
           onFocus={(e) => {
             setInputFocused(true);
@@ -100,11 +96,10 @@ export default function Counter({
           }}
           onBlur={(e) => {
             setInputFocused(false);
-            updateValue(e.target.value);
             onBlur?.(e);
           }}
           onChange={(e) => {
-            setInputValue(e.target.value);
+            updateValue(e.target.value);
             onChange?.(e);
           }}
           {...props}
