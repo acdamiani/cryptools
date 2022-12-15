@@ -22,15 +22,29 @@ export default function useFormFill(
         continue;
       }
 
-      element.value = param;
-      // onchange not triggered?
+      const valueSetter = Object.getOwnPropertyDescriptor(
+        element,
+        `value`,
+      )?.set;
+
+      const pValueSetter = Object.getOwnPropertyDescriptor(
+        Object.getPrototypeOf(element),
+        `value`,
+      )?.set;
+
+      if (valueSetter && valueSetter !== pValueSetter) {
+        pValueSetter?.call(element, param);
+      } else {
+        valueSetter?.call(element, param);
+      }
+
       element.dispatchEvent(
-        new Event(`onChange`, { cancelable: true, bubbles: true }),
+        new Event(`change`, { cancelable: true, bubbles: true }),
       );
     }
 
-    // form.current.dispatchEvent(
-    //   new Event(`submit`, { cancelable: true, bubbles: true }),
-    // );
+    form.current.dispatchEvent(
+      new Event(`submit`, { cancelable: true, bubbles: true }),
+    );
   }, [router.query, form, param]);
 }

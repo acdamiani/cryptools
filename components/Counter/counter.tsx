@@ -14,7 +14,6 @@ interface InternalProps {
   max?: number;
   suffix?: string | ((key: number) => string);
   initialCount?: number;
-  onCountChange?: (arg0: number) => any;
   suffixStyle?: CSSProperties;
 }
 
@@ -30,26 +29,36 @@ export default function Counter({
   onFocus,
   onBlur,
   onChange,
-  onCountChange,
   ...props
 }: Props) {
-  const [value, setValue] = useState<number>(initialCount);
+  const [inputValue, setInputValue] = useState(initialCount);
   const [inputFocused, setInputFocused] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const setInputNative = (value: string) => {
+  const setValue = (value: number | ((value: number) => number)) => {
     const input = inputRef.current;
 
     if (!input) {
       return;
     }
 
-    const vs = Object.getOwnPropertyDescriptor(
+    const valueDesc = Object.getOwnPropertyDescriptor(
       HTMLInputElement.prototype,
       `value`,
-    )?.set;
-    vs?.call(input, value);
+    );
+
+    const valueSetter = (input: HTMLInputElement, value: number): void =>
+      valueDesc?.set?.call(input, value);
+
+    const valueGetter = (input: HTMLInputElement): number =>
+      parseInt(valueDesc?.get?.call(input));
+
+    if (typeof value === `number`) {
+      valueSetter(input, value);
+    } else if (typeof value === `function`) {
+      valueSetter(input, value(valueGetter(input)));
+    }
 
     input.dispatchEvent(new Event(`input`, { bubbles: true }));
   };
@@ -61,18 +70,10 @@ export default function Counter({
     setValue((v) => Math.max(min, Math.min(max, v)));
   }, [min, max]);
 
-  useEffect(() => {
-    onCountChange?.(value);
-    setInputNative(value.toString());
-  }, [value, onCountChange]);
-
-  const updateValue = (input: string) => {
-    setValue((value) => {
-      const int = parseInt(input);
-      let update = isNaN(int) ? value : int;
-      update = Math.max(min, Math.min(max, update));
-      return update;
-    });
+  const updateValue = (input: number) => {
+    let update = isNaN(input) ? 0 : input;
+    update = Math.max(min, Math.min(max, update));
+    setValue(update);
   };
 
   return (
@@ -96,18 +97,22 @@ export default function Counter({
           }}
           onBlur={(e) => {
             setInputFocused(false);
+            updateValue(e.target.valueAsNumber);
             onBlur?.(e);
           }}
           onChange={(e) => {
-            updateValue(e.target.value);
+            setInputValue(e.target.valueAsNumber);
+            console.log(`hey`);
             onChange?.(e);
           }}
+          defaultValue={initialCount}
           {...props}
         />
         <div className={styles.number}>
-          <span className={styles.value}>{value}</span>
+          <span className={styles.value}>{inputValue}</span>
           <span className={styles.suffix} style={suffixStyle}>
-            {suffix && (typeof suffix === `string` ? suffix : suffix(value))}
+            {suffix &&
+              (typeof suffix === `string` ? suffix : suffix(inputValue))}
           </span>
         </div>
       </div>

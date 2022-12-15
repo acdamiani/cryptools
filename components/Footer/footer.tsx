@@ -13,15 +13,21 @@ export default function Footer() {
           <a
             className={styles.socialLink}
             href="https://github.com/acdamiani/cryptools"
+            aria-label="github"
           >
             <GithubIcon className={styles.socialLinkIcon} />
           </a>
-          <a className={styles.socialLink} href="https://twitter.com">
+          <a
+            className={styles.socialLink}
+            href="https://twitter.com"
+            aria-label="twitter"
+          >
             <TwitterIcon className={styles.socialLinkIcon} />
           </a>
           <a
             className={styles.socialLink}
             href="mailto:damiani.august@gmail.com"
+            aria-label="email"
           >
             <EmailIcon className={styles.socialLinkIcon} />
           </a>

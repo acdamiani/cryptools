@@ -21,7 +21,7 @@ export default function Caesar() {
 
   const ref = useRef<HTMLFormElement>(null);
 
-  useFormFill(ref, [`input`, `key`]);
+  useFormFill(ref, [`input`, `alphabet`, `key`]);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {

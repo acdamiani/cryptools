@@ -55,6 +55,7 @@ export default function ThemeToggle() {
         id={id}
         onClick={toggleTheme}
         aria-checked={currentTheme}
+        aria-label="theme toggle"
       >
         <span className={styles.check}>
           <span className={styles.iconContainer}>
