@@ -1,19 +1,31 @@
 import styles from '@/styles/Home.module.css';
 import Area from '@/components/Area/area';
-import Head from 'next/head';
 import { SyncIcon, TypographyIcon, WorkflowIcon } from '@primer/octicons-react';
 import InlineInput from '@/components/InlineInput/inline-input';
 import Link from '@/components/Link/link';
 import { useRouter } from 'next/router';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `Conversion, ciphers, and encoders online - Cryptools`;
+const description =
+  `Reference website for common cryptography operations, including encoders,` +
+  ` ciphers, hashes, and converters. Open source!`;
+const og: OpenGraph = {
+  url: `https://cryptools.dev`,
+};
 
 export default function Home() {
   const router = useRouter();
 
   return (
     <>
-      <Head>
-        <title>Conversion, ciphers, and encoders online - Cryptools</title>
-      </Head>
+      <Meta
+        title={title}
+        description={description}
+        og={og}
+        ogInheritTitle={true}
+        ogInheritDescription={true}
+      />
       <h1>Online Tools for Developers</h1>
       <p>
         Cryptools is a reference website for common cryptography and computer
