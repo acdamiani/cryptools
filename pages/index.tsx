@@ -19,13 +19,7 @@ export default function Home() {
 
   return (
     <>
-      <Meta
-        title={title}
-        description={description}
-        og={og}
-        ogInheritTitle={true}
-        ogInheritDescription={true}
-      />
+      <Meta title={title} description={description} og={og} />
       <h1>Online Tools for Developers</h1>
       <p>
         Cryptools is a reference website for common cryptography and computer
@@ -48,7 +42,7 @@ export default function Home() {
           <InlineInput
             buttonText="Hash"
             buttonIcon={<WorkflowIcon />}
-            onClick={(e, v) =>
+            onClick={(_e, v) =>
               router.push({ pathname: `/hashes/md5`, query: { input: v } })
             }
           />
@@ -59,7 +53,7 @@ export default function Home() {
           <InlineInput
             buttonText="Encode"
             buttonIcon={<TypographyIcon />}
-            onClick={(e, v) =>
+            onClick={(_e, v) =>
               router.push({ pathname: `/encoders/base64`, query: { input: v } })
             }
           />
@@ -70,7 +64,7 @@ export default function Home() {
           <InlineInput
             buttonText="Encode"
             buttonIcon={<SyncIcon />}
-            onClick={(e, v) =>
+            onClick={(_e, v) =>
               router.push({
                 pathname: `/converters/ascii-to-hex`,
                 query: { input: v },
@@ -84,7 +78,7 @@ export default function Home() {
           <InlineInput
             buttonText="Cipher"
             buttonIcon={<SyncIcon />}
-            onClick={(e, v) =>
+            onClick={(_e, v) =>
               router.push({
                 pathname: `/ciphers/vigenere`,
                 query: { input: v },

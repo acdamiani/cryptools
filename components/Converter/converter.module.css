@@ -24,7 +24,6 @@
 }
 
 .delimiter {
-  display: block;
   flex: 1;
 }
 
@@ -45,9 +44,6 @@
   height: 100%;
   gap: 0.5rem;
   max-width: 10rem;
-  /* border: 1px solid var(--ct-c-border); */
-  /* border-radius: 5px; */
-  /* padding: 1rem; */
 }
 
 .toggle {

@@ -16,10 +16,27 @@
   width: 100%;
 }
 
+.logo-wrapper {
+  color: var(--ct-c-font);
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.logo-wrapper:hover {
+  color: var(--ct-c-font);
+  opacity: 0.75;
+}
+
 .logo {
   display: flex;
   align-items: center;
   margin-left: 0.25rem;
+}
+
+.logo-text {
+  padding-left: 4px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .nav {

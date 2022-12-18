@@ -86,20 +86,6 @@ body {
   --ct-c-purple-lighter: #f616f8;
   --ct-c-purple-dark: #823c83;
   --ct-c-purple-darker: #602960;
-
-  --ct-c-code-fg: #a6accd;
-  --ct-c-code-comments: #676e95;
-  --ct-c-code-red: #ff5370;
-  --ct-c-code-orange: #f78c6c;
-  --ct-c-code-yellow: #ffcb6b;
-  --ct-c-code-green: #c3e88d;
-  --ct-c-code-cyan: #89ddff;
-  --ct-c-code-blue: #82aaff;
-  --ct-c-code-paleblue: #b2ccd6;
-  --ct-c-code-purple: #c792ea;
-  --ct-c-code-brown: #c17e70;
-  --ct-c-code-pink: #f07178;
-  --ct-c-code-violet: #bb80b3;
 }
 
 :root {

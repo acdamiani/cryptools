@@ -1,10 +1,13 @@
 import Head from 'next/head';
-import { ComponentProps } from 'react';
 
 export interface OpenGraph {
   title?: string;
   description?: string;
   image?: URL | string;
+  imageType?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
   url?: URL | string;
   type?:
     | `music.song`
@@ -31,13 +34,27 @@ interface InternalProps {
 
 export type MetaProps = InternalProps;
 
+export const openGraphDefaults: OpenGraph = {
+  type: `website`,
+  image: `https://cryptools.dev/preview.png`,
+  imageType: `image/png`,
+  imageWidth: 1200,
+  imageHeight: 627,
+  imageAlt: `Cryptools social media image`,
+} as const;
+
 export default function Meta({
   title,
-  ogInheritTitle = false,
+  ogInheritTitle = true,
   description,
-  ogInheritDescription = false,
+  ogInheritDescription = true,
   og,
 }: MetaProps) {
+  og = {
+    ...openGraphDefaults,
+    ...og,
+  };
+
   return (
     <Head>
       <title>{title}</title>
@@ -52,6 +69,16 @@ export default function Meta({
         />
       )}
       {og?.image && <meta property="og:image" content={og.image.toString()} />}
+      {og?.imageAlt && <meta property="og:image:alt" content={og.imageAlt} />}
+      {og?.imageType && (
+        <meta property="og:image:type" content={og.imageType} />
+      )}
+      {og?.imageWidth && (
+        <meta property="og:image:width" content={og.imageWidth.toString()} />
+      )}
+      {og?.imageHeight && (
+        <meta property="og:image:height" content={og.imageHeight.toString()} />
+      )}
       {og?.url && <meta property="og:url" content={og.url.toString()} />}
       {og?.type && <meta property="og:type" content={og.type} />}
     </Head>

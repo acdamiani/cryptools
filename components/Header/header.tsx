@@ -199,9 +199,12 @@ export default function Header() {
   return (
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
-        <div className={styles.logo}>
-          <Logo width={219.84} height={48} />
-        </div>
+        <Link href="/" className={styles.logoWrapper}>
+          <div className={styles.logo}>
+            <Logo width={36} height={36} />
+            <span className={styles.logoText}>cryptools</span>
+          </div>
+        </Link>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             {HEADER_CONTENTS.map((x, i) => (
