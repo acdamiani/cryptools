@@ -24,11 +24,12 @@
     "baseUrl": ".",
     "paths": {
       "@/src/*": ["./src/*"],
+      "@/hooks/*": ["./hooks/*"]
       "@/pages/*": ["./pages/*"],
       "@/styles/*": ["./styles/*"],
       "@/public/*": ["./public/*"],
+      "@/layouts/*": ["./layouts/*"],
       "@/components/*": ["./components/*"],
-      "@/layouts/*": ["./layouts/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
