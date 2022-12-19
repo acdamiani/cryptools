@@ -10,3 +10,10 @@
   flex-direction: column;
   gap: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+  .element,
+  .element-no-flex {
+    width: 100%;
+  }
+}

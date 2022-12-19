@@ -37,3 +37,9 @@
   right: 0.65rem;
   width: 0.95rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .select-container {
+    width: 100%;
+  }
+}
