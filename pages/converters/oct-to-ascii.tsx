@@ -3,7 +3,7 @@ import Converter, {
   SelectOptions,
   SelectAbbr,
 } from '@/components/Converter/converter';
-import HexadecimalConverter from '@/src/converters/hex';
+import OctalConverter from '@/src/converters/oct';
 import { useRouter } from 'next/router';
 
 export default function BinaryToAscii() {
@@ -14,7 +14,7 @@ export default function BinaryToAscii() {
       return ``;
     }
 
-    const hx = new HexadecimalConverter(input);
+    const hx = new OctalConverter(input);
 
     return hx.to(`text`).value;
   };

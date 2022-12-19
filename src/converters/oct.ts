@@ -44,11 +44,10 @@ export default class OctalConverter extends Converter {
       case `binary`:
         return new BinaryConverter(Converter.stringFrom(this._oct, `binary`));
       case `text`:
-        const v = this.value.padStart(
-          Math.ceil(this.value.length / 3) * 3,
-          `0`,
-        );
+        const abs = this._oct.abs().toString(8);
+        const v = abs.padStart(Math.ceil(abs.length / 3) * 3, `0`);
         const bytes: number[] = [];
+
         for (let i = 0; i < v.length; i += 3) {
           const o = v.substring(i, i + 3);
           bytes.push(parseInt(o, 8));

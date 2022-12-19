@@ -13,6 +13,7 @@ export interface ButtonProps {
   backgroundColorHover?: color;
   borderColor?: color;
   borderColorHover?: color;
+  borderColorFocus?: color;
   borderWidth?: React.CSSProperties['borderWidth'];
   padding?: React.CSSProperties['padding'];
   icon?: ReactNode;
@@ -33,6 +34,7 @@ const Button = ({
     : `var(--ct-c-primary-hover)`,
   borderColor = `transparent`,
   borderColorHover = `transparent`,
+  borderColorFocus = secondary ? `var(--ct-c-primary)` : `var(--ct-c-font)`,
   borderWidth = `1px`,
   padding = `0.5rem 1rem`,
   icon,
@@ -54,6 +56,9 @@ const Button = ({
           color: ${textColorHover};
           background-color: ${backgroundColorHover};
           border-color: ${borderColorHover};
+        }
+        button:focus-visible {
+          border: 1px solid ${borderColorFocus};
         }
         button:disabled {
           cursor: not-allowed;

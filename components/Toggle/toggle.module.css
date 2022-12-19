@@ -15,6 +15,10 @@
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
+.button:focus-visible {
+  border: 1px solid var(--ct-c-primary);
+}
+
 .button:hover {
   cursor: pointer;
   border-color: var(--ct-c-font-mute);
