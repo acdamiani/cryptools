@@ -9,9 +9,11 @@ import { useRouter } from 'next/router';
 import ASCIITable from '@/components/ASCIITable/ascii-table';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
 
-const title = `ASCII to Octal Converter - Cryptools`;
-const description = `ASCII/Unicode text to octal converter.`;
-const og: OpenGraph = { url: `https://cryptools.dev/converters/ascii-to-oct` };
+const title = `ASCII to Binary Converter - Cryptools`;
+const description = `ASCII/Unicode text to binary converter.`;
+const og: OpenGraph = {
+  url: `https://cryptools.dev/converters/ascii-to-binary`,
+};
 
 export default function AsciiToBinary() {
   const router = useRouter();
@@ -46,7 +48,7 @@ export default function AsciiToBinary() {
   return (
     <>
       <Meta title={title} description={description} og={og} />
-      <h1>ASCII to Decimal Converter</h1>
+      <h1>ASCII to Binary Converter</h1>
       <Area>
         <Converter
           convert={convert}

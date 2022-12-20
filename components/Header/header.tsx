@@ -40,7 +40,7 @@ export const HEADER_CONTENTS: HeaderItem[] = [
         text: `Binary`,
         url: [
           { text: `Binary to Hex`, url: `/converters/binary-to-hex` },
-          { text: `Binary to Octal`, url: `/converters/binary-to-octal` },
+          { text: `Binary to Octal`, url: `/converters/binary-to-oct` },
           { text: `Binary to ASCII`, url: `/converters/binary-to-ascii` },
           { text: `Binary to Decimal`, url: `/converters/binary-to-dec` },
         ],
