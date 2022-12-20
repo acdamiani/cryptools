@@ -6,6 +6,11 @@ import Converter, {
 } from '@/components/Converter/converter';
 import DecimalConverter from '@/src/converters/dec';
 import { useRouter } from 'next/router';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `Decimal to Binary Converter - Cryptools`;
+const description = `Decimal number to binary converter.`;
+const og: OpenGraph = { url: `https://cryptools.dev/converters/dec-to-binary` };
 
 export default function DecToHex() {
   const router = useRouter();
@@ -39,6 +44,7 @@ export default function DecToHex() {
 
   return (
     <>
+      <Meta title={title} description={description} og={og} />
       <h1>Decimal to Binary Converter</h1>
       <Area>
         <Converter

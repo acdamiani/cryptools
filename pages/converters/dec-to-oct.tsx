@@ -6,6 +6,11 @@ import Converter, {
 } from '@/components/Converter/converter';
 import DecimalConverter from '@/src/converters/dec';
 import { useRouter } from 'next/router';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `Decimal to Octal Converter - Cryptools`;
+const description = `Decimal number to octal converter.`;
+const og: OpenGraph = { url: `https://cryptools.dev/converters/dec-to-oct` };
 
 export default function DecToHex() {
   const router = useRouter();
@@ -39,6 +44,7 @@ export default function DecToHex() {
 
   return (
     <>
+      <Meta title={title} description={description} og={og} />
       <h1>Decimal to Octal Converter</h1>
       <Area>
         <Converter
