@@ -1,6 +1,6 @@
 import GithubIcon from '@/public/svg/brands/github.svg';
 import TwitterIcon from '@/public/svg/brands/twitter.svg';
-import EmailIcon from '@/public/svg/email.svg';
+import { MailIcon } from '@primer/octicons-react';
 import styles from '@/components/Footer/footer.module.css';
 import Link from '../Link/link';
 
@@ -29,7 +29,7 @@ export default function Footer() {
             href="mailto:damiani.august@gmail.com"
             aria-label="email"
           >
-            <EmailIcon className={styles.socialLinkIcon} />
+            <MailIcon className={styles.socialLinkIcon} />
           </a>
         </div>
       </div>

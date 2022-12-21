@@ -25,9 +25,7 @@ export default class OctalConverter extends Converter {
     value = value.replace(Converter._reStripWhitespace, ``);
 
     if (!OctalConverter._reTestOctal.test(value)) {
-      throw new Error(
-        `Given value ${value} is not representible by this converter`,
-      );
+      throw new Error(ConverterErrors[`invalid-value`]);
     }
 
     return value;

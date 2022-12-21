@@ -96,6 +96,7 @@ export default function BinaryToAscii() {
         </li>
         <li>Get the completed message.</li>
       </ol>
+      <h3>Example</h3>
       <p>
         Converting{` `}
         <code>
