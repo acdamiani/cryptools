@@ -81,9 +81,16 @@ export default function BinaryToDec() {
         to decimal:
       </p>
       <p>
+        <code>
+          101111010<sub>2</sub> = 1×2<sup>8</sup>+0×2<sup>7</sup>+1×2
+          <sup>6</sup>+1×2<sup>5</sup>+1×2<sup>4</sup>+1×2<sup>3</sup>+0×2
+          <sup>2</sup>+1×2<sup>1</sup>+0×2<sup>0</sup>
+        </code>
+      </p>
+      <p>
         Thus,{` `}
         <code>
-          101111010<sub>2</sub> = 572<sub>8</sub>
+          101111010<sub>2</sub> = 378<sub>10</sub>
         </code>
       </p>
     </>
