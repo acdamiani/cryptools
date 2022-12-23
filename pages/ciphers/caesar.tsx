@@ -11,8 +11,91 @@ import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { FormEvent, useId, useRef, useState } from 'react';
 import Link from '@/components/Link/link';
 import useFormFill from 'hooks/useFormFill';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
+import highlight from '@/src/code';
 
-export default function Caesar() {
+const title = `Caesar Cipher Encode and Decode - Cryptools`;
+const description = `Caesar cipher encoder and decoder`;
+const og: OpenGraph = { url: `https://cryptools.dev/ciphers/caesar` };
+
+const CODE_SNIPPETS: CodeBlockHTML = {
+  python: `import string
+
+text = 'hello world'
+shift = 11
+
+alphabet = string.ascii_lowercase
+shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+table = str.maketrans(alphabet, shifted_alphabet)
+
+print(f'Shifting {text} by {shift}: {text.translate(table)}')`,
+  csharp: `using System;
+using System.Linq;
+  
+string text = "hello world";
+int shift = 11;
+
+string alphabet = "abcdefghijklmnopqrstuvwxyz";
+string shiftedAlphabet = alphabet.Substring(shift) + alphabet.Substring(0, shift);
+
+string table = String.Concat(text.Select(x => {
+    int index = alphabet.IndexOf(x);
+    return index > -1 ? shiftedAlphabet[index] : x;
+}));
+
+Console.WriteLine($"Shifting {text} by {shift}: {table}");`,
+  javascript: `const text = "hello world";
+const shift = 11;
+
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const shiftedAlphabet =
+  alphabet.substring(shift) + alphabet.substring(0, shift);
+
+const table = [...text]
+  .map((x) => {
+    const index = alphabet.indexOf(x);
+    return index > -1 ? shiftedAlphabet[index] : x;
+  })
+  .join("");
+
+console.log(\`Shifting \${text} by \${shift}: \${table}\`);`,
+  go: `package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	text := "hello world"
+	shift := 11
+
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	shifted_alphabet := alphabet[shift:] + alphabet[:shift]
+
+	table := strings.Map(func(r rune) rune {
+		index := strings.IndexRune(alphabet, r)
+		if index > -1 {
+			return rune(shifted_alphabet[index])
+		} else {
+			return r
+		}
+	}, text)
+
+	fmt.Println(fmt.Sprintf("Shifting %s by %d: %s", text, shift, table))
+}`,
+  ruby: `text = 'hello world'
+shift = 11
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+shifted_alphabet = alphabet[shift..] + alphabet[0..shift - 1]
+table = text.tr(alphabet, shifted_alphabet)
+
+puts "Shifting #{text} by #{shift}: #{table}"`,
+};
+
+export default function Caesar({ code }: { code: CodeBlockHTML }) {
   const inputId = useId();
   const keyId = useId();
   const alphabetId = useId();
@@ -45,7 +128,8 @@ export default function Caesar() {
 
   return (
     <>
-      <h1>Caesar Cipher Encode and Decode Online</h1>
+      <Meta title={title} description={description} og={og} />
+      <h1>Caesar Cipher Encoder and Decoder</h1>
       <Area>
         <Tool generateOutput={doConvert} ref={ref}>
           <Row>
@@ -84,11 +168,13 @@ export default function Caesar() {
             initialValue={true}
           />
         </Tool>
+        <strong>Code Snippets</strong>
+        <CodeBlock snippets={code} />
       </Area>
       <h2>The Caesar cipher</h2>
       <main>
         <p>
-          The Caesar Cipher is one of the most famous encryption methods, named
+          The Caesar cipher is one of the most famous encryption methods, named
           after Julius Caesar, who used it to obsure his private
           correspondences. It&apos;s method for ecncryption and decryption is
           extremely simple. It requires a key, which can be any integer,
@@ -229,4 +315,10 @@ export default function Caesar() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }
