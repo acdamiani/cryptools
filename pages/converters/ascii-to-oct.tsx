@@ -82,7 +82,7 @@ export default function AsciiToOct() {
         <p>Using the ASCII table, the conversion is as follows:</p>
         <p>
           <code>
-            &quot;A&quot; = 65<sub>10</sub> = 64×1+1 = 64×1<sup>2</sup>+0
+            &quot;A&quot; = 65<sub>10</sub> = 64×1+1 = 64×8<sup>2</sup>+0×8
             <sup>1</sup>+1×8
             <sup>0</sup> = 101<sub>8</sub>
           </code>
