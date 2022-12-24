@@ -86,8 +86,28 @@ export default function Home() {
             }
           />
         </Area>
-        <h3></h3>
       </div>
+      <h2>A Disclaimer About Code Samples</h2>
+      <p>
+        The code samples on the pages that you visit are intended to be short
+        programs that you can run on your machine to get a quick view of what an
+        algorithm is doing. They do <b>not</b> have feature parity with the
+        functions on the pages themselves. For example, the Caesar cipher code
+        samples will not deal with capitalization at all.
+      </p>
+      <p>
+        These code samples can be run with the latest versions of their
+        respective languages/runtimes. I have made an effort to be as concise
+        and true to the language as possible. However, languages that I am less
+        familiar with (Ruby, Go, etc.) will likely have code samples that leave
+        room for improvement. If you&apos;d like to refine or modify them,
+        please submit a pull request on {` `}
+        <Link href="https://github.com/acdamiani/cryptools">GitHub</Link>.
+      </p>
+      <p>
+        Also, <i>please</i> don&apos;t use the code provided here in production
+        without rigorous testing.
+      </p>
     </>
   );
 }
