@@ -16,8 +16,114 @@ import TabulaRecta from '@/public/svg/tabula-recta.svg';
 import { MathJaxContext, MathJax } from 'better-react-mathjax';
 import Scrollable from '@/components/Scrollable/scrollable';
 import useFormFill from 'hooks/useFormFill';
+import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+import highlight from '@/src/code';
 
-export default function Caesar() {
+const title = `Vigenere Cipher Encode and Decode - Cryptools`;
+const description = `Vigenere cipher encoder and decoder.`;
+const og: OpenGraph = { url: `https://cryptools.dev/ciphers/vigenere` };
+
+const CODE_SNIPPETS: CodeBlockHTML = {
+  javascript: `const key = "cryptools";
+const text = "hello world";
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+let i = 0;
+const result = [...text]
+  .map((v) => {
+    const keyIndex = alphabet.indexOf(key[i % key.length]);
+    const textIndex = alphabet.indexOf(v);
+    if (keyIndex === -1 || textIndex === -1) {
+      return v;
+    }
+    i++;
+    return alphabet[(keyIndex + textIndex) % alphabet.length];
+  })
+  .join("");
+
+console.log(\`Ciphering "\${text}" using key "\${key}": "\${result}"\`);`,
+  csharp: `using System;
+using System.Linq;
+
+string key = "cryptools";
+string text = "hello world";
+string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+int i = 0;
+string result = String.Concat(text.Select(v =>{
+  int keyIndex = alphabet.IndexOf(key[i % key.Length]);
+  int textIndex = alphabet.IndexOf(v);
+  if (keyIndex == -1 || textIndex == -1) {
+    return v;
+  }
+  i++;
+  return alphabet[(keyIndex + textIndex) % alphabet.Length];
+}));
+
+Console.WriteLine($"Ciphering \\"{text}\\" using key \\"{key}\\": \\"{result}\\"");`,
+  go: `package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	key := "cryptools"
+	text := "hello world"
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+
+	i := 0
+	result := strings.Map(func(r rune) rune {
+		keyIndex := strings.IndexRune(alphabet, rune(key[i%len(key)]))
+		textIndex := strings.IndexRune(alphabet, r)
+		if keyIndex == -1 || textIndex == -1 {
+			return r
+		}
+		i++
+		return rune(alphabet[(keyIndex+textIndex)%len(alphabet)])
+	}, text)
+
+	fmt.Println(fmt.Sprintf("Ciphering %s using key %s: %s", text, key, result))
+}`,
+  python: `import string
+
+key = 'cryptools'
+text = 'hello world'
+alphabet = string.ascii_lowercase
+
+def encode_char(v: str):
+    try:
+        key_index = alphabet.index(key[encode_char.i % len(key)])
+        text_index = alphabet.index(v)
+    except ValueError:
+        return v
+    encode_char.i += 1
+    return alphabet[(key_index + text_index) % len(alphabet)]
+
+encode_char.i = 0;
+result = ''.join(map(encode_char, text))
+
+print(f'Ciphering "{text}" using key "{key}": "{result}"')`,
+  ruby: `key = 'cryptools'
+text = 'hello world'
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+i = 0
+result = text.chars.map do |v|
+  key_index = alphabet.index(key[i % key.length])
+  text_index = alphabet.index(v)
+  next v if key_index.nil? || text_index.nil?
+
+  i += 1
+  alphabet[(key_index + text_index) % alphabet.length]
+end
+
+puts "Ciphering \\"#{text}\\" using key \\"#{key}\\": \\"#{result.join('')}\\""`,
+};
+
+export default function Caesar({ code }: { code: CodeBlockHTML }) {
   const inputId = useId();
   const keyId = useId();
   const alphabetId = useId();
@@ -54,7 +160,8 @@ export default function Caesar() {
 
   return (
     <>
-      <h1>Vigenere Cipher Encode and Decode Online</h1>
+      <Meta title={title} description={description} og={og} />
+      <h1>Vigenere Cipher Encoder and Decoder</h1>
       <Area>
         <Tool generateOutput={doConvert} ref={ref}>
           <Row>
@@ -104,6 +211,7 @@ export default function Caesar() {
             initialValue={true}
           />
         </Tool>
+        <CodeBlock snippets={code} />
       </Area>
       <h2>The Vigenère cipher</h2>
       <main>
@@ -204,4 +312,10 @@ export default function Caesar() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: { code: await highlight(CODE_SNIPPETS) },
+  };
 }
