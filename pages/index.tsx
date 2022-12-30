@@ -87,7 +87,7 @@ export default function Home() {
           />
         </Area>
       </div>
-      <h2>A Disclaimer About Code Samples</h2>
+      <h2>About the Code Samples</h2>
       <p>
         The code samples on the pages that you visit are intended to be short
         programs that you can run on your machine to get a quick view of what an
