@@ -1,14 +1,14 @@
 import Cipher from './cipher';
 import CaesarCipher from './caesar';
 
-type Variant = `rot5` | `rot13` | `rot18` | `rot47`;
+export type ROTVariant = `rot5` | `rot13` | `rot18` | `rot47`;
 
-export default class Rot13Cipher extends Cipher {
+export default class ROTCipher extends Cipher {
   _c1: CaesarCipher;
   _c2: CaesarCipher | null;
-  _variant: Variant;
+  _variant: ROTVariant;
 
-  constructor(variant: Variant = `rot13`) {
+  constructor(variant: ROTVariant = `rot13`) {
     super();
 
     this._variant = variant;
@@ -28,7 +28,9 @@ export default class Rot13Cipher extends Cipher {
       case `rot47`:
         this._c1 = new CaesarCipher(
           47,
-          `!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\`abcdefghijklmnopqrstuvwxyz{|}~`,
+          `!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\`abcdefghijklmnopqrstuvwxyz{|}~`,
+          undefined,
+          false,
         );
         break;
     }
@@ -37,8 +39,6 @@ export default class Rot13Cipher extends Cipher {
   _encodeInternal(message: string) {
     if (this._variant === `rot18`) {
       const messages = message.match(/\D+|[0-9]+/g);
-
-      // console.log(messages);
 
       if (!messages || !this._c2) return message;
 

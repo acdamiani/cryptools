@@ -33,9 +33,9 @@ export default function useFormFill(
       )?.set;
 
       if (valueSetter && valueSetter !== pValueSetter) {
-        pValueSetter?.call(element, param);
-      } else {
         valueSetter?.call(element, param);
+      } else {
+        pValueSetter?.call(element, param);
       }
 
       element.dispatchEvent(

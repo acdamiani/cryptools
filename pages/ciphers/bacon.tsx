@@ -1,6 +1,6 @@
 import Area from '@/components/Area/area';
 import Tool from '@/components/Tool/tool';
-import { FormEvent, useId } from 'react';
+import { FormEvent, useId, useRef } from 'react';
 import BaconCipher, { BaconVariant } from '@/src/ciphers/bacon';
 import Row from '@/components/Row/row';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
@@ -10,6 +10,7 @@ import ToggleSwitch from '@/components/ToggleSwitch/toggle-switch';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import useFormFill from '@/hooks/useFormFill';
 
 const title = `Bacon Cipher Encode and Decode - Cryptools`;
 const description = `Bacon cipher encoder and decoder, with C#, Python, Javascript, Ruby, and Go code samples.`;
@@ -123,6 +124,9 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
   const inputId = useId();
   const variantId = useId();
 
+  const ref = useRef<HTMLFormElement>(null);
+  useFormFill(ref, [`input`, `a-mark`, `b-mark`, `variant`]);
+
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
       input: { value: string };
@@ -146,9 +150,9 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
   return (
     <>
       <Meta title={title} description={description} og={og} />
-      <h1>Bacon Cipher Encode and Decode Online</h1>
+      <h1>Bacon Cipher Encoder and Decoder</h1>
       <Area>
-        <Tool generateOutput={doConvert}>
+        <Tool generateOutput={doConvert} ref={ref}>
           <Row>
             <LabeledElement content="A Mark" htmlFor={aId}>
               <TextArea

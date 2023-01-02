@@ -89,8 +89,8 @@ func main() {
 }`,
   python: `import string
 
-key = 'cryptools'
-text = 'hello world'
+key = "cryptools"
+text = "hello world"
 alphabet = string.ascii_lowercase
 
 def encode_char(v: str):
@@ -103,9 +103,9 @@ def encode_char(v: str):
     return alphabet[(key_index + text_index) % len(alphabet)]
 
 encode_char.i = 0;
-result = ''.join(map(encode_char, text))
+result = "".join(map(encode_char, text))
 
-print(f'Ciphering "{text}" using key "{key}": "{result}"')`,
+print(f"Ciphering {text} using key {key}: {result}")`,
   ruby: `key = 'cryptools'
 text = 'hello world'
 alphabet = 'abcdefghijklmnopqrstuvwxyz'

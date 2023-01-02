@@ -22,14 +22,14 @@ const og: OpenGraph = { url: `https://cryptools.dev/ciphers/caesar` };
 const CODE_SNIPPETS: CodeBlockHTML = {
   python: `import string
 
-text = 'hello world'
+text = "hello world"
 shift = 11
 
 alphabet = string.ascii_lowercase
 shifted_alphabet = alphabet[shift:] + alphabet[:shift]
 table = str.maketrans(alphabet, shifted_alphabet)
 
-print(f'Shifting {text} by {shift}: {text.translate(table)}')`,
+print(f"Shifting {text} by {shift}: {text.translate(table)}")`,
   csharp: `using System;
 using System.Linq;
   
