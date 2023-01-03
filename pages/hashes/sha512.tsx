@@ -3,6 +3,12 @@ import Hash from '@/components/Hash/hash';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import BrowserHash from '@/src/hashes/browser';
 import highlight from '@/src/code';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Link from '@/components/Link/link';
+
+const title = `SHA-512 Hash Generator - Cryptools`;
+const description = `SHA-512 hash generator from a string or bytes, with C#, Python, Javascript, Ruby, and Go code samples.`;
+const og: OpenGraph = { url: `https://cryptools.dev/hashes/sha512` };
 
 const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
@@ -10,25 +16,24 @@ using System.Text;
 using System.Security.Cryptography;
 
 string message = "Hello World";
-SHA512Managed hash = new SHA512Managed();
+SHA512 hash = SHA512.Create();
 
 string hashed = String.Empty;
 byte[] bytes = hash.ComputeHash(Encoding.ASCII.GetBytes(message));
 
-foreach (byte b in bytes)
-{
+foreach (byte b in bytes) {
   hashed += b.ToString("x2");
 }
 
-Console.WriteLine("Computed hash of {0}: {1}", message, hashed);`,
+Console.WriteLine($"Computed hash of {message}: {hashed}");`,
   javascript: `// using Node.js crypto
-const crypto = require('crypto');
+const crypto = require("crypto");
 
-const message = 'Hello World';
+const message = "Hello World";
 
-const hash = crypto.createHash('sha512')
+const hash = crypto.createHash("sha512")
   .update(message)
-  .digest('hex');
+  .digest("hex");
 
 console.log(\`Computed hash of \${message}: \${hash}\`);`,
   ruby: `require 'digest'
@@ -39,33 +44,10 @@ hash = Digest::SHA512.hexdigest(message);
 puts "Computed hash of #{message}: #{hash}"`,
   python: `from hashlib import sha512
   
-message = 'Hello World'
-hash = sha512(message.encode('utf-8')).hexdigest()
+message = "Hello World"
+hash = sha512(message.encode("utf-8")).hexdigest()
 
-print(f'Computed hash of {message}: {hash}')`,
-  java: `import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.nio.charset.StandardCharsets;
-
-String message = "Hello World";
-
-try {
-  byte[] bytes = MessageDigest
-      .getInstance("SHA-512")
-      .digest(message.getBytes(StandardCharsets.UTF_8));
-
-  String hash = "";
-      
-  for (byte b: bytes)
-  {
-      hash += String.format("%02x", b);
-  }
-  
-  System.out.println(String.format("Computed hash of %s: %s", message, hash));
-}
-catch (NoSuchAlgorithmException e) {
-  System.out.println("No such algorithm: " + e);
-}`,
+print(f"Computed hash of {message}: {hash}")`,
   go: `package main
 
 import (
@@ -89,7 +71,8 @@ export default function SHA512({ code }: { code: CodeBlockHTML }) {
 
   return (
     <>
-      <h1>SHA-512 Hash Generator Online</h1>
+      <Meta title={title} description={description} og={og} />
+      <h1>SHA-512 Hash Generator</h1>
       <Area>
         <Hash
           hash={sha512.hash.bind(sha512)}
@@ -99,6 +82,21 @@ export default function SHA512({ code }: { code: CodeBlockHTML }) {
         />
         <CodeBlock snippets={code} />
       </Area>
+      <main>
+        <h2>The SHA-512 hash</h2>
+        <p>
+          SHA-512 is part of the SHA-2 hash algorithm family. It is a hash
+          function that takes an arbitrary inputs of bytes and produces a 64
+          byte output (512 bit). This algorithm, along with{` `}
+          <Link href="/hashes/sha256">SHA-256</Link>, are used extensively
+          thoughout the internet, government applications, operating systems,
+          and almost every area of modern life.
+        </p>
+        <p>
+          After the weaknesses of the SHA-1 algorithm was exposed, the NSA began
+          developing the SHA-2 family of hashing functions.
+        </p>
+      </main>
     </>
   );
 }

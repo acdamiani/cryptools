@@ -4,6 +4,11 @@ import BrowserHash from '@/src/hashes/browser';
 import Link from '@/components/Link/link';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `SHA-256 Hash Generator - Cryptools`;
+const description = `SHA-256 hash generator from a string or bytes, with C#, Python, Javascript, Ruby, and Go code samples.`;
+const og: OpenGraph = { url: `https://cryptools.dev/hashes/sha256` };
 
 const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
@@ -11,25 +16,24 @@ using System.Text;
 using System.Security.Cryptography;
 
 string message = "Hello World";
-SHA256Managed hash = new SHA256Managed();
+SHA256 hash = SHA256.Create();
 
 string hashed = String.Empty;
 byte[] bytes = hash.ComputeHash(Encoding.ASCII.GetBytes(message));
 
-foreach (byte b in bytes)
-{
+foreach (byte b in bytes) {
   hashed += b.ToString("x2");
 }
 
-Console.WriteLine("Computed hash of {0}: {1}", message, hashed);`,
+Console.WriteLine($"Computed hash of {message}: {hashed}");`,
   javascript: `// using Node.js crypto
-const crypto = require('crypto');
+const crypto = require("crypto");
 
-const message = 'Hello World';
+const message = "Hello World";
 
-const hash = crypto.createHash('sha256')
+const hash = crypto.createHash("sha256")
   .update(message)
-  .digest('hex');
+  .digest("hex");
 
 console.log(\`Computed hash of \${message}: \${hash}\`);`,
   ruby: `require 'digest'
@@ -40,33 +44,10 @@ hash = Digest::SHA256.hexdigest(message);
 puts "Computed hash of #{message}: #{hash}"`,
   python: `from hashlib import sha256
   
-message = 'Hello World'
-hash = sha256(message.encode('utf-8')).hexdigest()
+message = "Hello World"
+hash = sha256(message.encode("utf-8")).hexdigest()
 
-print(f'Computed hash of {message}: {hash}')`,
-  java: `import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.nio.charset.StandardCharsets;
-
-String message = "Hello World";
-
-try {
-  byte[] bytes = MessageDigest
-      .getInstance("SHA-256")
-      .digest(message.getBytes(StandardCharsets.UTF_8));
-
-  String hash = "";
-      
-  for (byte b: bytes)
-  {
-      hash += String.format("%02x", b);
-  }
-  
-  System.out.println(String.format("Computed hash of %s: %s", message, hash));
-}
-catch (NoSuchAlgorithmException e) {
-  System.out.println("No such algorithm: " + e);
-}`,
+print(f"Computed hash of {message}: {hash}")`,
   go: `package main
 
 import (
@@ -90,7 +71,8 @@ export default function SHA256({ code }: { code: CodeBlockHTML }) {
 
   return (
     <>
-      <h1>SHA-256 Hash Generator Online</h1>
+      <Meta title={title} description={description} og={og} />
+      <h1>SHA-256 Hash Generator</h1>
       <Area>
         <Hash
           hash={sha256.hash.bind(sha256)}
@@ -100,7 +82,7 @@ export default function SHA256({ code }: { code: CodeBlockHTML }) {
         <strong>Code Examples</strong>
         <CodeBlock snippets={code} />
       </Area>
-      <h2>SHA-256 Hash Algorithm</h2>
+      <h2>The SHA-256 hash</h2>
       <p>
         SHA-256 is part of the SHA-2 hash algorithm family. It is a hash
         function that takes an arbitrary inputs of bytes and produces a 32 byte

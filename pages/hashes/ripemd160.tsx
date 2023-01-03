@@ -3,6 +3,11 @@ import Hash from '@/components/Hash/hash';
 import RIPEMD160Hash from '@/src/hashes/ripemd160';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `RIPEMD-160 Hash Generator - Cryptools`;
+const description = `RIPEMD-160 hash generator from a string or bytes, with C#, Python, Javascript, Ruby, and Go code samples.`;
+const og: OpenGraph = { url: `https://cryptools.dev/hashes/ripemd160` };
 
 const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
@@ -10,25 +15,24 @@ using System.Text;
 using System.Security.Cryptography;
 
 string message = "Hello World";
-RIPEMD160Managed hash = new RIPEMD160Managed();
+RIPEMD160 hash = RIPEMD160.Create();
 
 string hashed = String.Empty;
 byte[] bytes = hash.ComputeHash(Encoding.ASCII.GetBytes(message));
 
-foreach (byte b in bytes)
-{
+foreach (byte b in bytes) {
   hashed += b.ToString("x2");
 }
 
-Console.WriteLine("Computed hash of {0}: {1}", message, hashed);`,
+Console.WriteLine($"Computed hash of {message}: {hashed}");`,
   javascript: `// using Node.js crypto
-const crypto = require('crypto');
+const crypto = require("crypto");
 
-const message = 'Hello World';
+const message = "Hello World";
 
-const hash = crypto.createHash('ripemd160')
+const hash = crypto.createHash("ripemd160")
   .update(message)
-  .digest('hex');
+  .digest("hex");
 
 console.log(\`Computed hash of \${message}: \${hash}\`);`,
   ruby: `require 'digest'
@@ -39,10 +43,10 @@ hash = Digest::RMD160.hexdigest(message)
 puts "Computed hash of #{message}: #{hash}"`,
   python: `from hashlib import new
 
-message = 'Hello World'
-hash = new('ripemd160', message.encode('utf-8')).hexdigest()
+message = "Hello World"
+hash = new("ripemd160", message.encode("utf-8")).hexdigest()
 
-print(f'Computed hash of {message}: {hash}')`,
+print(f"Computed hash of {message}: {hash}")`,
 };
 
 export default function RIPEMD160({ code }: { code: CodeBlockHTML }) {
@@ -50,7 +54,8 @@ export default function RIPEMD160({ code }: { code: CodeBlockHTML }) {
 
   return (
     <>
-      <h1>RIPEMD-160 Hash Generator Online</h1>
+      <Meta title={title} description={description} og={og} />
+      <h1>RIPEMD-160 Hash Generator</h1>
       <Area>
         <Hash
           hash={ripemd160.hash.bind(ripemd160)}

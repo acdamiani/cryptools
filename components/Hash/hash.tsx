@@ -59,10 +59,10 @@ export default function Hash({
   ): string | Promise<string> => {
     const target = e.target as typeof e.target & {
       input: { value: string };
-      interpret: { checked: boolean };
+      bytes: { checked: boolean };
     };
 
-    if (!target.interpret.checked) {
+    if (!target.bytes.checked) {
       return hash(target.input.value);
     } else {
       if (target.input.value === ``) {
@@ -99,7 +99,7 @@ export default function Hash({
           ))}
         </Select>
       </LabeledElement>
-      <ToggleSwitch leftContent="Text" rightContent="Bytes" name="interpret" />
+      <ToggleSwitch leftContent="Text" rightContent="Bytes" name="bytes" />
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
         <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
       </LabeledElement>
