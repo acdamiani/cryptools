@@ -9,6 +9,7 @@ import LabeledElement from '../LabeledElement/labeled-element';
 import Tool from '../Tool/tool';
 import Row from '../Row/row';
 import { useRouter } from 'next/router';
+import useFormFill from '@/hooks/useFormFill';
 
 const selectOptions = [
   `text`,
@@ -72,23 +73,14 @@ export default function Converter({
   const toId = useId();
   const inputId = useId();
   const delimiterId = useId();
+  const prefixId = useId();
 
   const [fromValue, setFromValue] = useState<SelectOptions>(initialFrom);
   const [toValue, setToValue] = useState<SelectOptions>(initialTo);
   const [delimiter, setDelimiter] = useState<DelimiterOptions>(`space`);
 
-  const router = useRouter();
-  const defaultInput = router.query[`input`];
-
   const ref = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (defaultInput && ref.current) {
-      ref.current.dispatchEvent(
-        new Event(`submit`, { cancelable: true, bubbles: true }),
-      );
-    }
-  }, [defaultInput]);
+  useFormFill(ref, [`from`, `to`]);
 
   useEffect(() => {
     onTargetsChange?.(fromValue, toValue);
@@ -193,13 +185,7 @@ export default function Converter({
         </LabeledElement>
       </Row>
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>
-        <TextArea
-          rows={3}
-          id={inputId}
-          name="input"
-          spellCheck="false"
-          defaultValue={defaultInput}
-        />
+        <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
       </LabeledElement>
       {showDelimiter && (
         <LabeledElement htmlFor={delimiterId} content="Delimiter">
@@ -207,7 +193,6 @@ export default function Converter({
             <Select
               id={delimiterId}
               name="delimiter"
-              value={delimiter}
               onChange={(e) => setDelimiter(e.target.value as DelimiterOptions)}
             >
               {delimiterOptions.map((x) => (
@@ -227,7 +212,12 @@ export default function Converter({
         </LabeledElement>
       )}
       {showPrefix && (
-        <Toggle label={`Add '${prefixText}' Prefix`} name="prefix" />
+        <LabeledElement
+          htmlFor={prefixId}
+          content={`Add '${prefixText}' Prefix`}
+        >
+          <Toggle name="prefix" id={prefixId} />
+        </LabeledElement>
       )}
     </Tool>
   );

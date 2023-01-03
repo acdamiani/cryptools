@@ -95,7 +95,7 @@ export default function ROT13({ code }: { code: CodeBlockHTML }) {
 
   const ref = useRef<HTMLFormElement>(null);
 
-  useFormFill(ref, [`input`, `variant`]);
+  useFormFill(ref);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {

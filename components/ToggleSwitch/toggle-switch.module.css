@@ -2,14 +2,16 @@
   display: flex;
   align-items: center;
   gap: 7px;
-} 
+}
 
 .content {
   display: inline-block;
   line-height: normal;
   transition: color 0.15s ease;
+  user-select: none;
 }
 
 .highlight {
   color: var(--ct-c-primary);
 }
+

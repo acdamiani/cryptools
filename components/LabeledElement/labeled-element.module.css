@@ -1,19 +1,10 @@
 .element {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  flex: 1;
-}
-
-.element-no-flex {
-  display: flex;
-  flex-direction: column;
   gap: 5px;
 }
 
 @media only screen and (max-width: 600px) {
-  .element,
-  .element-no-flex {
+  .element {
     width: 100%;
   }
 }

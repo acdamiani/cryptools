@@ -39,7 +39,7 @@ export default function TextArea({
             color: ${textColor};
             background-color: ${backgroundColor};
             border: ${borderWidth} solid ${borderColor};
-            white-space: ${thin ? `nowrap` : `unset`};
+            white-space: ${thin ? `nowrap` : `pre`};
           }
           textarea:focus {
             border-color: ${borderColorFocused};

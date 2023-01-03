@@ -3,83 +3,71 @@ import {
   useEffect,
   InputHTMLAttributes,
   useRef,
-  ReactNode,
+  forwardRef,
 } from 'react';
-import { CircleIcon } from '@primer/octicons-react';
 
 import styles from '@/components/Toggle/toggle.module.css';
 
-interface ToggleProps {
-  label?: string;
-  initialValue?: boolean;
-  value?: boolean;
-  onValueChange?: (value: boolean) => void;
-  id?: string;
-}
-
 export type Props = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'checked'
-> &
-  ToggleProps;
+  'readonly' | 'type'
+>;
 
-export default function Toggle({
-  initialValue,
-  value,
-  onValueChange,
-  id,
-  label,
-  ...props
-}: Props) {
-  const inputRef = useRef<HTMLInputElement>(null);
+const Toggle = forwardRef<HTMLInputElement, Props>(
+  ({ id, onChange, ...props }, ref) => {
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [toggled, setToggled] = useState<boolean>(
-    initialValue ?? value ?? false,
-  );
-  const isToggled = value ?? toggled;
+    const [toggled, setToggled] = useState<boolean>(
+      props.checked || props.defaultChecked || false,
+    );
 
-  useEffect(() => {
-    if (!inputRef.current) {
-      return;
-    }
+    useEffect(() => {
+      if (!inputRef.current) {
+        return;
+      }
 
-    if (inputRef.current.checked !== isToggled) {
-      inputRef.current.click();
-    }
-  }, [isToggled]);
+      setToggled(inputRef.current.checked);
+    }, [inputRef]);
 
-  return (
-    <div className={styles.toggle}>
-      {label && <label>{label}</label>}
-      <button
-        className={styles.button}
-        type="button"
-        role="switch"
-        id={id}
-        onClick={() => {
-          setToggled((x) => !x);
-          onValueChange?.(!toggled);
-        }}
-        aria-checked={isToggled}
-      >
-        <input
-          type="checkbox"
-          className={styles.checkbox}
-          ref={inputRef}
-          onClick={(e) => {
-            e.stopPropagation();
-            props.onClick?.(e);
-          }}
-          readOnly
-          {...props}
-        />
-        <span
-          className={styles.check}
-          style={{
-            transform: isToggled ? `translateX(18px)` : `none`,
-          }}
-        />
-      </button>
-    </div>
-  );
-}
+    return (
+      <div className={styles.toggle}>
+        <button
+          className={styles.button}
+          type="button"
+          role="switch"
+          id={id}
+          onClick={() => inputRef.current?.click()}
+          aria-checked={toggled}
+        >
+          <input
+            type="checkbox"
+            className={styles.checkbox}
+            ref={(e) => {
+              inputRef.current = e;
+              if (typeof ref === `function`) {
+                ref(e);
+              } else if (ref) {
+                ref.current = e;
+              }
+            }}
+            onChange={(e) => {
+              setToggled(e.target.checked);
+              onChange?.(e);
+            }}
+            readOnly
+            {...props}
+          />
+          <span
+            className={styles.check}
+            style={{
+              transform: toggled ? `translateX(18px)` : `none`,
+            }}
+          />
+        </button>
+      </div>
+    );
+  },
+);
+
+Toggle.displayName = `Toggle`;
+export default Toggle;

@@ -46,6 +46,7 @@ const Tool = forwardRef<HTMLFormElement, ToolProps>(
     const [auto, setAuto] = useState(true);
     const [errorText, setErrorText] = useState(``);
 
+    const autoId = useId();
     const outputId = useId();
 
     const formRef = useRef<HTMLFormElement | null>(null);
@@ -126,12 +127,14 @@ const Tool = forwardRef<HTMLFormElement, ToolProps>(
         {...props}
       >
         {children}
-        <Toggle
-          name="auto"
-          label="Auto Mode"
-          value={auto}
-          onValueChange={(e) => setAuto(e)}
-        />
+        <LabeledElement content="Auto Mode" htmlFor={autoId} horizontal>
+          <Toggle
+            name="auto"
+            id={autoId}
+            checked={auto}
+            onChange={(e) => setAuto(e.target.checked)}
+          />
+        </LabeledElement>
         <div className={styles.buttons}>
           <Button icon={buttonIcon} type="submit" disabled={auto}>
             {buttonName}

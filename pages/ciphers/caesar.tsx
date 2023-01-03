@@ -99,12 +99,13 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
   const inputId = useId();
   const keyId = useId();
   const alphabetId = useId();
+  const insertInvalidId = useId();
 
   const [alphabet, setAlphabet] = useState(`abcdefghijklmnopqrstuvwxyz`);
 
   const ref = useRef<HTMLFormElement>(null);
 
-  useFormFill(ref, [`input`, `alphabet`, `key`]);
+  useFormFill(ref);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
@@ -156,17 +157,23 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
           <ToggleSwitch
             leftContent="Decode"
             rightContent="Encode"
-            initialValue={true}
+            defaultChecked={true}
             name="mode"
           />
           <LabeledElement content={<strong>Input</strong>}>
             <TextArea rows={3} id={inputId} name="input" spellCheck="false" />
           </LabeledElement>
-          <Toggle
-            name="insert-invalid"
-            label="Insert Invalid"
-            initialValue={true}
-          />
+          <LabeledElement
+            content="Insert Invalid"
+            htmlFor={insertInvalidId}
+            horizontal
+          >
+            <Toggle
+              name="insert-invalid"
+              id={insertInvalidId}
+              defaultChecked={true}
+            />
+          </LabeledElement>
         </Tool>
         <strong>Code Snippets</strong>
         <CodeBlock snippets={code} />

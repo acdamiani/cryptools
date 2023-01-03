@@ -104,7 +104,7 @@ export default function Encoder({
       <ToggleSwitch
         leftContent="Decode"
         rightContent="Encode"
-        initialValue={true}
+        defaultChecked={true}
         name="mode"
       />
       <LabeledElement htmlFor={inputId} content={<strong>Input</strong>}>

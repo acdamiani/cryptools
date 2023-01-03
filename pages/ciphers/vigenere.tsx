@@ -129,10 +129,11 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
   const alphabetId = useId();
   const casingId = useId();
   const variantId = useId();
+  const insertInvalidId = useId();
 
   const ref = useRef<HTMLFormElement>(null);
 
-  useFormFill(ref, [`input`, `alphabet`, `key`]);
+  useFormFill(ref);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
@@ -192,7 +193,7 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
           <ToggleSwitch
             leftContent="Decode"
             rightContent="Encode"
-            initialValue={true}
+            defaultChecked={true}
             name="mode"
           />
           <LabeledElement content={<strong>Input</strong>}>
@@ -205,11 +206,17 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
               <option value="skip">Skip</option>
             </Select>
           </LabeledElement>
-          <Toggle
-            name="insert-invalid"
-            label="Insert Invalid"
-            initialValue={true}
-          />
+          <LabeledElement
+            content="Insert Invalid"
+            htmlFor={insertInvalidId}
+            horizontal
+          >
+            <Toggle
+              name="insert-invalid"
+              id={insertInvalidId}
+              defaultChecked={true}
+            />
+          </LabeledElement>
         </Tool>
         <CodeBlock snippets={code} />
       </Area>
@@ -219,8 +226,9 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
           The Vigenère cipher is a more complex application of the{` `}
           <Link href="/ciphers/caesar">Caesar cipher</Link>, where it encodes
           text using a given key in the form of text. It uses a table of shifted
-          Caesar ciphers, and using the key, uses the table to encode a letter.
-          This table, called a <em>tabula recta</em>, is shown below.
+          Caesar ciphers; the message and key are crossed using the table to
+          encode a letter. This table, called a <em>tabula recta</em>, is shown
+          below.
         </p>
         <Scrollable>
           <TabulaRecta width={500} height={500} />

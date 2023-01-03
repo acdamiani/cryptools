@@ -125,7 +125,7 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
   const variantId = useId();
 
   const ref = useRef<HTMLFormElement>(null);
-  useFormFill(ref, [`input`, `a-mark`, `b-mark`, `variant`]);
+  useFormFill(ref);
 
   const doConvert = (e: FormEvent<HTMLFormElement>) => {
     const target = e.target as typeof e.target & {
@@ -182,7 +182,7 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
           <ToggleSwitch
             leftContent="Decode"
             rightContent="Encode"
-            initialValue={true}
+            defaultChecked={true}
             name="mode"
           />
           <LabeledElement content={<strong>Input</strong>}>

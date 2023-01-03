@@ -9,6 +9,10 @@ export default class A1Z26Cipher extends Cipher<string> {
     alphabet = `abcdefghijklmnopqrstuvwxyz`,
     caseSensitive = false,
   ) {
+    if (key.length === 0) {
+      throw new Error(`The separator should be at least one character long`);
+    }
+
     super(key);
 
     if (!caseSensitive) {
@@ -24,7 +28,7 @@ export default class A1Z26Cipher extends Cipher<string> {
   }
 
   encode(message: string) {
-    let ret = ``;
+    const ret: number[] = [];
 
     if (!this._caseSensitive) {
       message = message.toLowerCase();
@@ -37,10 +41,10 @@ export default class A1Z26Cipher extends Cipher<string> {
         continue;
       }
 
-      ret += index + (i < message.length - 1 ? this._key : ``);
+      ret.push(index + 1);
     }
 
-    return ret;
+    return ret.join(this._key);
   }
 
   decode(message: string) {
@@ -48,7 +52,7 @@ export default class A1Z26Cipher extends Cipher<string> {
     const nums = message.split(this._key);
 
     for (const num of nums) {
-      const i = parseInt(num);
+      const i = parseInt(num) - 1;
 
       if (isNaN(i) || i > this._alphabet.length - 1 || i < 0) {
         continue;

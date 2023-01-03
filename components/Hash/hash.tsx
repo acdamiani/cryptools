@@ -48,8 +48,7 @@ export default function Hash({
   const router = useRouter();
 
   const ref = useRef<HTMLFormElement>(null);
-
-  useFormFill(ref, `input`);
+  useFormFill(ref);
 
   const navigate = (e: ChangeEvent<HTMLSelectElement>) => {
     router.push(`/hashes/${e.target.value}`);
