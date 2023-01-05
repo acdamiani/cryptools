@@ -14,7 +14,7 @@ export default async function highlight(
   const shiki = await import(`shiki`);
   const cheerio = await import(`cheerio`);
 
-  const linkRe = /(?<=\/\/.*)\[([^\]]+)\]\(([^)]+)\)/g;
+  const linkRe = /(?<=(\/\/|#).*)\[([^\]]+)\]\(([^)]+)\)/g;
 
   const highlighter = await shiki.getHighlighter({
     theme: `material-palenight`,
@@ -34,11 +34,18 @@ export default async function highlight(
     const $ = cheerio.load(html);
 
     $(`.line`).each(function (this: any) {
+      if ($(this).text().includes(`google.com`)) {
+        console.log($(this).text());
+        for (const m of $(this).text().matchAll(linkRe)) {
+          console.log(m);
+        }
+        // console.log($(this).text().matchAll(linkRe));
+      }
       for (const match of $(this).text().matchAll(linkRe)) {
         $(this).html(
           $(this)
             .html()!
-            .replace(match[0], `<a href=${match[2]}>${match[1]}</a>`),
+            .replace(match[0], `<a href=${match[3]}>${match[2]}</a>`),
         );
       }
     });

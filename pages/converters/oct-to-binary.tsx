@@ -7,6 +7,7 @@ import Converter, {
 import OctalConverter from '@/src/converters/oct';
 import { useRouter } from 'next/router';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Octal to Binary Converter - Cryptools`;
 const description = `Octal number to binary converter.`;
@@ -81,7 +82,7 @@ export default function OctToBinary() {
           72351<sub>8</sub> = 111010011101001<sub>2</sub>
         </code>
       </p>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Binary</th>
@@ -122,7 +123,7 @@ export default function OctToBinary() {
             <td>7</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
     </>
   );
 }

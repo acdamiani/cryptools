@@ -11,6 +11,7 @@ import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
 import useFormFill from '@/hooks/useFormFill';
+import Table from '@/components/Table/table';
 
 const title = `Bacon Cipher Encode and Decode - Cryptools`;
 const description = `Bacon cipher encoder and decoder, with C#, Python, Javascript, Ruby, and Go code samples.`;
@@ -209,7 +210,7 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
         <p>The code examples above use the unique bacon table.</p>
         <h3>Original Bacon Table</h3>
         <Row>
-          <table>
+          <Table>
             <thead>
               <tr>
                 <th>Letter</th>
@@ -284,8 +285,8 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
                 <td>ababb</td>
               </tr>
             </tbody>
-          </table>
-          <table>
+          </Table>
+          <Table>
             <thead>
               <tr>
                 <th>Letter</th>
@@ -360,11 +361,11 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
                 <td>babbb</td>
               </tr>
             </tbody>
-          </table>
+          </Table>
         </Row>
         <h3>Unique Bacon Table</h3>
         <Row>
-          <table>
+          <Table>
             <thead>
               <tr>
                 <th>Letter</th>
@@ -439,8 +440,8 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
                 <td>abbaa</td>
               </tr>
             </tbody>
-          </table>
-          <table>
+          </Table>
+          <Table>
             <thead>
               <tr>
                 <th>Letter</th>
@@ -515,7 +516,7 @@ export default function Bacon({ code }: { code: CodeBlockHTML }) {
                 <td>bbaab</td>
               </tr>
             </tbody>
-          </table>
+          </Table>
         </Row>
       </main>
     </>

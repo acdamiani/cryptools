@@ -2,8 +2,13 @@ import Area from '@/components/Area/area';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import Encoder from '@/components/Encoder/encoder';
 import LabeledElement from '@/components/LabeledElement/labeled-element';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
 import highlight from '@/src/code';
 import PunycodeEncoder from '@/src/encoders/punycode';
+
+const title = `Punycode Encode and Decode Online - Cryptools`;
+const description = `Online punycode encoder and decoder, with C#, Python, Javascript, Ruby, and Go code samples.`;
+const og: OpenGraph = { url: `https://cryptools.dev/encoders/punycode` };
 
 const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
@@ -11,36 +16,60 @@ using System.Globalization;
   
 IdnMapping mapping = new IdnMapping();
 
-// Encoding domain names
-Console.WriteLine(mapping.GetAscii(@"mañana.com")); // 'xn--maana-pta.com'
-Console.WriteLine(mapping.GetAscii(@"☃-⌘.com")); // 'xn----dqo34k.com'
+string domain = "mañana.com";
 
-// Decoding domain names
-Console.WriteLine(mapping.GetUnicode("xn--maana-pta.com")); // 'mañana.com'
-Console.WriteLine(mapping.GetUnicode("xn----dqo34k.com")); // '☃-⌘.com'`,
-  go: `// Using supplementary [idna](https://pkg.go.dev/golang.org/x/net/idna) package
+string ascii = mapping.GetAscii(domain);
+string unicode = mapping.GetUnicode(ascii);
+
+Console.WriteLine($"Punycode mapping of {domain}: {ascii}");
+Console.WriteLine($"Unicode mapping of {ascii}: {unicode}");`,
+  go: `package main
+
+// Using supplementary [idna](https://pkg.go.dev/golang.org/x/net/idna) package
 import (
-  "fmt"
-  "idna"
+	"fmt"
+	"golang.org/x/net/idna"
 )
 
-// Encoding domain names
-fmt.Println(idna.ToASCII("mañana.com")) // 'xn--maana-pta.com'
-fmt.Println(idna.ToASCII("☃-⌘.com")) // 'xn----dqo34k.com'
+func main() {
+	domain := "mañana.com"
 
-// Decoding domain names
-fmt.Println(idna.ToUnicode("xn--maana-pta.com")) // 'mañana.com'
-fmt.Println(idna.ToUnicode("xn----dqo34k.com")) // '☃-⌘.com'`,
-  javascript: `// Using the [punycode](https://www.npmjs.com/package/punycode) library
-const punycode = require('punycode');
+	ascii, _ := idna.ToASCII(domain)
+	unicode, _ := idna.ToUnicode(ascii)
 
-// Encoding domain names
-console.log(punycode.toASCII('mañana.com')); // 'xn--maana-pta.com'
-console.log(punycode.toASCII('☃-⌘.com')); // 'xn----dqo34k.com'
+	fmt.Printf("Puncyode mapping of %s: %s\\n", domain, ascii)
+	fmt.Printf("Unicode maping of %s: %s\\n", ascii, unicode)
+}`,
+  javascript: `// Using the [punycode.js](https://github.com/mathiasbynens/punycode.js) library
+const punycode = require("punycode/");
 
-// Decoding domain names
-console.log(punycode.toUnicode('xn--maana-pta.com')); // 'mañana.com'
-console.log(punycode.toUnicode('xn----dqo34k.com')); // '☃-⌘.com'`,
+const domain = "mañana.com";
+
+const ascii = punycode.toASCII(domain);
+const unicode = punycode.toUnicode(ascii);
+
+console.log(\`Punycode mapping of \${domain}: \${ascii}\`);
+console.log(\`Unicode mapping of \${ascii}: \${domain}\`);`,
+  ruby: `# Using the [simpleidn](https://github.com/mmriis/simpleidn) gem
+require 'simpleidn'
+
+domain = 'mañana.com'
+
+ascii = SimpleIDN.to_ascii(domain)
+unicode = SimpleIDN.to_unicode(ascii)
+
+puts "Punycode mapping of #{domain}: #{ascii}"
+puts "Unicode mapping of #{ascii}: #{unicode}"`,
+  python: `# Using the [idna](https://pypi.org/project/idna) package
+import idna
+
+domain = "mañana.com"
+
+ascii = idna.encode(domain).decode("utf-8")
+unicode = idna.decode(domain)
+
+print(f"Punycode mapping of {domain}: {ascii}")
+print(f"Unicode mapping of {ascii}: {unicode}")`,
 };
 
 export default function Punycode({ code }: { code: CodeBlockHTML }) {
@@ -48,6 +77,7 @@ export default function Punycode({ code }: { code: CodeBlockHTML }) {
 
   return (
     <>
+      <Meta title={title} description={description} og={og} />
       <h1>Punycode Encode and Decode Online</h1>
       <Area>
         <Encoder

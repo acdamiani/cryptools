@@ -152,6 +152,7 @@ h1 {
   margin-right: 0;
   font-weight: bold;
 }
+
 h2 {
   display: block;
   font-size: 1.5em;
@@ -162,6 +163,7 @@ h2 {
   margin-right: 0;
   font-weight: bold;
 }
+
 h3 {
   display: block;
   font-size: 1.17em;
@@ -172,6 +174,7 @@ h3 {
   margin-right: 0;
   font-weight: bold;
 }
+
 h4 {
   display: block;
   margin-top: 1.33em;
@@ -181,6 +184,7 @@ h4 {
   margin-right: 0;
   font-weight: bold;
 }
+
 h5 {
   display: block;
   font-size: 0.83em;
@@ -191,6 +195,7 @@ h5 {
   margin-right: 0;
   font-weight: bold;
 }
+
 h6 {
   display: block;
   font-size: 0.67em;
@@ -202,49 +207,9 @@ h6 {
   font-weight: bold;
 }
 
-table {
-  border: 1px solid var(--ct-c-border);
-  border-collapse: separate;
-  border-left: 0;
-  border-radius: 5px;
-  border-spacing: 0px;
-  color: var(--ct-c-font);
-  margin: 1rem 0;
-}
-
-thead {
-  display: table-header-group;
-  vertical-align: middle;
-  border-color: inherit;
-  border-collapse: separate;
-}
-
-tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
-}
-
-th,
-td {
-  padding: 0.5rem 0.4rem 0.6rem 0.4rem;
-  text-align: center;
-  vertical-align: top;
-  border-left: 1px solid var(--ct-c-border);
-}
-
-td {
-  border-top: 1px solid var(--ct-c-border);
-}
-
-thead:first-child tr:first-child th:first-child,
-tbody:first-child tr:first-child td:first-child {
-  border-radius: 5px 0 0 0;
-}
-
-thead:last-child tr:last-child th:first-child,
-tbody:last-child tr:last-child td:first-child {
-  border-radius: 0 0 0 5px;
+caption {
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 code {

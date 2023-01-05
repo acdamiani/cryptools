@@ -8,6 +8,7 @@ import OctalConverter from '@/src/converters/oct';
 import { useRouter } from 'next/router';
 import Row from '@/components/Row/row';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Octal to Hexadecimal Converter - Cryptools`;
 const description = `Octal number to hexadecimal converter.`;
@@ -96,7 +97,7 @@ export default function DecToHex() {
         </code>
       </p>
       <Row>
-        <table>
+        <Table>
           <thead>
             <tr>
               <th>Oct</th>
@@ -137,8 +138,8 @@ export default function DecToHex() {
               <td>111</td>
             </tr>
           </tbody>
-        </table>
-        <table>
+        </Table>
+        <Table>
           <thead>
             <tr>
               <th>Binary</th>
@@ -179,8 +180,8 @@ export default function DecToHex() {
               <td>7</td>
             </tr>
           </tbody>
-        </table>
-        <table>
+        </Table>
+        <Table>
           <thead>
             <tr>
               <th>Binary</th>
@@ -221,7 +222,7 @@ export default function DecToHex() {
               <td>F</td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </Row>
     </>
   );

@@ -7,6 +7,7 @@ import Converter, {
 import DecimalConverter from '@/src/converters/dec';
 import { useRouter } from 'next/router';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Decimal to Binary Converter - Cryptools`;
 const description = `Decimal number to binary converter.`;
@@ -93,7 +94,7 @@ export default function DecToHex() {
         {` `}
         to binary using the above steps.
       </p>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Division</th>
@@ -163,7 +164,7 @@ export default function DecToHex() {
             <td>1 (1)</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
       <p>
         Thus, the binary value of{` `}
         <code>

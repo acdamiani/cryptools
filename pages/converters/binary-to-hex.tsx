@@ -8,6 +8,7 @@ import BinaryConverter from '@/src/converters/binary';
 import { useRouter } from 'next/router';
 import Row from '@/components/Row/row';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Binary to Hexadecimal Converter - Cryptools`;
 const description = `Binary number to hexadecimal converter.`;
@@ -132,7 +133,7 @@ export default function DecToHex() {
       </p>
       <h3>Conversion table</h3>
       <Row>
-        <table>
+        <Table>
           <thead>
             <tr>
               <th>Binary</th>
@@ -173,8 +174,8 @@ export default function DecToHex() {
               <td>7</td>
             </tr>
           </tbody>
-        </table>
-        <table>
+        </Table>
+        <Table>
           <thead>
             <tr>
               <th>Binary</th>
@@ -215,7 +216,7 @@ export default function DecToHex() {
               <td>F</td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </Row>
     </>
   );

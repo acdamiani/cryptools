@@ -7,6 +7,7 @@ import Converter, {
 import DecimalConverter from '@/src/converters/dec';
 import { useRouter } from 'next/router';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Decimal to Octal Converter - Cryptools`;
 const description = `Decimal number to octal converter.`;
@@ -93,7 +94,7 @@ export default function DecToHex() {
         {` `}
         to octal using the above steps.
       </p>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Division</th>
@@ -123,7 +124,7 @@ export default function DecToHex() {
             <td>4 (4)</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
       <p>
         Thus, the octal value of{` `}
         <code>

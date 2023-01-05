@@ -1,6 +1,8 @@
-export default function ASCIITable() {
+import Table from '@/components/Table/table';
+
+export default function ASCIItable() {
   return (
-    <table>
+    <Table>
       <thead>
         <tr>
           <th>ASCII Character</th>
@@ -779,6 +781,6 @@ export default function ASCIITable() {
           <td>127</td>
         </tr>
       </tbody>
-    </table>
+    </Table>
   );
 }

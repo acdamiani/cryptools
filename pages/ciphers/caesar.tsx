@@ -14,6 +14,7 @@ import useFormFill from 'hooks/useFormFill';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
+import Table from '@/components/Table/table';
 
 const title = `Caesar Cipher Encode and Decode - Cryptools`;
 const description = `Caesar cipher encoder and decoder`;
@@ -190,8 +191,8 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
           alphabet (A-Z) is shifted by both 3 and 7, resulting in the ciphered
           alphabet.
         </p>
-        <table>
-          <thead style={{}}>
+        <Table>
+          <thead>
             <tr>
               <th style={{ textAlign: `left` }}>Alphabet</th>
               <th>A</th>
@@ -282,7 +283,7 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
               <td>G</td>
             </tr>
           </tbody>
-        </table>
+        </Table>
         <p>
           The Message &quot;Hello World&quot; encoded using the second row would
           be &quot;Khoor Zruog&quot;, while encoding it using the third row

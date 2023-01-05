@@ -8,6 +8,7 @@ import HexadecimalConverter from '@/src/converters/hex';
 import { useRouter } from 'next/router';
 import Row from '@/components/Row/row';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Hexadecimal to Binary Converter - Cryptools`;
 const description = `Hexadecimal number to binary converter.`;
@@ -89,9 +90,9 @@ export default function BinaryToOct() {
           f0a183b<sub>16</sub> = 1111000010100001100000111011<sub>2</sub>
         </code>
       </p>
-      <h3>Conversion table</h3>
+      <h3>Conversion Table</h3>
       <Row>
-        <table>
+        <Table>
           <thead>
             <tr>
               <th>Binary</th>
@@ -132,8 +133,8 @@ export default function BinaryToOct() {
               <td>7</td>
             </tr>
           </tbody>
-        </table>
-        <table>
+        </Table>
+        <Table>
           <thead>
             <tr>
               <th>Binary</th>
@@ -174,7 +175,7 @@ export default function BinaryToOct() {
               <td>F</td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </Row>
     </>
   );

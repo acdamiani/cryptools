@@ -7,6 +7,7 @@ import Converter, {
 import DecimalConverter from '@/src/converters/dec';
 import { useRouter } from 'next/router';
 import Meta, { OpenGraph } from '@/components/Meta/meta';
+import Table from '@/components/Table/table';
 
 const title = `Decimal to Hexadecimal Converter - Cryptools`;
 const description = `Decimal number to hexadecimal converter.`;
@@ -93,7 +94,7 @@ export default function DecToHex() {
         {` `}
         to hexadecimal using the above steps.
       </p>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Division</th>
@@ -118,7 +119,7 @@ export default function DecToHex() {
             <td>9 (9)</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
       <p>
         Thus, the hexadecimal value of{` `}
         <code>
