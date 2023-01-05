@@ -27,7 +27,7 @@
 
 .table th,
 .table td {
-  padding: 0.5rem 0.4rem 0.6rem 0.4rem;
+  padding: 0.4rem 0.4rem 0.5rem 0.4rem;
   text-align: center;
   vertical-align: top;
   border-left: 1px solid var(--ct-c-border);

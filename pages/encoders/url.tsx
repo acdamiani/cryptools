@@ -4,6 +4,11 @@ import UrlEncoder from '@/src/encoders/url';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
 import Table from '@/components/Table/table';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `URL Encode and Decode Online - Cryptools`;
+const description = `Online URL encoder and decoder, with C#, Python, Javascript, Ruby, and Go code samples.`;
+const og: OpenGraph = { url: `https://cryptools.dev/encoders/url` };
 
 const CODE_SNIPPETS: CodeBlockHTML = {
   csharp: `using System;
@@ -65,6 +70,7 @@ export default function Url({ code }: { code: CodeBlockHTML }) {
 
   return (
     <>
+      <Meta title={title} description={description} og={og} />
       <h1>URL Encoder and Decoder</h1>
       <Area>
         <Encoder
@@ -152,8 +158,8 @@ export default function Url({ code }: { code: CodeBlockHTML }) {
           hexadecimal bytes and prefix them with a <code>%</code>. For example,
           the forward slash <code>/</code> has a hex code of <code>2f</code>, so
           its percent-encoding is <code>%2f</code>. To encode Unicode
-          characters, the same process is applied for each byte, or each group
-          of two hexadecimal characters.
+          characters, the same process is applied for each byte, creating
+          multiple groups of prefixed hexadecimal characters.
         </p>
         <Table nohead>
           <caption>Reserved characters after percent-encoding</caption>

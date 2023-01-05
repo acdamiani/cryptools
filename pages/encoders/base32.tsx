@@ -9,14 +9,24 @@ import Base32Encoder, {
 import { useId } from 'react';
 import CodeBlock, { CodeBlockHTML } from '@/components/CodeBlock/code-block';
 import highlight from '@/src/code';
+import Link from '@/components/Link/link';
+import Table from '@/components/Table/table';
+import Row from '@/components/Row/row';
+import Meta, { OpenGraph } from '@/components/Meta/meta';
+
+const title = `Base32 Encode and Decode Online - Cryptools`;
+const description = `Online Base32 encoder and decoder, with C#, Python, Javascript, Ruby, and Go code samples.`;
+const og: OpenGraph = { url: `https://cryptools.dev/encoders/base32` };
 
 const CODE_SNIPPETS: CodeBlockHTML = {
-  javascript: `// Using the javascript [base32](https://www.npmjs.com/package/base32) library
-const base32 = require('base32');
+  javascript: `// Using the [base32](https://www.npmjs.com/package/base32) library
+const base32 = require("base32");
 
-// Encoding Base32
+const encoded = base32.encode(message);
+const decoded = base32.decode(encoded);
 
-// Decoding Base32`,
+console.log(\`Base32 encoding of \${message}: \${encoded}\`);
+console.log(\`Base32 decoding of \${encoded}: \${decoded}\`);`,
 };
 
 export default function Base32({ code }: { code: CodeBlockHTML }) {
@@ -24,6 +34,7 @@ export default function Base32({ code }: { code: CodeBlockHTML }) {
 
   return (
     <>
+      <Meta title={title} description={description} og={og} />
       <h1>Base32 Encoder and Decoder</h1>
       <Area>
         <Encoder
@@ -52,6 +63,190 @@ export default function Base32({ code }: { code: CodeBlockHTML }) {
           <CodeBlock snippets={code} />
         </LabeledElement>
       </Area>
+      <main>
+        <h2>The Base32 encoding</h2>
+        <p>
+          Base32 is an encoding comprised of 32 separate characters. Generally,
+          Base32 represents byte strings, in the same way that hexadecimal
+          might. Base32 has a number of advantages as an encoding. For one, it
+          is much more space efficient than hexadecimal, taking up about 20% of
+          the space that hexadecimal might.
+        </p>
+        <p>It also:</p>
+        <ul>
+          <li>
+            is entirely one case, making dictation over the phone or human
+            memory easier
+          </li>
+          <li>
+            can be written into a URL without{` `}
+            <Link href="/encoders/url">percent-encoding</Link>
+          </li>
+          <li>can be a filename</li>
+          <li>
+            often omits easily confusable character pairs (1 & I, 0 & O, 8 & B)
+            {` `}
+          </li>
+        </ul>
+        <p>
+          This makes Base32 a great choice when raw data needs to be passed
+          between people. However, its cousin,{` `}
+          <Link href="/encoders/base64">Base64</Link>, is more effective when
+          arbitrary data needs to be represented using a limited character set
+          because of its efficient use of space.
+        </p>
+        <h3>Padding & the alphabet</h3>
+        <p>
+          In some Base32 implementations, a padding character is provisioned to
+          ensure that the Base32 string is the correct length. However, padding
+          is omitted in other implementations since it can often be inferred
+          from the source string.
+        </p>
+        <p>
+          A Base32 alphabet uses a set of 32 digits to represent 5 bit values (2
+          <sup>5</sup>). An alphabet can be designed to maximize performance and
+          readability, ensure cohesion with other systems, or be otherwise
+          tailored for a specific use case. Pictured below is the original RFC
+          4648 Base32 alphabet, though other popular alphabets include{` `}
+          <Link href="?variant=z-base-32&input=z-base-32">z-base-32</Link>,{` `}
+          <Link href="?variant=crockford-base32&input=Crockford%27s%20Base32">
+            Crockford&apos;s Base32
+          </Link>
+          , and <Link href="?variant=base32hex&input=Base32hex">base32hex</Link>
+          .
+        </p>
+        <Row>
+          <Table>
+            <caption>Base32 alphabet defined by RFC 4648</caption>
+            <thead>
+              <tr>
+                <th>Value</th>
+                <th>Mark</th>
+                <th rowSpan={10} />
+                <th>Value</th>
+                <th>Mark</th>
+                <th rowSpan={10} />
+                <th>Value</th>
+                <th>Mark</th>
+                <th rowSpan={10} />
+                <th>Value</th>
+                <th>Mark</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>A</td>
+                <td />
+                <td>8</td>
+                <td>I</td>
+                <td />
+                <td>16</td>
+                <td>Q</td>
+                <td />
+                <td>24</td>
+                <td>Y</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>B</td>
+                <td />
+                <td>9</td>
+                <td>J</td>
+                <td />
+                <td>17</td>
+                <td>R</td>
+                <td />
+                <td>25</td>
+                <td>Z</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>C</td>
+                <td />
+                <td>10</td>
+                <td>K</td>
+                <td />
+                <td>18</td>
+                <td>S</td>
+                <td />
+                <td>26</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>D</td>
+                <td />
+                <td>11</td>
+                <td>L</td>
+                <td />
+                <td>19</td>
+                <td>T</td>
+                <td />
+                <td>27</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>E</td>
+                <td />
+                <td>12</td>
+                <td>M</td>
+                <td />
+                <td>20</td>
+                <td>U</td>
+                <td />
+                <td>28</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>F</td>
+                <td />
+                <td>13</td>
+                <td>N</td>
+                <td />
+                <td>21</td>
+                <td>V</td>
+                <td />
+                <td>29</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>G</td>
+                <td />
+                <td>14</td>
+                <td>O</td>
+                <td />
+                <td>22</td>
+                <td>W</td>
+                <td />
+                <td>30</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>H</td>
+                <td />
+                <td>15</td>
+                <td>P</td>
+                <td />
+                <td>23</td>
+                <td>X</td>
+                <td />
+                <td>31</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>padding</td>
+                <td>=</td>
+                <td colSpan={9} />
+              </tr>
+            </tbody>
+          </Table>
+        </Row>
+      </main>
     </>
   );
 }

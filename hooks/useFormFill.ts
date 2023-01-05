@@ -76,5 +76,5 @@ export default function useFormFill(
     form.current.dispatchEvent(
       new Event(`submit`, { cancelable: true, bubbles: true }),
     );
-  }, [router.query, form]);
+  }, [router.query, form, exclude]);
 }

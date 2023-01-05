@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  ReactNode,
-  useEffect,
-  useId,
-  useRef,
-} from 'react';
+import { ChangeEvent, FormEvent, ReactNode, useId, useRef } from 'react';
 import ToggleSwitch from '../ToggleSwitch/toggle-switch';
 import LabeledElement from '../LabeledElement/labeled-element';
 import TextArea from '../TextArea/text-area';
@@ -13,6 +6,7 @@ import Tool from '../Tool/tool';
 import { TypographyIcon } from '@primer/octicons-react';
 import Select from '../Select/select';
 import { useRouter } from 'next/router';
+import useFormFill from '@/hooks/useFormFill';
 
 const selectOptions = [`base32`, `base64`, `url`, `punycode`] as const;
 export type SelectOptions = typeof selectOptions[number];
@@ -47,17 +41,9 @@ export default function Encoder({
   const hashId = useId();
 
   const router = useRouter();
-  const defaultInput = router.query[`input`];
 
   const ref = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (defaultInput && ref.current) {
-      ref.current.dispatchEvent(
-        new Event(`submit`, { cancelable: true, bubbles: true }),
-      );
-    }
-  }, [defaultInput]);
+  useFormFill(ref);
 
   const navigate = (e: ChangeEvent<HTMLSelectElement>) => {
     router.push(`/encoders/${e.target.value}`);
