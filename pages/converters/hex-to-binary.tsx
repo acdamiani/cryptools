@@ -91,10 +91,12 @@ export default function BinaryToOct() {
         </code>
       </p>
       <h3>Conversion Table</h3>
-      <Row>
         <Table>
           <thead>
             <tr>
+              <th>Binary</th>
+              <th>Hex</th>
+              <th />
               <th>Binary</th>
               <th>Hex</th>
             </tr>
@@ -103,80 +105,54 @@ export default function BinaryToOct() {
             <tr>
               <td>0000</td>
               <td>0</td>
-            </tr>
-            <tr>
-              <td>0001</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>0010</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>0011</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>0100</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>0101</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>0110</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <td>0111</td>
-              <td>7</td>
-            </tr>
-          </tbody>
-        </Table>
-        <Table>
-          <thead>
-            <tr>
-              <th>Binary</th>
-              <th>Hex</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+              <td rowSpan={8} />
               <td>1000</td>
               <td>8</td>
             </tr>
             <tr>
+              <td>0001</td>
+              <td>1</td>
               <td>1001</td>
               <td>9</td>
             </tr>
             <tr>
+              <td>0010</td>
+              <td>2</td>
               <td>1010</td>
               <td>A</td>
             </tr>
             <tr>
+              <td>0011</td>
+              <td>3</td>
               <td>1011</td>
               <td>B</td>
             </tr>
             <tr>
+              <td>0100</td>
+              <td>4</td>
               <td>1100</td>
               <td>C</td>
             </tr>
             <tr>
+              <td>0101</td>
+              <td>5</td>
               <td>1101</td>
               <td>D</td>
             </tr>
             <tr>
+              <td>0110</td>
+              <td>6</td>
               <td>1110</td>
               <td>E</td>
             </tr>
             <tr>
+              <td>0111</td>
+              <td>7</td>
               <td>1111</td>
               <td>F</td>
             </tr>
           </tbody>
         </Table>
-      </Row>
     </>
   );
 }
