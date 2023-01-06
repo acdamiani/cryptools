@@ -4,7 +4,10 @@
 
 <div align="center"><strong>Cryptography reference website built using Next.js</strong></div>
 <div align="center">
-  Developed by August Damiani
+  <small>
+  Built from
+  <a href="https://github.com/jpedroschmitz/typescript-nextjs-starter">typescript-nextjs-starter</a>
+  </small>
 </div>
 
 <br />
