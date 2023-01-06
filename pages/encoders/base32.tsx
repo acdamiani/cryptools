@@ -27,6 +27,53 @@ const decoded = base32.decode(encoded);
 
 console.log(\`Base32 encoding of \${message}: \${encoded}\`);
 console.log(\`Base32 decoding of \${encoded}: \${decoded}\`);`,
+  csharp: `using System;
+using System.Text;
+// Using [SimpleBase](https://www.nuget.org/packages/SimpleBase/) NuGet package
+using SimpleBase;
+
+string message = "Hello World";
+
+string encoded = Base32.Rfc4648.Encode(Encoding.UTF8.GetBytes(message), padding: true);
+string decoded = Encoding.UTF8.GetString(Base32.Rfc4648.Decode(encoded));
+
+Console.WriteLine($"Base32 encoding of {message}: {encoded}");
+Console.WriteLine($"Base32 decoding of {encoded}: {decoded}");`,
+  go: `package main
+
+import (
+	"encoding/base32"
+	"fmt"
+)
+
+func main() {
+	message := "Hello World"
+
+	encoded := base32.StdEncoding.EncodeToString([]byte(message))
+	decoded, _ := base32.StdEncoding.DecodeString(encoded)
+
+	fmt.Printf("Base32 encoding of %s: %s\n", message, encoded)
+	fmt.Printf("Base32 decoding of %s: %s\n", encoded, string(decoded))
+}`,
+  ruby: `# Using [base32](https://github.com/stesla/base32) (RFC 3548)
+require 'base32'
+
+message = 'Hello World'
+
+encoded = Base32.encode(message)
+decoded = Base32.decode(encoded)
+
+puts "Base32 encoding of #{message}: #{encoded}"
+puts "Base32 decoding of #{encoded}: #{decoded}"`,
+  python: `import base64
+
+message = "Hello World"
+
+encoded = base64.b32encode(message.encode("utf-8")).decode("utf-8")
+decoded = base64.b32decode(encoded).decode("utf-8")
+
+print(f"Base32 encoding of {message}: {encoded}")
+print(f"Base32 deocding of {encoded}: {decoded}")`,
 };
 
 export default function Base32({ code }: { code: CodeBlockHTML }) {
@@ -122,13 +169,13 @@ export default function Base32({ code }: { code: CodeBlockHTML }) {
               <tr>
                 <th>Value</th>
                 <th>Mark</th>
-                <th rowSpan={10} />
+                <th />
                 <th>Value</th>
                 <th>Mark</th>
-                <th rowSpan={10} />
+                <th />
                 <th>Value</th>
                 <th>Mark</th>
-                <th rowSpan={10} />
+                <th />
                 <th>Value</th>
                 <th>Mark</th>
               </tr>
@@ -137,111 +184,90 @@ export default function Base32({ code }: { code: CodeBlockHTML }) {
               <tr>
                 <td>0</td>
                 <td>A</td>
-                <td />
+                <td rowSpan={8} />
                 <td>8</td>
                 <td>I</td>
-                <td />
+                <td rowSpan={8} />
                 <td>16</td>
                 <td>Q</td>
-                <td />
+                <td rowSpan={8} />
                 <td>24</td>
                 <td>Y</td>
               </tr>
               <tr>
                 <td>1</td>
                 <td>B</td>
-                <td />
                 <td>9</td>
                 <td>J</td>
-                <td />
                 <td>17</td>
                 <td>R</td>
-                <td />
                 <td>25</td>
                 <td>Z</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>C</td>
-                <td />
                 <td>10</td>
                 <td>K</td>
-                <td />
                 <td>18</td>
                 <td>S</td>
-                <td />
                 <td>26</td>
                 <td>2</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>D</td>
-                <td />
                 <td>11</td>
                 <td>L</td>
-                <td />
                 <td>19</td>
                 <td>T</td>
-                <td />
                 <td>27</td>
                 <td>3</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>E</td>
-                <td />
                 <td>12</td>
                 <td>M</td>
-                <td />
                 <td>20</td>
                 <td>U</td>
-                <td />
                 <td>28</td>
                 <td>4</td>
               </tr>
               <tr>
                 <td>5</td>
                 <td>F</td>
-                <td />
                 <td>13</td>
                 <td>N</td>
-                <td />
                 <td>21</td>
                 <td>V</td>
-                <td />
                 <td>29</td>
                 <td>5</td>
               </tr>
               <tr>
                 <td>6</td>
                 <td>G</td>
-                <td />
                 <td>14</td>
                 <td>O</td>
-                <td />
                 <td>22</td>
                 <td>W</td>
-                <td />
                 <td>30</td>
                 <td>6</td>
               </tr>
               <tr>
                 <td>7</td>
                 <td>H</td>
-                <td />
                 <td>15</td>
                 <td>P</td>
-                <td />
                 <td>23</td>
                 <td>X</td>
-                <td />
                 <td>31</td>
                 <td>7</td>
               </tr>
               <tr>
                 <td>padding</td>
                 <td>=</td>
-                <td colSpan={9} />
+                <td colSpan={10} />
               </tr>
             </tbody>
           </Table>
