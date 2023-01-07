@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app';
+import Script from 'next/script';
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import { Inter } from '@next/font/google';
@@ -35,6 +36,15 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           --ct-mono-font-family: monospace, monospace;
         }
       `}</style>
+      <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
+      <noscript>
+        {/* eslint-disable @next/next/no-img-element */}
+        <img
+          src="https://queue.simpleanalyticscdn.com/noscript.gif"
+          alt=""
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </noscript>
       <Page>{getLayout(<Component {...pageProps} />)}</Page>
     </>
   );
