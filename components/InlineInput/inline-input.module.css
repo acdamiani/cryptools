@@ -1,0 +1,24 @@
+.input-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.input {
+  width: 100%;
+}
+
+.input > textarea {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.button {
+  align-items: stretch;
+  width: unset;
+}
+
+.button > button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

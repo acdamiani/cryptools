@@ -1,0 +1,30 @@
+.popular {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.popular-header {
+  margin: 0;
+}
+
+.popular-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popular-input {
+  width: 100%;
+}
+
+.popular-input > textarea {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .popular {
+    grid-template-columns: 1fr;
+  }
+}

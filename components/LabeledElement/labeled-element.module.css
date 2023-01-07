@@ -1,0 +1,10 @@
+.element {
+  display: flex;
+  gap: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .element {
+    width: 100%;
+  }
+}

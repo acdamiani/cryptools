@@ -1,0 +1,67 @@
+.button {
+  position: relative;
+
+  width: 40px;
+  height: 22px;
+
+  border: 1px solid var(--ct-c-border);
+  border-radius: 11px;
+
+  background-color: var(--ct-c-divider);
+
+  padding: 0;
+  margin: 0;
+
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  border-color: var(--ct-c-font-mute);
+}
+
+.check {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+
+  width: 18px;
+  height: 18px;
+
+  background-color: var(--ct-c-bg);
+  
+  border-radius: 50%;
+
+  transition: background-color 0.25s ease, transform 0.25s ease;
+  box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.25);
+}
+
+.dark .check {
+  transform: translateX(18px);
+  box-shadow: none;
+}
+
+.icon-container {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.icon {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  color: var(--ct-c-font);
+
+}
+
+.sun {
+  opacity: 1;
+}
+
+.moon {
+  opacity: 0;
+}

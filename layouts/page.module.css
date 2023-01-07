@@ -1,0 +1,14 @@
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-width: 0;
+  padding: 0 5px calc(20px + var(--footer-height));
+  width: 95vw;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

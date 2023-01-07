@@ -1,0 +1,111 @@
+.block {
+  position: relative;
+  background-color: var(--ct-c-code-bg);
+  border: none;
+  border-radius: 5px;
+  padding-top: 1.35rem;
+}
+
+.lang {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  cursor: pointer;
+  appearance: none;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 0.25rem;
+  padding-right: calc(0.25rem + 15px);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='white'%3E%3Cpath d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'/%3E%3C/svg%3E");
+  background-position: right 5px top 50%;
+  background-repeat: no-repeat;
+  background-size: 10px;
+}
+
+.lang:focus {
+  outline: none;
+}
+
+.lang:hover {
+  background-color: var(--ct-c-code-bg-highlight);
+}
+
+.copy {
+  padding: 0;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+  display: block;
+  border-radius: 5px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  border: none;
+
+  appearance: button;
+  -webkit-appearance: button;
+
+  background-color: var(--ct-c-code-bg);
+}
+
+.copy:hover,
+.copy.copied {
+  background-color: var(--ct-c-code-bg-highlight);
+}
+
+.copy.copied {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.copy.copied::before {
+  box-sizing: border-box;
+  position: relative;
+  left: -62px;
+  display: block;
+  border-radius: 5px 0 0 5px;
+  width: 61px;
+  padding-top: 12px;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ct-c-text-dark-2);
+  background-color: var(--ct-c-code-bg-highlight);
+  white-space: nowrap;
+  content: 'Copied';
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.code-block {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+
+.code-block pre:global(.shiki) {
+  background-color: var(--ct-c-code-bg) !important;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  tab-size: 1rem;
+}
+
+.code-block code {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  tab-size: inherit;
+}
