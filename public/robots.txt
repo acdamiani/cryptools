@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://cryptools.dev
+
+# Sitemaps
+Sitemap: https://cryptools.dev/sitemap.xml

@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
@@ -66,6 +67,7 @@
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "mocha": "10.2.0",
+    "next-sitemap": "3.1.44",
     "prettier": "2.8.1",
     "shiki": "0.12.1",
     "ts-node": "10.9.1",
