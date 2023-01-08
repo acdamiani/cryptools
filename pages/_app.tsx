@@ -45,6 +45,11 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </noscript>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4052010510817676"
+        crossOrigin="anonymous"
+      />
       <Page>{getLayout(<Component {...pageProps} />)}</Page>
     </>
   );
