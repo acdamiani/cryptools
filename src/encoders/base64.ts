@@ -3,7 +3,7 @@ import { getBytes, getString } from '../text';
 
 const base64Variants = [`base64`, `base64url`, `rfc2045`, `rfc1421`] as const;
 
-export type Base64Variant = typeof base64Variants[number];
+export type Base64Variant = (typeof base64Variants)[number];
 
 type Base64VariantOptions = {
   alphabet: string;
