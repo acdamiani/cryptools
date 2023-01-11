@@ -19,10 +19,10 @@ export default class ROTCipher extends Cipher {
         this._c1 = new CaesarCipher(5, `0123456789`);
         break;
       case `rot13`:
-        this._c1 = new CaesarCipher(13, `abcdefghijklmnopqrstuvwyxz`);
+        this._c1 = new CaesarCipher(13, `abcdefghijklmnopqrstuvwxyz`);
         break;
       case `rot18`:
-        this._c1 = new CaesarCipher(13, `abcdefghijklmnopqrstuvwyxz`);
+        this._c1 = new CaesarCipher(13, `abcdefghijklmnopqrstuvwxyz`);
         this._c2 = new CaesarCipher(5, `0123456789`);
         break;
       case `rot47`:
