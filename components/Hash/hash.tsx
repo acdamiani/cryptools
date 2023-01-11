@@ -16,7 +16,7 @@ const selectOptions = [
   `ripemd160`,
   `md5`,
 ] as const;
-export type SelectOptions = typeof selectOptions[number];
+export type SelectOptions = (typeof selectOptions)[number];
 
 const selectLabels: Record<SelectOptions, string> = {
   sha1: `SHA-1`,

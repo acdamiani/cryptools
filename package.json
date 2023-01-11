@@ -16,15 +16,15 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "type-check": "tsc",
-    "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
-    "lint-fix": "eslint --ignore-path .gitignore --fix \"src/**/*.+(ts|js|tsx)\"",
-    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
+    "lint": "eslint --ignore-path .gitignore \"./**/*.+(ts|js|tsx)\"",
+    "lint-fix": "eslint --ignore-path .gitignore --fix \"./**/*.+(ts|js|tsx)\"",
+    "format": "prettier --ignore-path .gitignore \"./**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
     "analyze": "cross-env ANALYZE=true next build",
     "test": "mocha -r ts-node/register -r tsconfig-paths/register 'test/**/*.spec.ts'"
   },
   "lint-staged": {
-    "./src/**/*.{ts,js,jsx,tsx}": [
+    "./**/*.{ts,js,jsx,tsx}": [
       "eslint --ignore-path .gitignore --fix",
       "prettier --ignore-path .gitignore --write"
     ]

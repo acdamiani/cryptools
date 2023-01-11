@@ -17,7 +17,7 @@ const selectOptions = [
   `octal`,
   `binary`,
 ] as const;
-export type SelectOptions = typeof selectOptions[number];
+export type SelectOptions = (typeof selectOptions)[number];
 
 export const SelectAbbr: Record<SelectOptions, string> = {
   text: `ascii`,
@@ -28,7 +28,7 @@ export const SelectAbbr: Record<SelectOptions, string> = {
 };
 
 const delimiterOptions = [`space`, `comma`, `user defined`, `none`] as const;
-export type DelimiterOptions = typeof delimiterOptions[number];
+export type DelimiterOptions = (typeof delimiterOptions)[number];
 
 const conversionExceptions: Partial<Record<SelectOptions, SelectOptions[]>> = {
   decimal: [`text`],
