@@ -8,7 +8,7 @@ const base32Variants = [
   `crockford-base32`,
 ] as const;
 
-export type Base32Variant = typeof base32Variants[number];
+export type Base32Variant = (typeof base32Variants)[number];
 
 type Base32VariantOptions = {
   alphabet: string;

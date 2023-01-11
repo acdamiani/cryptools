@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import useFormFill from '@/hooks/useFormFill';
 
 const selectOptions = [`base32`, `base64`, `url`, `punycode`] as const;
-export type SelectOptions = typeof selectOptions[number];
+export type SelectOptions = (typeof selectOptions)[number];
 
 const selectLabels: Record<SelectOptions, string> = {
   base32: `Base32`,
