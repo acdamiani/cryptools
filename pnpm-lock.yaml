@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@commitlint/cli': 17.4.0
+  '@commitlint/cli': 17.4.1
   '@commitlint/config-conventional': 17.4.0
   '@next/bundle-analyzer': 13.1.1
   '@next/font': 13.1.1
@@ -58,7 +58,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
 
 devDependencies:
-  '@commitlint/cli': 17.4.0
+  '@commitlint/cli': 17.4.1
   '@commitlint/config-conventional': 17.4.0
   '@next/bundle-analyzer': 13.1.1
   '@svgr/webpack': 6.5.1
@@ -1339,8 +1339,8 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@commitlint/cli/17.4.0:
-    resolution: {integrity: sha512-SEY4sYe8yVlgxPP7X0wJb96DBAGBPsCsy6QbqJt/UECbIAjDeDV5xXBV4jnS7T/qMC10sk6Ub9kDhEX0VWvblw==}
+  /@commitlint/cli/17.4.1:
+    resolution: {integrity: sha512-W8OJwz+izY+fVwyUt1HveCDmABMZNRVZHSVPw/Bh9Y62tp11SmmQaycgbsYLMiMy7JGn4mAJqEGlSHS9Uti9ZQ==}
     engines: {node: '>=v14'}
     hasBin: true
     dependencies:
