@@ -1,5 +1,5 @@
 .wrapper {
-  overflow-x: scroll;
+  overflow-x: auto;
   margin: 1rem 0;
 }
 

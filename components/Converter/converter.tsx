@@ -214,6 +214,7 @@ export default function Converter({
         <LabeledElement
           htmlFor={prefixId}
           content={`Add '${prefixText}' Prefix`}
+          horizontal
         >
           <Toggle name="prefix" id={prefixId} />
         </LabeledElement>
