@@ -36,11 +36,11 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           --ct-mono-font-family: monospace, monospace;
         }
       `}</style>
-      <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
+      <Script src="https://sa.cryptools.dev/latest.js" />
       <noscript>
         {/* eslint-disable @next/next/no-img-element */}
         <img
-          src="https://queue.simpleanalyticscdn.com/noscript.gif"
+          src="https://sa.cryptools.dev/noscript.gif"
           alt=""
           referrerPolicy="no-referrer-when-downgrade"
         />
