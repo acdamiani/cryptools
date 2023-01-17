@@ -1,14 +1,15 @@
 {
-  "name": "typescript-nextjs-starter",
-  "description": "A TypeScript starter for Next.js that includes all you need to build amazing projects",
+  "name": "cryptools",
+  "description": "An open source cryptography reference website",
   "version": "1.0.0",
   "private": true,
-  "author": "João Pedro Schmitz <hey@joaopedro.dev> (@jpedroschmitz)",
+  "author": "August Damiani <damiani.august@gmail.com> (@acdamiani)",
   "license": "MIT",
   "keywords": [
     "nextjs",
-    "starter",
-    "typescript"
+    "website",
+    "cryptography",
+    "react",
   ],
   "scripts": {
     "dev": "next",
