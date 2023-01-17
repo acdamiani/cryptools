@@ -9,7 +9,7 @@
     "nextjs",
     "website",
     "cryptography",
-    "react",
+    "react"
   ],
   "scripts": {
     "dev": "next",
