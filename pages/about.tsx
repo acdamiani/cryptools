@@ -5,7 +5,7 @@ const title = `About - Cryptools`;
 const description = `About the Cryptools website.`;
 const og: OpenGraph = { url: `https://cryptools.dev/about` };
 
-export default function Legal() {
+function About() {
   return (
     <>
       <Meta title={title} description={description} og={og} />
@@ -58,3 +58,8 @@ export default function Legal() {
     </>
   );
 }
+
+About.displayName = `About`;
+About.useAds = false;
+
+export default About;

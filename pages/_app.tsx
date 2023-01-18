@@ -12,19 +12,21 @@ import Page from '@/layouts/page';
 // eslint-disable-next-line @typescript-eslint/quotes
 const inter = Inter({ subsets: ['latin'] });
 
-export type NextPageWithLayout<P = Record<string, never>, IP = P> = NextPage<
+export type NextPageWithProps<P = Record<string, never>, IP = P> = NextPage<
   P,
   IP
 > & {
   getLayout?: (page: ReactElement) => ReactNode;
+  useAds?: boolean;
 };
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+  Component: NextPageWithProps;
 };
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
+  const useAds = Component.useAds ?? true;
 
   return (
     <>
@@ -45,11 +47,13 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </noscript>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4052010510817676"
-        crossOrigin="anonymous"
-      />
+      {useAds && (
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4052010510817676"
+          crossOrigin="anonymous"
+        />
+      )}
       <Page>{getLayout(<Component {...pageProps} />)}</Page>
     </>
   );

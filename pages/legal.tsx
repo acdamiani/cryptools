@@ -5,7 +5,7 @@ const title = `Legal Notice - Cryptools`;
 const description = `Cryptools legal notice and copyright information`;
 const og: OpenGraph = { url: `https://cryptools.dev/legal` };
 
-export default function Legal() {
+function Legal() {
   return (
     <>
       <Meta title={title} description={description} og={og} />
@@ -75,3 +75,8 @@ export default function Legal() {
     </>
   );
 }
+
+Legal.displayName = `Legal`;
+Legal.useAds = false;
+
+export default Legal;
