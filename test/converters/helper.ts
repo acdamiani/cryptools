@@ -9,18 +9,18 @@ export type ConverterTestVector<
 > = {
   value: string;
   converted: Record<Exclude<ConverterKind, TKind | TExclude>, string>;
-};
+}[];
 
-export default class ConverterHelper {
+export default class ConverterTestHelper {
   static test<
     TKind extends ConverterKind,
     TExclude extends ConverterKind | void = void,
   >(
     instance: ((value: string) => Converter) | Converter,
-    vectors: ConverterTestVector<TKind, TExclude>[],
+    vector: ConverterTestVector<TKind, TExclude>,
   ) {
     describe(`to()`, () => {
-      vectors.forEach((v) => {
+      vector.forEach((v) => {
         const tvalue = TestUtil.preview(v.value.toString());
         const converter =
           typeof instance === `function` ? instance(v.value) : instance;

@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
 import MD5Hash from '@/src/hashes/md5';
-import HashHelper, { TestVector } from './helper';
+import HashTestHelper, { HashTestVector } from './helper';
 
-const vectors: TestVector[] = [
+const vector: HashTestVector = [
   {
     content: ``,
     hash: `d41d8cd98f00b204e9800998ecf8427e`,
@@ -33,4 +33,4 @@ const vectors: TestVector[] = [
   },
 ];
 
-describe(`MD5 Hash`, () => HashHelper.test(new MD5Hash(), vectors));
+describe(`MD5 Hash`, () => HashTestHelper.test(new MD5Hash(), vector));

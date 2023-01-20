@@ -3,13 +3,13 @@ import assert from 'assert';
 import Hash from '@/src/hashes/hash';
 import TestUtil from 'test/util';
 
-export type TestVector = {
+export type HashTestVector = {
   content: string;
   hash: string;
-};
+}[];
 
-export default class HashHelper {
-  static test(instance: Hash, vectors: TestVector[]) {
+export default class HashTestHelper {
+  static test(instance: Hash, vectors: HashTestVector) {
     describe(`hash()`, () => {
       vectors.forEach((v) => {
         it(`should hash ${TestUtil.preview(v.content)} -> ${TestUtil.preview(

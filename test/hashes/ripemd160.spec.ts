@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
 import RIPEMD160Hash from '@/src/hashes/ripemd160';
-import HashHelper, { TestVector } from './helper';
+import HashTestHelper, { HashTestVector } from './helper';
 
-const vectors: TestVector[] = [
+const vector: HashTestVector = [
   {
     content: ``,
     hash: `9c1185a5c5e9fc54612808977ee8f548b2258d31`,
@@ -34,4 +34,4 @@ const vectors: TestVector[] = [
 ];
 
 describe(`RIPEMD-160 Hash`, () =>
-  HashHelper.test(new RIPEMD160Hash(), vectors));
+  HashTestHelper.test(new RIPEMD160Hash(), vector));

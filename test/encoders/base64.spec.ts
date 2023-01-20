@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
-import EncoderHelper, { TestVector } from './helper';
+import EncoderTestHelper, { EncoderTestVector } from './helper';
 import Base64Encoder, { Base64Variant } from '@/src/encoders/base64';
 
-const vectors: Record<Base64Variant, TestVector[]> = {
+const vectors: Record<Base64Variant, EncoderTestVector> = {
   base64: [
     {
       content: ``,
@@ -73,11 +73,14 @@ const vectors: Record<Base64Variant, TestVector[]> = {
 
 describe(`Base64 Encoder`, () => {
   describe(`Base64`, () =>
-    EncoderHelper.test(new Base64Encoder(`base64`), vectors[`base64`]));
+    EncoderTestHelper.test(new Base64Encoder(`base64`), vectors[`base64`]));
   describe(`Base64url`, () =>
-    EncoderHelper.test(new Base64Encoder(`base64url`), vectors[`base64url`]));
+    EncoderTestHelper.test(
+      new Base64Encoder(`base64url`),
+      vectors[`base64url`],
+    ));
   describe(`RFC1421`, () =>
-    EncoderHelper.test(new Base64Encoder(`rfc1421`), vectors[`rfc1421`]));
+    EncoderTestHelper.test(new Base64Encoder(`rfc1421`), vectors[`rfc1421`]));
   describe(`RFC2045`, () =>
-    EncoderHelper.test(new Base64Encoder(`rfc2045`), vectors[`rfc2045`]));
+    EncoderTestHelper.test(new Base64Encoder(`rfc2045`), vectors[`rfc2045`]));
 });

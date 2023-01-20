@@ -27,7 +27,7 @@ export default class A1Z26Cipher extends Cipher<string> {
     this._caseSensitive = caseSensitive;
   }
 
-  encode(message: string) {
+  encrypt(message: string) {
     const ret: number[] = [];
 
     if (!this._caseSensitive) {
@@ -47,7 +47,7 @@ export default class A1Z26Cipher extends Cipher<string> {
     return ret.join(this._key);
   }
 
-  decode(message: string) {
+  decrypt(message: string) {
     let ret = ``;
     const nums = message.split(this._key);
 

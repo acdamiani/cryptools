@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
 import DecimalConverter from '@/src/converters/dec';
-import ConverterHelper, { ConverterTestVector } from './helper';
+import ConverterTestHelper, { ConverterTestVector } from './helper';
 
-const vectors: ConverterTestVector<'dec', 'text'>[] = [
+const vector: ConverterTestVector<'dec', 'text'> = [
   {
     value: `0`,
     converted: {
@@ -50,4 +50,4 @@ const vectors: ConverterTestVector<'dec', 'text'>[] = [
 ];
 
 describe(`Decimal Converter`, () =>
-  ConverterHelper.test((v) => new DecimalConverter(v), vectors));
+  ConverterTestHelper.test((v) => new DecimalConverter(v), vector));

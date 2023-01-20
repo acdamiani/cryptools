@@ -3,15 +3,15 @@ import assert from 'assert';
 import Encoder from '@/src/encoders/encoder';
 import TestUtil from 'test/util';
 
-export type TestVector = {
+export type EncoderTestVector = {
   content: string;
   encoded: string;
-};
+}[];
 
-export default class EncoderHelper {
-  static test(instance: Encoder, vectors: TestVector[]) {
+export default class EncoderTestHelper {
+  static test(instance: Encoder, vector: EncoderTestVector) {
     describe(`encode()`, () => {
-      vectors.forEach((v) => {
+      vector.forEach((v) => {
         const tcontent = TestUtil.preview(v.content);
         const tencoded = TestUtil.preview(v.encoded);
         it(`should encode ${tcontent} -> ${tencoded}`, () => {
@@ -20,7 +20,7 @@ export default class EncoderHelper {
       });
     });
     describe(`decode()`, () => {
-      vectors.forEach((v) => {
+      vector.forEach((v) => {
         const tcontent = TestUtil.preview(v.content);
         const tencoded = TestUtil.preview(v.encoded);
         it(`should decode ${tencoded} -> ${tcontent}`, () => {

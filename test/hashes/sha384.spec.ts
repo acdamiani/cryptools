@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
 import BrowserHash from '@/src/hashes/browser';
-import HashHelper, { TestVector } from './helper';
+import HashTestHelper, { HashTestVector } from './helper';
 
-const vectors: TestVector[] = [
+const vector: HashTestVector = [
   {
     content: ``,
     hash: `38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b`,
@@ -34,4 +34,4 @@ const vectors: TestVector[] = [
 ];
 
 describe(`SHA-384 Hash`, () =>
-  HashHelper.test(new BrowserHash(`sha384`), vectors));
+  HashTestHelper.test(new BrowserHash(`sha384`), vector));

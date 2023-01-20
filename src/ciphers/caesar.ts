@@ -37,9 +37,7 @@ export default class CaesarCipher extends Cipher<number> {
     for (let i = 0; i < message.length; i++) {
       let char = message[i];
       const isLower = char.toLowerCase() === char;
-      const index = alphabet.indexOf(
-        this._preserveCase ? char.toLowerCase() : char,
-      );
+      const index = alphabet.indexOf(char.toLowerCase());
 
       if (index === -1) {
         if (this._insertInvalid) {
@@ -67,11 +65,11 @@ export default class CaesarCipher extends Cipher<number> {
     return str;
   }
 
-  encode(message: string) {
+  encrypt(message: string) {
     return this._encodeInternal(message, false);
   }
 
-  decode(message: string) {
+  decrypt(message: string) {
     return this._encodeInternal(message, true);
   }
 }

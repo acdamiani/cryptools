@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
 import BinaryConverter from '@/src/converters/binary';
-import ConverterHelper, { ConverterTestVector } from './helper';
+import ConverterTestHelper, { ConverterTestVector } from './helper';
 
-const vectors: ConverterTestVector<'binary'>[] = [
+const vector: ConverterTestVector<'binary'> = [
   {
     value: `0100100001100101011011000110110001101111001000000101011101101111011100100110110001100100`,
     converted: {
@@ -42,4 +42,4 @@ const vectors: ConverterTestVector<'binary'>[] = [
 ];
 
 describe(`Binary Converter`, () =>
-  ConverterHelper.test((v) => new BinaryConverter(v), vectors));
+  ConverterTestHelper.test((v) => new BinaryConverter(v), vector));

@@ -105,7 +105,7 @@ export default function ROT13({ code }: { code: CodeBlockHTML }) {
 
     const c = new RotCipher(target.variant.value);
 
-    return c.encode(target.input.value);
+    return c.encrypt(target.input.value);
   };
 
   return (

@@ -29,7 +29,7 @@ export default class VigenereCipher extends Cipher<string> {
     this._variant = variant;
   }
 
-  encode(message: string) {
+  encrypt(message: string) {
     const alphabet = this._alphabet;
     let str = ``;
 
@@ -91,7 +91,7 @@ export default class VigenereCipher extends Cipher<string> {
     return str;
   }
 
-  decode(message: string) {
+  decrypt(message: string) {
     const alphabet = this._alphabet;
     let str = ``;
 

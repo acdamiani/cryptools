@@ -46,22 +46,22 @@ export default class ROTCipher extends Cipher {
 
       for (const m of messages) {
         if (/^\d+$/.test(m[0])) {
-          ret += this._c2.encode(m);
+          ret += this._c2.encrypt(m);
         } else {
-          ret += this._c1.encode(m);
+          ret += this._c1.encrypt(m);
         }
       }
       return ret;
     }
 
-    return this._c1.encode(message);
+    return this._c1.encrypt(message);
   }
 
-  encode(message: string) {
+  encrypt(message: string) {
     return this._encodeInternal(message);
   }
 
-  decode(message: string) {
+  decrypt(message: string) {
     return this._encodeInternal(message);
   }
 }

@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
-import ConverterHelper, { ConverterTestVector } from './helper';
+import ConverterTestHelper, { ConverterTestVector } from './helper';
 import HexadecimalConverter from '@/src/converters/hex';
 
-const vectors: ConverterTestVector<'hex'>[] = [
+const vector: ConverterTestVector<'hex'> = [
   {
     value: `3a30`,
     converted: {
@@ -42,4 +42,4 @@ const vectors: ConverterTestVector<'hex'>[] = [
 ];
 
 describe(`Hexadecimal Converter`, () =>
-  ConverterHelper.test((v) => new HexadecimalConverter(v), vectors));
+  ConverterTestHelper.test((v) => new HexadecimalConverter(v), vector));

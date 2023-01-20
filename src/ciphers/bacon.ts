@@ -96,7 +96,7 @@ export default class BaconCipher extends Cipher {
     this._bMark = bMark;
   }
 
-  encode(message: string): string {
+  encrypt(message: string): string {
     const baconAlphabet =
       this._variant === `original` ? originalAlphabet : uniqueAlphabet;
     let ret = ``;
@@ -118,7 +118,7 @@ export default class BaconCipher extends Cipher {
     return ret;
   }
 
-  decode(message: string): string {
+  decrypt(message: string): string {
     const baconAlphabet =
       this._variant === `original` ? originalAlphabet : uniqueAlphabet;
     message = message.replace(BaconCipher._reWhitespace, ``);

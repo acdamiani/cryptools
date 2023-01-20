@@ -1,8 +1,8 @@
 import { describe } from 'mocha';
 import Base32Encoder, { Base32Variant } from '@/src/encoders/base32';
-import EncoderHelper, { TestVector } from './helper';
+import EncoderTestHelper, { EncoderTestVector } from './helper';
 
-const vectors: Record<Base32Variant, TestVector[]> = {
+const vectors: Record<Base32Variant, EncoderTestVector> = {
   base32: [
     {
       content: ``,
@@ -127,13 +127,19 @@ const vectors: Record<Base32Variant, TestVector[]> = {
 
 describe(`Base32 Encoder`, () => {
   describe(`Base32`, () =>
-    EncoderHelper.test(new Base32Encoder(`base32`), vectors[`base32`]));
+    EncoderTestHelper.test(new Base32Encoder(`base32`), vectors[`base32`]));
   describe(`Base32hex`, () =>
-    EncoderHelper.test(new Base32Encoder(`base32hex`), vectors[`base32hex`]));
+    EncoderTestHelper.test(
+      new Base32Encoder(`base32hex`),
+      vectors[`base32hex`],
+    ));
   describe(`z-base-32`, () =>
-    EncoderHelper.test(new Base32Encoder(`z-base-32`), vectors[`z-base-32`]));
+    EncoderTestHelper.test(
+      new Base32Encoder(`z-base-32`),
+      vectors[`z-base-32`],
+    ));
   describe(`Crockford's Base32`, () =>
-    EncoderHelper.test(
+    EncoderTestHelper.test(
       new Base32Encoder(`crockford-base32`),
       vectors[`crockford-base32`],
     ));

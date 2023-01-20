@@ -124,8 +124,8 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
     );
 
     return target.mode.checked
-      ? c.encode(target.input.value)
-      : c.decode(target.input.value);
+      ? c.encrypt(target.input.value)
+      : c.decrypt(target.input.value);
   };
 
   return (

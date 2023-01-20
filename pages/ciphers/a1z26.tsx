@@ -121,8 +121,8 @@ export default function A1Z26({ code }: { code: CodeBlockHTML }) {
     );
 
     return target.encode.checked
-      ? c.encode(target.input.value)
-      : c.decode(target.input.value);
+      ? c.encrypt(target.input.value)
+      : c.decrypt(target.input.value);
   };
 
   return (
