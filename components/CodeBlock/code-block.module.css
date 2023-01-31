@@ -25,6 +25,10 @@
   background-size: 10px;
 }
 
+.lang > option {
+  background-color: var(--ct-c-code-bg);
+}
+
 .lang:focus {
   outline: none;
 }
