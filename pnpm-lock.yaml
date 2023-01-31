@@ -38,7 +38,7 @@ specifiers:
   prettier: 2.8.3
   react: 18.2.0
   react-dom: 18.2.0
-  shiki: 0.12.1
+  shiki: 0.13.0
   ts-node: 10.9.1
   tsconfig-paths: 4.1.2
   typescript: 4.9.4
@@ -83,7 +83,7 @@ devDependencies:
   mocha: 10.2.0
   next-sitemap: 3.1.47_csmsbcsbfdx2cjngizs3en5eh4
   prettier: 2.8.3
-  shiki: 0.12.1
+  shiki: 0.13.0
   ts-node: 10.9.1_awa2wsr5thmg3i7jqycphctjfq
   tsconfig-paths: 4.1.2
   typescript: 4.9.4
@@ -5105,8 +5105,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /shiki/0.12.1:
-    resolution: {integrity: sha512-aieaV1m349rZINEBkjxh2QbBvFFQOlgqYTNtCal82hHj4dDZ76oMlQIX+C7ryerBTDiga3e5NfH6smjdJ02BbQ==}
+  /shiki/0.13.0:
+    resolution: {integrity: sha512-QucKtRFyoHgivnde/6tXu+7ZfUhcg02qiFlUSa4X0jQvHVKdtrimWPlbg+q06H2EeNSuj9DcMhtB18GgtDLsmw==}
     dependencies:
       jsonc-parser: 3.2.0
       vscode-oniguruma: 1.7.0
