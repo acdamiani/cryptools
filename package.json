@@ -68,7 +68,7 @@
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "mocha": "10.2.0",
-    "next-sitemap": "3.1.47",
+    "next-sitemap": "3.1.48",
     "prettier": "2.8.3",
     "shiki": "0.13.0",
     "ts-node": "10.9.1",
