@@ -48,7 +48,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         />
       </noscript>
       {useAds && (
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4052010510817676"
           crossOrigin="anonymous"
