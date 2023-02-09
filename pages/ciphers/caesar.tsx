@@ -118,7 +118,7 @@ export default function Caesar({ code }: { code: CodeBlockHTML }) {
     };
 
     const c = new CaesarCipher(
-      target.key.value,
+      Math.max(Math.min(target.key.value, alphabet.length - 1), 0),
       target.alphabet.value,
       target[`insert-invalid`].checked,
     );
