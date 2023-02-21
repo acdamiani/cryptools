@@ -5,7 +5,7 @@ specifiers:
   '@commitlint/config-conventional': 17.4.3
   '@next/bundle-analyzer': 13.1.6
   '@next/font': 13.1.6
-  '@primer/octicons-react': 17.11.1
+  '@primer/octicons-react': 17.12.0
   '@svgr/webpack': 6.5.1
   '@types/file-saver': 2.0.5
   '@types/mocha': 10.0.1
@@ -45,7 +45,7 @@ specifiers:
 
 dependencies:
   '@next/font': 13.1.6
-  '@primer/octicons-react': 17.11.1_react@18.2.0
+  '@primer/octicons-react': 17.12.0_react@18.2.0
   better-react-mathjax: 2.0.2_react@18.2.0
   big-integer: 1.6.51
   classnames: 2.3.2
@@ -1757,8 +1757,8 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@primer/octicons-react/17.11.1_react@18.2.0:
-    resolution: {integrity: sha512-JGBgAHXKwzuPoOtys3ddmfD2h8GVhU9YwQgxLQD04+IGIgG8FfeXuGREfpIGQNszU4cPZtqw9dST9IONeUb0oQ==}
+  /@primer/octicons-react/17.12.0_react@18.2.0:
+    resolution: {integrity: sha512-GUjV6IT1Ck2lu2GVu1loR0e2dcX2e9aIVmX5rBdR7HJnRdYKY7XH+FnYj7y9sEmzUdNEDswxkefiQlfGrBXlzA==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=15'
