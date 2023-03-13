@@ -33,7 +33,7 @@ specifiers:
   lint-staged: 13.1.2
   mocha: 10.2.0
   next: 13.2.4
-  next-sitemap: 3.1.52
+  next-sitemap: 3.1.55
   normalize.css: 8.0.1
   prettier: 2.8.4
   react: 18.2.0
@@ -81,7 +81,7 @@ devDependencies:
   husky: 8.0.3
   lint-staged: 13.1.2
   mocha: 10.2.0
-  next-sitemap: 3.1.52_jccvrrmb7rb3yyi3af3znueaea
+  next-sitemap: 3.1.55_jccvrrmb7rb3yyi3af3znueaea
   prettier: 2.8.4
   shiki: 0.14.1
   ts-node: 10.9.1_lwgqdwokjtwlohdqtbb6s252kq
@@ -4465,8 +4465,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-sitemap/3.1.52_jccvrrmb7rb3yyi3af3znueaea:
-    resolution: {integrity: sha512-tY469i4QRV1PwM9BoL+HdKYBCJ83IQl3PmUNapG/Hxp0MIYIw1hINU8E+Edf5Kr8vHXfVzPqDoul/Abu2P0vkw==}
+  /next-sitemap/3.1.55_jccvrrmb7rb3yyi3af3znueaea:
+    resolution: {integrity: sha512-ZjkRfkqoSLbU+e8W9TWWe0zfOGNA47lpvm35kNcUCmj73gpLX2PIn51gwHT/B6bgGVAFYY0OXixJDrxIIwcEHw==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
