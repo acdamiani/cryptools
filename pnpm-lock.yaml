@@ -33,7 +33,7 @@ specifiers:
   lint-staged: 13.2.0
   mocha: 10.2.0
   next: 13.2.4
-  next-sitemap: 3.1.55
+  next-sitemap: 4.0.5
   normalize.css: 8.0.1
   prettier: 2.8.4
   react: 18.2.0
@@ -81,7 +81,7 @@ devDependencies:
   husky: 8.0.3
   lint-staged: 13.2.0
   mocha: 10.2.0
-  next-sitemap: 3.1.55_jccvrrmb7rb3yyi3af3znueaea
+  next-sitemap: 4.0.5_jccvrrmb7rb3yyi3af3znueaea
   prettier: 2.8.4
   shiki: 0.14.1
   ts-node: 10.9.1_lwgqdwokjtwlohdqtbb6s252kq
@@ -1462,7 +1462,7 @@ packages:
       '@commitlint/types': 17.4.4
       fs-extra: 11.1.0
       git-raw-commits: 2.0.11
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /@commitlint/resolve-extends/17.4.4:
@@ -1507,8 +1507,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@corex/deepmerge/4.0.29:
-    resolution: {integrity: sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==}
+  /@corex/deepmerge/4.0.37:
+    resolution: {integrity: sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==}
     dev: true
 
   /@cspotcode/source-map-support/0.8.1:
@@ -4116,7 +4116,7 @@ packages:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
     dependencies:
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /json5/2.2.3:
@@ -4422,6 +4422,10 @@ packages:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
 
+  /minimist/1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
+    dev: true
+
   /mj-context-menu/0.6.1:
     resolution: {integrity: sha512-7NO5s6n10TIV96d4g2uDpG7ZDpIhMh0QNfGdJw/W47JswFcosz457wqz/b5sAKvl12sxINGFCn80NZHKwxQEXA==}
     dev: false
@@ -4485,17 +4489,17 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-sitemap/3.1.55_jccvrrmb7rb3yyi3af3znueaea:
-    resolution: {integrity: sha512-ZjkRfkqoSLbU+e8W9TWWe0zfOGNA47lpvm35kNcUCmj73gpLX2PIn51gwHT/B6bgGVAFYY0OXixJDrxIIwcEHw==}
+  /next-sitemap/4.0.5_jccvrrmb7rb3yyi3af3znueaea:
+    resolution: {integrity: sha512-kIABX4n8wJqY2sttRjivBF2r1MgQ1pg12y87qGT+5meippq0ivxaNSRldMDOj8pIGhXW6uFAsCxyH/JftqkwWQ==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
       '@next/env': '*'
       next: '*'
     dependencies:
-      '@corex/deepmerge': 4.0.29
+      '@corex/deepmerge': 4.0.37
       '@next/env': 13.2.4
-      minimist: 1.2.7
+      minimist: 1.2.8
       next: 13.2.4_672uxklweod7ene3nqtsh262ca
     dev: true
 
@@ -5509,7 +5513,7 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
-      minimist: 1.2.7
+      minimist: 1.2.8
       strip-bom: 3.0.0
     dev: true
 
