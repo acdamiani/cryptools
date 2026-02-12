@@ -15,8 +15,8 @@ dependencies:
     specifier: 2.0.2
     version: 2.0.2(react@18.2.0)
   big-integer:
-    specifier: 1.6.51
-    version: 1.6.51
+    specifier: 1.6.52
+    version: 1.6.52
   classnames:
     specifier: 2.3.2
     version: 2.3.2
@@ -2461,8 +2461,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /big-integer@1.6.51:
-    resolution: {integrity: sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==}
+  /big-integer@1.6.52:
+    resolution: {integrity: sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==}
     engines: {node: '>=0.6'}
     dev: false
 
