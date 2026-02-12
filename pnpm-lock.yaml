@@ -12,8 +12,8 @@ dependencies:
     specifier: 18.3.0
     version: 18.3.0(react@18.2.0)
   better-react-mathjax:
-    specifier: 2.0.2
-    version: 2.0.2(react@18.2.0)
+    specifier: 2.3.0
+    version: 2.3.0(react@18.2.0)
   big-integer:
     specifier: 1.6.51
     version: 1.6.51
@@ -2452,8 +2452,8 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
-  /better-react-mathjax@2.0.2(react@18.2.0):
-    resolution: {integrity: sha512-GSU/c+LhnMVClkduWpO7fr9Ac2KMOxWs/ePwdFgpffidK3Zg9Vyd3scO6XZbd2QgMUcKnpjEG6hE1sM/EFekSQ==}
+  /better-react-mathjax@2.3.0(react@18.2.0):
+    resolution: {integrity: sha512-K0ceQC+jQmB+NLDogO5HCpqmYf18AU2FxDbLdduYgkHYWZApFggkHE4dIaXCV1NqeoscESYXXo1GSkY6fA295w==}
     peerDependencies:
       react: '>=16.8'
     dependencies:
@@ -4367,6 +4367,7 @@ packages:
 
   /mathjax-full@3.2.2:
     resolution: {integrity: sha512-+LfG9Fik+OuI8SLwsiR02IVdjcnRCy5MufYLi0C3TdMT56L/pjB0alMVGgoWJF8pN9Rc7FESycZB9BMNWIid5w==}
+    deprecated: Version 4 replaces this package with the scoped package @mathjax/src
     dependencies:
       esm: 3.2.25
       mhchemparser: 4.1.1
